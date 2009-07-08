@@ -1,7 +1,8 @@
 Source: backup-manager
 Section: admin
 Priority: optional
-Build-Depends-Indep: debiandoc-sgml
+Build-Depends-Indep: debiandoc-sgml, texlive-fonts-recommended, texlive-latex-base,
+                     texlive-latex-recommended, texlive-latex-extra, ghostscript
 Build-Depends: po-debconf, debhelper (>= 5), dpatch
 Maintainer: Sven Joachim <svenjoac@gmx.de>
 Standards-Version: 3.8.0
