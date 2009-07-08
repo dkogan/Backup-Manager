@@ -1,0 +1,366 @@
+backup-manager (0.7.8-1) unstable; urgency=low
+
+  * New upstream release
+    (closes: #461512, #494833, #496051, #482087, #482089)
+  * Changed dependency from mkisofs to genisoimage; changed lib/externals.sh
+    accordingly.
+
+ -- Alexis Sukrieh <sukria@debian.org>  Sun, 01 Feb 2009 14:09:03 +0000
+
+backup-manager (0.7.7-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix pending l10n issues
+  * Programs translations:
+    - German upstream translation updated. Closes: #499667
+  * Debconf translations:
+    - Swedish. Closes: #492245
+    - Portuguese. Closes: #372232
+    - Russian. Closes: #499440
+
+ -- Christian Perrier <bubulle@debian.org>  Mon, 22 Sep 2008 07:27:15 +0200
+
+backup-manager (0.7.7-1) unstable; urgency=low
+
+  * New upstream release: 0.7.7
+    - Handles missing destination directory during SSH uploads 
+      (closes: #459266)
+    - Other bugfixes unreported in the Debian BTS.
+  * Removed obsolete patches.
+  * Standard-Version set to 3.7.3
+
+ -- Alexis Sukrieh <sukria@debian.org>  Tue, 15 Apr 2008 14:09:19 +0200
+
+backup-manager (0.7.6-3) unstable; urgency=high
+
+  * Backport from the stable upstream branch for closing a security issue
+    (password disclosure during FTP uploads).
+    (closes: #439392)
+
+ -- Alexis Sukrieh <sukria@debian.org>  Thu, 30 Aug 2007 18:24:14 +0200
+
+backup-manager (0.7.6-2) unstable; urgency=low
+
+  * The backup-manager-doc package now installs the documentation files under
+    `/usr/share/doc/backup-manager-doc' rather than
+    `/usr/share/backup-manager/doc' (Thanks to Sven Joachim).
+    (closes: #433011)
+
+ -- Alexis Sukrieh <sukria@debian.org>  Tue, 07 Aug 2007 16:27:36 +0200
+
+backup-manager (0.7.6-1) unstable; urgency=low
+
+  * New upstream release
+    + Doesn't exit when a file changed during the archive generation 
+    (closes: #410503, #411085, #411126)
+  * Dutch po-debconf translation added (thanks to Bart Cornelis).
+    (closes: #419738)
+
+ -- Alexis Sukrieh <sukria@debian.org>  Wed, 30 May 2007 14:29:39 +0200
+
+backup-manager (0.7.5-4) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Alexis Sukrieh <sukria@debian.org>  Wed,  6 Dec 2006 16:20:20 +0100
+
+backup-manager (0.7.5-3) unstable; urgency=low
+
+  * Fixed typo in the spanish debconf translation (thanks to David Gil).
+    (closes: #401217)
+  * Updated Japanese debconf translations (thanks to Kenshi Muto).
+    (closes: #401253)
+
+ -- Alexis Sukrieh <sukria@debian.org>  Wed,  6 Dec 2006 15:59:49 +0100
+
+backup-manager (0.7.5-2) unstable; urgency=low
+
+  * Fixed fuzzy message in debian/po/de.po (thanks to Sven Joachim).
+    (closes: #396876)
+  * New basque debconf translations (thanks to Piarres Beobide).
+    (closes: #398568)
+  * debconf message translation updates for es.po, vi.po and it.po.
+
+ -- Alexis Sukrieh <sukria@debian.org>  Sun,  3 Dec 2006 18:46:12 +0100
+
+backup-manager (0.7.5-1) unstable; urgency=low
+
+  * New upstream release.
+    + Removed obsolete patches:
+      - debian/patches/03_bzip_path.dpatch
+      - debian/patches/06_basename.dpatch
+      - debian/patches/07_svnadmin_quiet.dpatch
+      - debian/patches/08_recursive_purge
+    + Depends on findutils >= 4.2.28-1 (for the `find -H' thing in
+      lib/files.sh).
+    (closes: #390644)
+  * Patched the Makefile in order to build the backup-manager-purge manpage as
+    well.
+  * Made some `Choices' translatable in debian/backup-manager.templates.
+  * Removed useless template `upload-user-scp-warning' which is obsolete in
+    version 0.7.5 (and moreover, would conflict with new policy about debconf
+    notes).
+    (closes: #388829)
+  * New debconf templates for the GPG encryption feature.
+  * debconf messages updates
+    + debian/po/cs.po by Miroslav Kure (closes: #389203).
+    + debian/po/de.po by Sven Joachim.
+    + debian/po/eu.po by Piarres Beobide.
+    + debian/po/es.po by Esteban Manchado Velàzquez.
+    + debian/po/fr.po by Michel Grentzinger (closes: #389573).
+    + debian/po/it.po by Giuseppe Sacco.
+    + debian/po/ja.po by Kenshi Muto (closes: #390807).
+    + debian/po/pt_BR.po by André Luís Lopes.
+    + debian/po/vi.po by Clytie Siddall.
+  * Added the XS-Vcs-Svn tracker in debian/control
+  * Uses debhelper compatibility level 5.
+  * Added debian/patches/06_VERSION to update the version number with the debian
+    revision (0.7.5-debian1).
+
+ -- Alexis Sukrieh <sukria@debian.org>  Thu,  5 Oct 2006 14:33:07 +0200
+
+backup-manager (0.7.4-2) unstable; urgency=low
+
+  [ The "Hey babe, I'm a Debian Developer!" upload, part #2 ]
+
+  * Changed the Maintainer field in debian/control to `sukria@debian.org'.
+  * debian/patches/04_backup-manager.conf.tpl.dpatch
+    Disable BM_TARBALL_TARGETS[] and enable BM_TARBALL_DIRECTORIES in the
+    default configuration file so the postinst can updated the conffile as
+    expected (thanks to Thomas Parmelan).
+    (closes: #381820)
+  * debian/patches/05_cdrecord_to_wodim.dpatch
+    + debian/control suggests wodim instead of cdrecord.
+    + backup-manager uses the wodim program instead of cdrecord.
+  * debian/patches/06_basename
+    Added the missing 'use File::Basename' in backup-manager-upload (thanks to
+    Henrik Brautaset Aronsen).
+    (closes: #382050)
+  * debian/patches/07_svnadmin_quiet
+    Call svnadmin with the '-q' switch in order to disable useless verbosity
+    (thanks to Jérôme Pouiller).
+    (closes: #382150)
+  * debian/patches/08_recursive_purge
+    Backported upstream clean_directory() function (from SVN) for building the
+    file list with "find" rather that manually (thanks to Thomas Parmelan).
+    (closes: #385269)
+  * Moved po-debconf from Build-Depends-Indep to Buld-Depends (fixes a lintian
+    error).
+  * Fixed two messaged in backup-manager.templates (fixes lintian warnings).
+
+ -- Alexis Sukrieh <sukria@debian.org>  Sat,  9 Sep 2006 11:39:46 +0200
+
+backup-manager (0.7.4-1) unstable; urgency=low
+
+  * New upstream release.
+    (closes: #361373, #362890, #363663)
+  * Suggest openssh-client instead of ssh (which is a transitional client).
+    (closes: #377693)
+  * New Czech translation (thanks to Miroslav Kure).
+    (closes: #361364)
+  * Add Basque debconf translation (thanks to Piarres Beobide).
+    (closes: #369269)
+  * Add Portuguese debconf translation (thanks to Rui Branco).
+    (closes: #372232)
+  * debian/patches/03_bzip_path.dpatch
+    Moved bzip2 path from `/usr/bin' to `/bin'.
+    (closes: #378159, #378505)
+  * Add Frecn debconf translation updates from Florentin Duneau.
+    (closes: #380329)
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Tue,  1 Aug 2006 12:02:32 +0200
+
+backup-manager (0.7.2-2) unstable; urgency=low
+
+  * Policy: 3.7.0
+  * Cleaning:
+    + Added one override for lintian (for the configuration template).
+    + Typo in the backup-manager-doc description (thanks to Philipp Kern).
+    + Moved some Build-Depends-Indep to Build-Depends (fixes two lintian
+      wanings).
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Tue,  2 May 2006 17:03:37 +0200
+
+backup-manager (0.7.2-1) unstable; urgency=low
+
+  * New upstream release: 0.7.2.
+  * Possible to change FTP/SSH settings with debconf
+    (closes: #355522).
+  * Remove *all* conffiles on purge.
+    (closes: #351193)
+  * debian/control suggests dar.
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Wed, 29 Mar 2006 21:04:45 +0200
+
+backup-manager (0.7.1-2) unstable; urgency=low
+
+  * Better cleaning on purge (closes: #351193)
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Wed, 22 Feb 2006 09:21:03 +0100
+
+backup-manager (0.7.1-1) unstable; urgency=low
+
+  * New upstream release: 0.7.1 (new features) (closes: #353004).
+  * Fixed a typo in debian/control, thanks to Jordà Polo
+    <jorda@ettin.org> (closes: #351011)
+  * New Czech translations: debian/po/cs.po, po/cs.po; thanks to
+    Miroslav Kure <kurem@upcase.inf.upol.cz> (closes: #346531)
+  * New Swedish debconf translation, thanks to Daniel Nylander
+    <yeager@lidkoping.net> (closes: #347603)
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Fri, 17 Feb 2006 17:37:58 +0100
+
+backup-manager (0.6.1-1) unstable; urgency=low
+
+  * New upstream release, fixes upstream bug #14.
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Fri, 17 Feb 2006 17:17:17 +0100
+
+backup-manager (0.6-1) unstable; urgency=low
+
+  [ backup-manager ]
+  * New upstream release: 0.6.
+    (closes: #339727, #342564)
+  * Remove /etc/cron.{monthly,daily,weekly}/backup-manager on purge.
+    (closes: #340112)
+  * Swedish debconf templates translation (thanks to Daniel Nylander)
+    (closes: #340962)
+  * New German debconf templates (thanks to Sven Joachim).
+  * New French debconf templates.
+  * Added /usr/share/doc/backup-manager/README
+
+  [ backup-manager-doc ]
+  * New package: backup-manager-doc
+    Provides PDF, HTML and plain text version of the Backup Manager user
+    guide.
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Fri, 23 Dec 2005 11:00:38 +0100
+
+backup-manager (0.5.9a-1) unstable; urgency=low
+
+  * New upstream release: error during archive generation are handled
+    nicely.
+    (closes: #318782)
+  * Depends on debconf-2.0 as well.
+    (closes: #331755)
+  * New templates in debconf for configuring BM_REPOSITORY_USER and
+    BM_REPOSITORY_GROUP.
+    (closes: #317956)
+  * It's possible to choose "never" in debconf when the CRON frequency is
+    prompted.
+    (closes: #325636)
+  * Updated the postrm script so we use ucf --purge only when ucf is
+    installed, and we remove manually the conffile /etc/backup-manager.conf as
+    it's installed by postinst, and then not flagged as a conffile.
+    (closes: #319909)
+  * Upstream bug fixed in debian/patches/01_md5sum_fixfor_324014.dpatch:
+    MD5 files are now readable by md5sum (added two spaces instead of one,
+    thanks to Scott Wolchok)
+    (closes: #324014)
+  * Updates for upstream and debconf l10n:
+    + New french po files (closes: #327635).
+    + New Czech po files.
+    + New Italian debconf po file.
+  * Added a note in README.Debian about the conffile transition for 0.5.9a and
+    give a hint about how to upgrade a conffile with the contrib script
+    `upgrade-conffile.sh'.
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Fri, 14 Oct 2005 11:16:52 +0200
+
+backup-manager (0.5.8b-1) unstable; urgency=low
+
+  * New upstream release: 0.5.8b
+    + The default cdrecord device is used instead of forcing a device.
+      (closes: #316356)
+    + The log of cdrecord is removed only when everything went fine.
+      (closes: #316358)
+    + The bzip2 binary is mandatory if the filetype chosen is tar.bz2.
+      (closes: #316359)
+    + Typos fixed in the manpage backup-manager.3.
+      (closes: #316041)
+  * Removed already applied patches.
+  * New french translations
+    (closes: #324814)
+  * Fixed the manpages section.
+    (closes: #315983)
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Mon, 12 Sep 2005 17:32:16 +0200
+
+backup-manager (0.5.8-2) unstable; urgency=low
+
+  * New patch for closing the security issue about temp paths (using mktemp
+    now).
+    + debian/patches/02_security_315582.dpatch
+    (closes: #315582)
+  * Now handles cron with the cron.{daily|weekly|monthly} subdirectories
+    instead of the cron.d subdirectiry, wich is not handled by anacron.
+    + added debian/cron.daily
+    + removed debian.cron.d
+    + added a debconf prompt for removing /ect/cron.d/backup-manager
+    (closes: #315714)
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Sat, 25 Jun 2005 16:50:28 +0200
+
+backup-manager (0.5.8-1) unstable; urgency=low
+
+  * New upstream release.
+    (closes: #308896, #300801, #311083, #308897)
+  * postinst uses ucf for moving its conffiles.
+  * postrm purges the ucf entry.
+  * now depends on ucf >= 0.08
+  * New pt_BT.po file for a better Brazilian Portuguese translation 
+    (thanks to Andre Luis Lopes)
+    (closes: #310890)
+  * Add vi.po for the Vietnamese translation (thanks to Clytie Siddall). 
+    (closes: #308950)
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Tue,  7 Jun 2005 17:09:29 +0200
+
+backup-manager (0.5.7-2) unstable; urgency=low
+
+  * Add french, czech, german, basque, italian, japanese and portuguese
+    translations for the debconf templates.
+    (closes: #304256, #301458, #306954)
+  * Use dpatch for handling patches.
+  * Add a patch for forcing the binary mode in FTP transfer in
+    backup-manager-upload.
+  * Add a patch for enabling a cleaning system for FTP mode, before uploading
+    the files.
+  * Add a checkpo target in debian/rules for handling po files.
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Sun,  1 May 2005 11:37:59 +0200
+
+backup-manager (0.5.7-1) unstable; urgency=low
+
+  * New upstream release.
+      + added a COPYING file in the source package.
+      + added a VERSION file in the source package.
+      + fixed a minor bug in the main script.
+  * Cron frequency
+      + Added a Debconf question for letting the user choose the Cron frequency
+      + Moved the Cron script from cron.daily to cron.d
+      + Added a Debconf screen for prompting if /etc/cron.daily/backup-manager
+        should be removed.
+    (closes: #300798)
+  * The configuration template is now chmoded 644 rather than 600.
+    (closes: #300797)
+  * Changed the default Debconf value for BM_ARCHIVE_REPOSITORY to
+    "/var/archives" (it was /backup).
+  * Rewrote Debconf templates for DSTG compliance.
+  * Rewrote the dump_symlinks Debconf question for a better wording, avoiding
+    misunderstanding of what the dereferencing feature actually means.
+    (closes: #303020)
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Mon,  4 Apr 2005 17:20:23 +0200
+
+backup-manager (0.5.5-7) unstable; urgency=low
+
+  * Major rewrite of the Description field of the package to fit the Policy.
+  * First upload to the official Debian archive (closes the ITP).
+   (closes: #275494)
+
+ -- Alexis Sukrieh <sukria@sukria.net>  Fri,  7 Jan 2005 20:16:59 +0100
+
+Local variables:
+mode: debian-changelog
+End:

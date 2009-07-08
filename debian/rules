@@ -1,0 +1,68 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE=1
+
+# Include dpatch stuff.
+include /usr/share/dpatch/dpatch.make
+
+build: build-stamp
+build-stamp: patch-stamp
+	dh_testdir
+	touch build-stamp
+
+clean: unpatch
+	@echo -e "\n*** Cleaning the source ***\n"
+	$(MAKE) clean
+	$(MAKE) -C doc clean
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	rm -f debian/substvars
+	dh_clean
+	debconf-updatepo
+
+install: build patch-stamp
+	@echo -e "\n*** Installing ***\n"
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	# building package backup-manager
+	$(MAKE) install DESTDIR=`pwd`/debian/backup-manager
+	cp $(CURDIR)/debian/backup-manager.cron.tpl $(CURDIR)/debian/backup-manager/usr/share/backup-manager
+	install -d $(CURDIR)/debian/backup-manager/usr/share/doc/backup-manager
+	cp $(CURDIR)/README $(CURDIR)/debian/backup-manager/usr/share/doc/backup-manager
+	# building package backup-manager-doc
+	$(MAKE) -C doc install DESTDIR=`pwd`/debian/backup-manager-doc
+	# lintian overrides
+	install -d $(CURDIR)/debian/backup-manager/usr/share/lintian/overrides
+	cp $(CURDIR)/debian/backup-manager.lintian $(CURDIR)/debian/backup-manager/usr/share/lintian/overrides/backup-manager
+	
+binary-arch: build install 
+
+binary-indep: build install 
+	@echo -e "\n*** Building ***\n"
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installman man/*.8
+	dh_installdebconf 
+	dh_installchangelogs 
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+checkpo:
+	for i in debian/po/*.po; do \
+		echo -n "Checking: $$i: "; \
+		msgmerge -U $$i debian/po/templates.pot; \
+		msgfmt -o /dev/null -c --statistics $$i; \
+		echo ""; \
+	done
+		
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install patch unpatch

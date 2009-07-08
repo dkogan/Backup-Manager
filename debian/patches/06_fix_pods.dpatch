@@ -1,0 +1,23 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 06_fix_pods.dpatch by  <sukria@>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad backup-manager-0.7.8~/backup-manager-purge backup-manager-0.7.8/backup-manager-purge
+--- backup-manager-0.7.8~/backup-manager-purge	2008-03-16 19:19:22.000000000 +0000
++++ backup-manager-0.7.8/backup-manager-purge	2009-02-01 14:52:50.000000000 +0000
+@@ -49,8 +49,12 @@
+ Specify the time to live (in days) for the archives. Any archive that is older
+ than I<ttl> days will be outdated.
+ 
++=back
++
+ =head1 OPTIONAL ARGS
+ 
++=over 4
++
+ =item B<--files-from=>file
+ 
+ A file containing a list of archives to parse, one archive per line.

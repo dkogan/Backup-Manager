@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 04_Makefile.dpatch by Alexis Sukrieh <sukria@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Install Perl modules in $Config{vendorlib}
+
+@DPATCH@
+diff -urNad backup-manager-0.7.7~/Makefile backup-manager-0.7.7/Makefile
+--- backup-manager-0.7.7~/Makefile	2007-05-30 15:47:14.000000000 +0200
++++ backup-manager-0.7.7/Makefile	2008-04-15 14:01:35.000000000 +0200
+@@ -30,7 +30,7 @@
+ 
+ # Overwrite that variable with the Perl vendorlib Config value if 
+ # you package Backup Manager
+-PERL5DIR?="$(DESTDIR)$(shell perl -MConfig -e 'print "$$Config{sitelib}"')"
++PERL5DIR?="$(DESTDIR)$(shell perl -MConfig -e 'print "$$Config{vendorlib}"')"
+ 
+ # Some static paths, specific to backup-manager
+ LIBDIR=$(DESTDIR)/usr/share/backup-manager

@@ -1,0 +1,17 @@
+This is the Debian prepackaged version of the backup-manager package.
+
+backup-manager was written by Alexis Sukrieh.
+
+The source for this release was obtained from
+
+http://www.sukria.net/packages/backup-manager/sources/
+
+Copyright (C) 2003-2004 Alexis Sukrieh.
+
+Program license:
+
+this program is released under the terms of the GPL 2 licence.
+
+On Debian systems, the complete text of the GNU General Public
+License can be found in `/usr/share/common-licenses/GPL-2`
+

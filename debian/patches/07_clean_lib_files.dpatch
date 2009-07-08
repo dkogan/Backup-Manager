@@ -1,0 +1,17 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 07_clean_lib_files.dpatch by  <sukria@>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad backup-manager-0.7.8~/lib/sanitize.sh backup-manager-0.7.8/lib/sanitize.sh
+--- backup-manager-0.7.8~/lib/sanitize.sh	2008-04-14 17:58:43.000000000 +0000
++++ backup-manager-0.7.8/lib/sanitize.sh	2009-02-01 15:01:07.000000000 +0000
+@@ -1,5 +1,4 @@
+-#!/bin/bash
+-# Copyright © 2005-2007 Alexis Sukrieh
++# Copyright C 2005-2007 Alexis Sukrieh
+ #
+ # See the AUTHORS file for details.
+ #

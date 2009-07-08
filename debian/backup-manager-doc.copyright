@@ -1,0 +1,17 @@
+This is the Debian prepackaged version of the backup-manager documentation.
+
+The Bakcup Manager User Guide was written by Alexis Sukrieh.
+
+The source for this documentation was obtained from
+
+http://www.backup-manager.org
+
+Copyright (C) 2005 Alexis Sukrieh.
+
+Documentation license:
+
+This documentation is released under the terms of the GPL 2 licence.
+
+On Debian systems, the complete text of the GNU General Public
+License can be found in `/usr/share/common-licenses/GPL-2`
+

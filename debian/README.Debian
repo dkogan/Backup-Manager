@@ -1,0 +1,37 @@
+backup-manager for Debian
+---------------------------------------------------------------------
+
+Note that the special configuration file 
+`/usr/share/backup-manager/backup-manager.conf.tpl is here for the 
+debconf needs.
+
+If you want to hack backup-manager by hand, just edit 
+`/etc/backup-manager.conf' not the tpl one !
+
+Notes for the Amazon S3 upload method
+---------------------------------------------------------------------
+
+If you want to use the "s3" upload method (provided since version 0.7.3) 
+you have to install the Net::Amazon::S3 Perl module which is not yet
+packaged for Debian.
+See http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=368734 for the RFP.
+
+
+Upgrade Notes for versions prior to 0.5.9a
+---------------------------------------------------------------------
+
+Since 0.5.9a the configuration file format has changed (several 
+configuration keys renamed).
+If you keep your old configuration file when upgrading, backup-manager
+will trigger warnings at runtime for every deprecated variables in the
+conffile.
+
+There is a simple and safe way to upgrade your configuration file,
+just use the contrib script:
+
+/usr/share/backup-manager/contrib/upgrade-conffile.sh /etc/backup-manager.conf
+
+This will perform the upgrade, show you the unified diff and ask for
+confirmation before overwriting.
+
+-- Alexis Sukrieh <sukria@sukria.net>

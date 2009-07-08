@@ -1,0 +1,261 @@
+#! /bin/sh
+# postinst script for backup-manager
+#
+# see: dh_installdeb(1)
+
+set -e
+
+tplconffile="/usr/share/backup-manager/backup-manager.conf.tpl"
+conffile="/etc/backup-manager.conf"
+cronfile="/etc/cron.daily/backup-manager"
+
+# This is a safe way to replace a file with ucf
+replace_file()
+{
+	file_source="$1"
+	file_dest="$2"
+
+	if [ -f $file_source ]; then
+		if [ ! -f $file_dest ]; then
+			mv $file_source $file_dest || exit 10
+		else
+			cp $file_dest ${file_dest}.old
+			ucf --debconf-ok $file_source $file_dest || exit 11
+		fi
+	fi
+}
+
+# This will substitue evrything in the conf file
+confsed() 
+{
+	sed -r \
+	 -e 's|BM_REPOSITORY_ROOT=".*"|'"BM_REPOSITORY_ROOT=\"$repository\""'|g' \
+	 -e 's|BM_REPOSITORY_USER=".*"|'"BM_REPOSITORY_USER=\"$repo_user\""'|g' \
+	 -e 's|BM_REPOSITORY_GROUP=".*"|'"BM_REPOSITORY_GROUP=\"$repo_group\""'|g' \
+	 -e 's/BM_ARCHIVE_TTL=".*"/'"BM_ARCHIVE_TTL=\"$timetolive\""'/g' \
+	 -e 's/BM_TARBALL_NAMEFORMAT=".*"/'"BM_TARBALL_NAMEFORMAT=\"$nameformat\""'/g' \
+	 -e 's/BM_TARBALL_FILETYPE=".*"/'"BM_TARBALL_FILETYPE=\"$filetype\""'/g' \
+	 -e 's|BM_TARBALL_DUMPSYMLINKS=".*"|BM_TARBALL_DUMPSYMLINKS="'"$dumpsymlinks"'"|g' \
+	 -e 's|BM_TARBALL_BLACKLIST=".*"|BM_TARBALL_BLACKLIST="'"$blacklist"'"|g' \
+	 -e 's|BM_TARBALL_DIRECTORIES=".*"|'"BM_TARBALL_DIRECTORIES=\"$directories\""'|g' \
+	 -e 's/BM_UPLOAD_METHOD=".*"/BM_UPLOAD_METHOD="'"$transfert_mode"'"/g' \
+	 -e 's/BM_UPLOAD_HOSTS=".*"/BM_UPLOAD_HOSTS="'"$hosts"'"/g' \
+	 -e 's|BM_UPLOAD_DESTINATION=".*"|BM_UPLOAD_DESTINATION="'"$dir"'"|g' \
+	 -e 's/BM_UPLOAD_FTP_USER=".*"/BM_UPLOAD_FTP_USER="'"$ftp_user"'"/g' \
+	 -e 's/BM_UPLOAD_FTP_PASSWORD=".*"/BM_UPLOAD_FTP_PASSWORD="'"$ftp_passwd"'"/g' \
+	 -e 's/BM_UPLOAD_SSH_USER=".*"/BM_UPLOAD_SSH_USER="'"$ssh_user"'"/g' \
+	 -e 's|BM_UPLOAD_SSH_KEY=".*"|BM_UPLOAD_SSH_KEY="'"$keyfile"'"|g' \
+	 -e 's|BM_BURNING_MEDIA=".*"|'"BM_BURNING_MEDIA=\"$burning_media\""'|g' \
+	 -e 's|BM_BURNING_DEVICE=".*"|'"BM_BURNING_DEVICE=\"$burning_device\""'|g' \
+	 -e 's|BM_ENCRYPTION_METHOD=".*"|'"BM_ENCRYPTION_METHOD=\"$encryption\""'|g' \
+	 -e 's|BM_ENCRYPTION_RECIPIENT=".*"|'"BM_ENCRYPTION_RECIPIENT=\"$gpg_recipient\""'|g' \
+	 -e 's|BM_BURNING_METHOD=".*"|'"BM_BURNING_METHOD=\"$burning_method\""'|g' \
+	 -e 's|BM_BURNING_MAXSIZE=".*"|'"BM_BURNING_MAXSIZE=\"$burning_maxsize\""'|g'
+}
+
+. /usr/share/debconf/confmodule
+
+action="$1"
+version="$2"
+
+case "$action" in
+
+	configure)
+   
+	# we have to purge the deprecated /etc/cron.d/backup-manager file
+	# Since 0.5.8-3, /etc/cron.d/backup-manager is considered deprecated 
+	# because it's not hanlder by anacron, whereas corn.daily is. 
+	if [ -e /etc/cron.d/backup-manager ]; then
+		db_get backup-manager/cron_d_remove_deprecated || true
+		if [ "$RET" = "true" ]; then
+			rm -f /etc/cron.d/backup-manager
+		fi
+	fi   
+
+	# The repository stuff
+	db_get backup-manager/backup-repository || true
+	repository="$RET"
+        db_get backup-manager/repo_user || true
+        repo_user="$RET"
+        db_get backup-manager/repo_group || true
+        repo_group="$RET"
+
+	# first get in debconf which frequency to have
+	db_get backup-manager/cron_frequency || true
+	frequency="$RET"
+	
+        # use our template file
+        cronfile_tpl="/usr/share/backup-manager/backup-manager.cron.tpl"
+        if [ ! -f $cronfile_tpl ]; then
+		echo "No template found for the cronfile! ($cronfile_tpl)" >&2
+		exit 5
+        fi
+	
+        # find the current cron file
+	if [ -f /etc/cron.monthly/backup-manager ]; then
+		cronfile="/etc/cron.monthly/backup-manager"
+	fi
+	if [ -f /etc/cron.weekly/backup-manager ]; then
+		cronfile="/etc/cron.weekly/backup-manager"
+	fi
+	if [ -f /etc/cron.daily/backup-manager ]; then
+		cronfile="/etc/cron.daily/backup-manager"
+	fi
+
+        # if we find a cronfile, use it instead of the template
+        if [ -f $cronfile ]; then
+                cronfile_tpl="$cronfile"
+        fi
+
+	# According to the frequency we have, move the $cronfile found in the 
+        # good CRON sub-directory, or copy our template if none found.
+	case "$frequency" in
+		"daily")
+			if [ ! -f /etc/cron.daily/backup-manager ]; then
+                                if [ "$cronfile" = "$cronfile_tpl" ]; then
+				        mv $cronfile /etc/cron.daily/backup-manager
+                                else 
+				        cp $cronfile_tpl /etc/cron.daily/backup-manager
+                                        chmod 755 /etc/cron.daily/backup-manager
+                                fi
+			fi
+		;;
+		"weekly")
+			if [ ! -f /etc/cron.weekly/backup-manager ]; then
+                                if [ "$cronfile" = "$cronfile_tpl" ]; then
+                                        mv $cronfile /etc/cron.weekly/backup-manager
+                                else 
+				        cp $cronfile_tpl /etc/cron.weekly/backup-manager
+                                        chmod 755 /etc/cron.weekly/backup-manager
+                                fi
+			fi
+		;;
+		"monthly")
+			if [ ! -f /etc/cron.monthly/backup-manager ]; then
+                                if [ "$cronfile" = "$cronfile_tpl" ]; then
+                                        mv $cronfile /etc/cron.monthly/backup-manager
+                                else 
+				        cp $cronfile_tpl /etc/cron.monthly/backup-manager
+                                        chmod 755 /etc/cron.monthly/backup-manager
+                                fi
+			fi
+		;;
+                "never")
+                        if [ -f $cronfile ]; then
+                                rm -f $cronfile
+                        fi
+                ;;
+	esac
+	
+	db_get backup-manager/filetype || true 
+	filetype="$RET"
+
+	db_get backup-manager/dump_symlinks || true
+	dumpsymlinks="$RET"
+
+	db_get backup-manager/blacklist || true
+	blacklist="$RET"
+
+	db_get backup-manager/name-format || true
+	nameformat="$RET"
+
+	db_get backup-manager/time-to-live || true
+	timetolive="$RET"
+
+	db_get backup-manager/directories || true
+	directories="$RET"
+
+    # ecnryption
+    db_get backup-manager/enable_encryption || true
+    encryption="$RET"
+    if [ "$encryption" = "true" ]; then
+        encryption="gpg"
+        db_get backup-manager/encryption_recipient || true
+        gpg_recipient="$RET"
+    fi
+
+	# manage the burning option
+	db_get backup-manager/burning-enabled || true
+	if [ "$RET" = "true" ]; then
+	
+		burning="true"
+		burning_media="cdrom"
+
+		db_get backup-manager/burning-device || true
+		burning_device="$RET"
+
+		db_get backup-manager/burning-maxsize || true
+		burning_maxsize="$RET"
+
+		db_get backup-manager/burning-method || true
+		burning_method="$RET"
+
+	else
+		burning="false"
+	fi
+	
+	# manage the uploading system
+	db_get backup-manager/want_to_upload || true
+	if [ "$RET" = "true" ]; then
+			
+		db_get backup-manager/transfert_mode || true
+		transfert_mode="$RET"
+		
+		if [ $transfert_mode = ftp ]; then
+			db_get backup-manager/upload-passwd || true
+			ftp_passwd="$RET"
+			
+			db_get backup-manager/upload-user-ftp || true
+			ftp_user="$RET"
+		else
+			db_get backup-manager/upload-key || true
+			keyfile="$RET"
+			ftp_passwd=""
+			
+			db_get backup-manager/upload-user-scp || true
+			ssh_user="$RET"
+		fi
+	
+		db_get backup-manager/upload-hosts ||  true
+		hosts="$RET"
+			
+		db_get backup-manager/upload-dir || true
+		dir="$RET"
+	else
+		hosts=""
+		ssh_user=""
+        ftp_user=""
+		ftp_passwd=""
+		dir=""
+	fi
+	
+
+	# now filling the conffile with the good values
+	tmpconf=$(mktemp)
+	cat $tplconffile | confsed > $tmpconf
+	replace_file $tmpconf $conffile || exit 8
+	rm -f $tmpconf
+
+	# fix modes on conf files.
+	chmod 600 $conffile
+	chmod 644 $tplconffile
+	
+	db_stop
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac
+
+# dh_installdeb will replace this with shell code automatically
+# generated by other debhelper scripts.
+
+#DEBHELPER#
+
+exit 0
