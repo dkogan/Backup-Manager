@@ -1,3 +1,9 @@
+backup-manager (0.7.8-2) UNRELEASED; urgency=low
+
+  * New maintainer (Closes: #536155).
+
+ -- Sven Joachim <svenjoac@gmx.de>  Wed, 08 Jul 2009 11:40:30 +0200
+
 backup-manager (0.7.8-1) unstable; urgency=low
 
   * New upstream release
@@ -361,6 +367,4 @@ backup-manager (0.5.5-7) unstable; urgency=low
 
  -- Alexis Sukrieh <sukria@sukria.net>  Fri,  7 Jan 2005 20:16:59 +0100
 
-Local variables:
-mode: debian-changelog
-End:
+
