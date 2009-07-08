@@ -5,6 +5,7 @@ Build-Depends-Indep: debiandoc-sgml
 Build-Depends: po-debconf, debhelper (>= 5), dpatch
 Maintainer: Sven Joachim <svenjoac@gmx.de>
 Standards-Version: 3.8.0
+Homepage: http://www.backup-manager.org/
 
 Package: backup-manager
 Architecture: all
