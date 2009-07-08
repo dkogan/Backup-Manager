@@ -3,9 +3,8 @@ Section: admin
 Priority: optional
 Build-Depends-Indep: debiandoc-sgml
 Build-Depends: po-debconf, debhelper (>= 5), dpatch
-Maintainer: Alexis Sukrieh <sukria@debian.org>
+Maintainer: Sven Joachim <svenjoac@gmx.de>
 Standards-Version: 3.8.0
-XS-Vcs-Svn: svn://svn.debian.org/svn/pkg-backup-mngr/trunk/
 
 Package: backup-manager
 Architecture: all
