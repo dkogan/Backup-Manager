@@ -14,7 +14,6 @@ clean: unpatch
 	$(MAKE) clean
 	$(MAKE) -C doc clean
 	dh_testdir
-	dh_testroot
 	rm -f build-stamp
 	rm -f debian/substvars
 	dh_clean
@@ -35,7 +34,7 @@ install: build patch-stamp
 	# lintian overrides
 	install -d $(CURDIR)/debian/backup-manager/usr/share/lintian/overrides
 	cp $(CURDIR)/debian/backup-manager.lintian $(CURDIR)/debian/backup-manager/usr/share/lintian/overrides/backup-manager
-	
+
 binary-arch: build install 
 
 binary-indep: build install 
@@ -63,6 +62,6 @@ checkpo:
 		msgfmt -o /dev/null -c --statistics $$i; \
 		echo ""; \
 	done
-		
+
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install patch unpatch
