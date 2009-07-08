@@ -2,6 +2,7 @@ backup-manager (0.7.8-2) UNRELEASED; urgency=low
 
   * New maintainer (Closes: #536155).
   * Add Homepage field to debian/control.
+  * Add debian/watch file.
   * Remove obsolete XS-Vcs-Svn field from debian/control.
 
  -- Sven Joachim <svenjoac@gmx.de>  Wed, 08 Jul 2009 11:40:30 +0200
