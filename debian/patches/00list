@@ -1,7 +1,0 @@
-01_backup-manager.conf.tpl.dpatch
-02_cdrecord_to_wodim.dpatch
-03_VERSION.dpatch
-04_Makefile.dpatch
-05_mkisofs_to_genisoimage.dpatch
-06_fix_pods.dpatch
-07_clean_lib_files.dpatch

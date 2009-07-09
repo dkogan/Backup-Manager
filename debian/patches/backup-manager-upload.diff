@@ -1,0 +1,24 @@
+--- backup-manager-0.7.8.orig/backup-manager-upload
++++ backup-manager-0.7.8/backup-manager-upload
+@@ -37,9 +37,12 @@
+ 
+ Select the user to use for connection.
+ 
++=back 
+ 
+ =head1 OPTIONAL ARGS
+ 
++=over 4
++
+ =item B<--password=>I<password>
+ 
+ Select the ftp user's password (only needed for ftp transfers).
+@@ -94,6 +97,8 @@
+ 
+ Date pattern to select some files to upload, can be a valid date (YYYYMMDD) or 'today' or 'yesterday'.
+ 
++=back
++
+ =head1 ERROR CODES
+ 
+ If something goes wrong during an upload, backup-manager-upload will exit 

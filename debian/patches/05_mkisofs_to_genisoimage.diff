@@ -5,9 +5,10 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad backup-manager-0.7.8~/lib/externals.sh backup-manager-0.7.8/lib/externals.sh
---- backup-manager-0.7.8~/lib/externals.sh	2009-02-01 14:47:51.000000000 +0000
-+++ backup-manager-0.7.8/lib/externals.sh	2009-02-01 14:48:12.000000000 +0000
+Index: b/lib/externals.sh
+===================================================================
+--- a/lib/externals.sh
++++ b/lib/externals.sh
 @@ -7,7 +7,7 @@
  dar=$(which dar 2> /dev/null) || true
  tar=$(which tar 2> /dev/null) || true
@@ -16,4 +17,4 @@ diff -urNad backup-manager-0.7.8~/lib/externals.sh backup-manager-0.7.8/lib/exte
 +mkisofs=$(which genisoimage 2> /dev/null) || true
  growisofs=$(which growisofs 2> /dev/null) || true
  dvdrwformat=$(which dvd+rw-format 2> /dev/null) || true
- cdrecord=$(which cdrecord 2> /dev/null) || true
+ cdrecord=$(which wodim 2> /dev/null) || true

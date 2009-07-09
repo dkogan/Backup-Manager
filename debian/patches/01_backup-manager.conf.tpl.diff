@@ -5,10 +5,11 @@
 ## DP: Some changes for the postinst phase needs.
 
 @DPATCH@
-diff -urNad trunk~/backup-manager.conf.tpl trunk/backup-manager.conf.tpl
---- trunk~/backup-manager.conf.tpl	2007-03-13 16:34:51.000000000 +0100
-+++ trunk/backup-manager.conf.tpl	2007-05-30 14:43:21.000000000 +0200
-@@ -79,13 +79,14 @@
+Index: b/backup-manager.conf.tpl
+===================================================================
+--- a/backup-manager.conf.tpl
++++ b/backup-manager.conf.tpl
+@@ -87,13 +87,14 @@
  # tar, tar.gz, tar.bz2
  
  # Uncomment the following line if you want to enable encryption
@@ -25,7 +26,7 @@ diff -urNad trunk~/backup-manager.conf.tpl trunk/backup-manager.conf.tpl
  
  
  ##############################################################
-@@ -128,17 +129,16 @@
+@@ -136,17 +137,16 @@
  
  # It's recommanded to use BM_TARBALL_TARGETS[] though.
  # Warning! You *must not* use both variables at the same time.

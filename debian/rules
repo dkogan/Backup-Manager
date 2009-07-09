@@ -1,11 +1,11 @@
 #!/usr/bin/make -f
 #export DH_VERBOSE=1
 
-# Include dpatch stuff.
-include /usr/share/dpatch/dpatch.make
+# Include quilt stuff.
+include /usr/share/quilt/quilt.make
 
 build: build-stamp
-build-stamp: patch-stamp
+build-stamp: $(QUILT_STAMPFN)
 	dh_testdir
 	touch build-stamp
 
@@ -19,7 +19,7 @@ clean: unpatch
 	dh_clean
 	debconf-updatepo
 
-install: build patch-stamp
+install: build
 	@echo -e "\n*** Installing ***\n"
 	dh_testdir
 	dh_testroot

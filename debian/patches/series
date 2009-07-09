@@ -1,0 +1,15 @@
+01_backup-manager.conf.tpl.diff
+02_cdrecord_to_wodim.diff
+03_VERSION.diff
+04_Makefile.diff
+05_mkisofs_to_genisoimage.diff
+06_fix_pods.diff
+07_clean_lib_files.diff
+backup-manager-upload.diff
+cs.po.diff
+de.po.diff
+es.po.diff
+fr.po.diff
+it.po.diff
+nl.po.diff
+vi.po.diff
