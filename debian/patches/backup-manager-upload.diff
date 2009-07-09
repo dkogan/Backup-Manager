@@ -1,5 +1,5 @@
---- backup-manager-0.7.8.orig/backup-manager-upload
-+++ backup-manager-0.7.8/backup-manager-upload
+--- a/backup-manager-upload
++++ b/backup-manager-upload
 @@ -37,9 +37,12 @@
  
  Select the user to use for connection.

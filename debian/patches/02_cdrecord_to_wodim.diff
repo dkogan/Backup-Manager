@@ -1,13 +1,7 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
 ## 02_cdrecord_to_wodim.dpatch by  <sukria@>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
 
-@DPATCH@
-diff -urNad backup-manager-0.7.8~/lib/externals.sh backup-manager-0.7.8/lib/externals.sh
---- backup-manager-0.7.8~/lib/externals.sh	2009-02-01 13:20:05.000000000 +0000
-+++ backup-manager-0.7.8/lib/externals.sh	2009-02-01 14:37:52.000000000 +0000
+--- a/lib/externals.sh
++++ b/lib/externals.sh
 @@ -10,7 +10,7 @@
  mkisofs=$(which mkisofs 2> /dev/null) || true
  growisofs=$(which growisofs 2> /dev/null) || true

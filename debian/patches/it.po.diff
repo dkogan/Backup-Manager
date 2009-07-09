@@ -1,5 +1,5 @@
---- backup-manager-0.7.8.orig/po/it.po
-+++ backup-manager-0.7.8/po/it.po
+--- a/po/it.po
++++ b/po/it.po
 @@ -7,7 +7,7 @@
  msgstr ""
  "Project-Id-Version: BM ITALIAN VERSION\n"

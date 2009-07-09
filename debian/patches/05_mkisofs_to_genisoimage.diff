@@ -1,12 +1,5 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
 ## 05_mkisofs_to_genisoimage.dpatch by  <sukria@>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
 
-@DPATCH@
-Index: b/lib/externals.sh
-===================================================================
 --- a/lib/externals.sh
 +++ b/lib/externals.sh
 @@ -7,7 +7,7 @@

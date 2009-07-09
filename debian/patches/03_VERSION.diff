@@ -1,19 +1,13 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
 ## 03_VERSION.dpatch by  <sukria@>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
 
-@DPATCH@
-diff -urNad backup-manager-0.7.8~/backup-manager backup-manager-0.7.8/backup-manager
---- backup-manager-0.7.8~/backup-manager	2009-02-01 14:38:23.000000000 +0000
-+++ backup-manager-0.7.8/backup-manager	2009-02-01 14:39:04.000000000 +0000
+--- a/backup-manager
++++ b/backup-manager
 @@ -27,7 +27,7 @@
  
  RELEASE="true"
  REVISION='$Revision: 590 $'
 -VERSION="0.7.8"
-+VERSION="0.7.8-debian1"
++VERSION="0.7.8-debian2"
  
  # All the paths we provide
  libdir="/usr/share/backup-manager"

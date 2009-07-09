@@ -1,5 +1,5 @@
---- backup-manager-0.7.8.orig/po/cs.po
-+++ backup-manager-0.7.8/po/cs.po
+--- a/po/cs.po
++++ b/po/cs.po
 @@ -7,7 +7,7 @@
  msgstr ""
  "Project-Id-Version: backup-manager\n"
