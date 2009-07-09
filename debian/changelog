@@ -5,6 +5,7 @@ backup-manager (0.7.8-2) UNRELEASED; urgency=low
   * Switch to quilt from dpatch.
     - Don't make any direct changes outside debian/ .
     - Add a short README.source as recommended by policy.
+  * Upgrade Standards-Version to 3.8.2, no further changes needed.
   * Add Homepage field to debian/control.
   * Add debian/watch file.
   * Remove obsolete XS-Vcs-Svn field from debian/control.
@@ -36,7 +37,7 @@ backup-manager (0.7.7-1.1) unstable; urgency=low
 backup-manager (0.7.7-1) unstable; urgency=low
 
   * New upstream release: 0.7.7
-    - Handles missing destination directory during SSH uploads 
+    - Handles missing destination directory during SSH uploads
       (closes: #459266)
     - Other bugfixes unreported in the Debian BTS.
   * Removed obsolete patches.
@@ -64,7 +65,7 @@ backup-manager (0.7.6-2) unstable; urgency=low
 backup-manager (0.7.6-1) unstable; urgency=low
 
   * New upstream release
-    + Doesn't exit when a file changed during the archive generation 
+    + Doesn't exit when a file changed during the archive generation
     (closes: #410503, #411085, #411126)
   * Dutch po-debconf translation added (thanks to Bart Cornelis).
     (closes: #419738)
@@ -321,10 +322,10 @@ backup-manager (0.5.8-1) unstable; urgency=low
   * postinst uses ucf for moving its conffiles.
   * postrm purges the ucf entry.
   * now depends on ucf >= 0.08
-  * New pt_BT.po file for a better Brazilian Portuguese translation 
+  * New pt_BT.po file for a better Brazilian Portuguese translation
     (thanks to Andre Luis Lopes)
     (closes: #310890)
-  * Add vi.po for the Vietnamese translation (thanks to Clytie Siddall). 
+  * Add vi.po for the Vietnamese translation (thanks to Clytie Siddall).
     (closes: #308950)
 
  -- Alexis Sukrieh <sukria@sukria.net>  Tue,  7 Jun 2005 17:09:29 +0200
@@ -373,5 +374,3 @@ backup-manager (0.5.5-7) unstable; urgency=low
    (closes: #275494)
 
  -- Alexis Sukrieh <sukria@sukria.net>  Fri,  7 Jan 2005 20:16:59 +0100
-
-
