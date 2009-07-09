@@ -36,7 +36,6 @@ Description: command-line backup tool
 Package: backup-manager-doc
 Section: doc
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: documentation package for Backup Manager
  This package provides the Backup Manager User Guide in different formats:
  HTML, plain text and PDF.
