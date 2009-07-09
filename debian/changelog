@@ -5,6 +5,7 @@ backup-manager (0.7.8-2) UNRELEASED; urgency=low
   * Switch to quilt from dpatch.
     - Don't make any direct changes outside debian/ .
     - Add a short README.source as recommended by policy.
+  * Upgrade debhelper dependency to 7.
   * Upgrade Standards-Version to 3.8.2, no further changes needed.
   * Add Homepage field to debian/control.
   * Add debian/watch file.

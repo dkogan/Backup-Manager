@@ -31,9 +31,7 @@ install: build
 	cp $(CURDIR)/README $(CURDIR)/debian/backup-manager/usr/share/doc/backup-manager
 	# building package backup-manager-doc
 	$(MAKE) -C doc install DESTDIR=`pwd`/debian/backup-manager-doc
-	# lintian overrides
-	install -d $(CURDIR)/debian/backup-manager/usr/share/lintian/overrides
-	cp $(CURDIR)/debian/backup-manager.lintian $(CURDIR)/debian/backup-manager/usr/share/lintian/overrides/backup-manager
+
 
 binary-arch: build install 
 
@@ -46,6 +44,7 @@ binary-indep: build install
 	dh_installdebconf 
 	dh_installchangelogs 
 	dh_link
+	dh_lintian
 	dh_compress
 	dh_fixperms
 	dh_installdeb

@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Build-Depends-Indep: debiandoc-sgml, texlive-fonts-recommended, texlive-latex-base,
                      texlive-latex-recommended, texlive-latex-extra, ghostscript
-Build-Depends: po-debconf, debhelper (>= 5), quilt (>= 0.40)
+Build-Depends: po-debconf, debhelper (>= 7), quilt (>= 0.40)
 Maintainer: Sven Joachim <svenjoac@gmx.de>
 Standards-Version: 3.8.2
 Homepage: http://www.backup-manager.org/
