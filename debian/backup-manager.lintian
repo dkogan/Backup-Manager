@@ -1,1 +1,0 @@
-backup-manager: script-not-executable ./usr/share/backup-manager/backup-manager.cron.tpl

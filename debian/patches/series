@@ -1,5 +1,5 @@
 01_backup-manager.conf.tpl.diff
-02_cdrecord_to_wodim.diff
+debian-cdrkit.diff
 03_VERSION.diff
 04_Makefile.diff
 06_fix_pods.diff
