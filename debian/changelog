@@ -2,6 +2,7 @@ backup-manager (0.7.8-2) UNRELEASED; urgency=low
 
   * New maintainer (Closes: #536155).
   * Add missing build dependencies (Closes: #516060).
+  * Make debian/rules less verbose (Closes: #535372).
   * Switch to quilt from dpatch.
     - Don't make any direct changes outside debian/ .
     - Add a short README.source as recommended by policy.

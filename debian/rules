@@ -10,17 +10,14 @@ build-stamp: $(QUILT_STAMPFN)
 	touch $@
 
 clean: unpatch
-	@echo -e "\n*** Cleaning the source ***\n"
+	dh_testdir
 	$(MAKE) clean
 	$(MAKE) -C doc clean
-	dh_testdir
-	rm -f build-stamp
 	rm -f debian/substvars
 	dh_clean
 	debconf-updatepo
 
 install: build
-	@echo -e "\n*** Installing ***\n"
 	dh_testdir
 	dh_testroot
 	dh_prep
@@ -37,7 +34,6 @@ binary-arch:
 # Nothing to be done here.
 
 binary-indep: build install 
-	@echo -e "\n*** Building ***\n"
 	dh_testdir
 	dh_testroot
 	dh_installdocs
