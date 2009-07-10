@@ -13,7 +13,6 @@ clean: unpatch
 	dh_testdir
 	$(MAKE) clean
 	$(MAKE) -C doc clean
-	rm -f debian/substvars
 	dh_clean
 	debconf-updatepo
 
@@ -40,7 +39,6 @@ binary-indep: build install
 	dh_installman man/*.8
 	dh_installdebconf 
 	dh_installchangelogs 
-	dh_link
 	dh_lintian
 	dh_compress
 	dh_fixperms
