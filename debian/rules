@@ -7,7 +7,7 @@ include /usr/share/quilt/quilt.make
 build: build-stamp
 build-stamp: $(QUILT_STAMPFN)
 	dh_testdir
-	touch build-stamp
+	touch $@
 
 clean: unpatch
 	@echo -e "\n*** Cleaning the source ***\n"
@@ -33,7 +33,8 @@ install: build
 	$(MAKE) -C doc install DESTDIR=`pwd`/debian/backup-manager-doc
 
 
-binary-arch: build install 
+binary-arch:
+# Nothing to be done here.
 
 binary-indep: build install 
 	@echo -e "\n*** Building ***\n"
