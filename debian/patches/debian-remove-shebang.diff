@@ -1,0 +1,16 @@
+** The shebang has been removed from lib/sanitize.sh
+   This file should not be executed directly and is not executable.
+   Lintian rightfully complains about the shebang.
+
+   Provided by: Alexis Sukrieh <sukria@sukria.net>
+
+
+--- a/lib/sanitize.sh
++++ b/lib/sanitize.sh
+@@ -1,5 +1,4 @@
+-#!/bin/bash
+-# Copyright © 2005-2007 Alexis Sukrieh
++# Copyright C 2005-2007 Alexis Sukrieh
+ #
+ # See the AUTHORS file for details.
+ #
