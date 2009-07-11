@@ -1,4 +1,8 @@
-## 03_VERSION.dpatch by  <sukria@>
+** Backup-managers version string includes "debian"
+   We want people to know that it differs from upstream.
+
+   Provided by: Alexis Sukrieh <sukria@sukria.net>
+
 
 --- a/backup-manager
 +++ b/backup-manager

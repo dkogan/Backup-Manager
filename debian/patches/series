@@ -1,6 +1,6 @@
 01_backup-manager.conf.tpl.diff
 debian-cdrkit.diff
-03_VERSION.diff
+debian-version.diff
 debian-perl-location.diff
 06_fix_pods.diff
 07_clean_lib_files.diff
