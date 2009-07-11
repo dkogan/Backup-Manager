@@ -4,7 +4,7 @@ debian-version.diff
 debian-perl-location.diff
 06_fix_pods.diff
 debian-remove-shebang.diff
-backup-manager-upload.diff
+fix-backup-manager-upload-POD.diff
 cs.po.diff
 de.po.diff
 es.po.diff

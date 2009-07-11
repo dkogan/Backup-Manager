@@ -1,3 +1,9 @@
+** POD in backup-manager-upload has been cleaned
+   This patch has been applied upstream.
+
+   Provided by: Alexis Sukrieh <sukria@sukria.net>
+
+
 --- a/backup-manager-upload
 +++ b/backup-manager-upload
 @@ -37,9 +37,12 @@
