@@ -1,5 +1,8 @@
-## 04_Makefile.dpatch by Alexis Sukrieh <sukria@debian.org>
-## DP: Install Perl modules in $Config{vendorlib}
+** Perl modules are installed in $Config{vendorlib}
+   This is the correct location for packaged versions.
+
+   Provided by: Alexis Sukrieh <sukria@sukria.net>
+
 
 --- a/Makefile
 +++ b/Makefile
