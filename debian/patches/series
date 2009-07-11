@@ -2,7 +2,7 @@
 debian-cdrkit.diff
 debian-version.diff
 debian-perl-location.diff
-06_fix_pods.diff
+fix-backup-manager-purge-POD.diff
 debian-remove-shebang.diff
 fix-backup-manager-upload-POD.diff
 cs.po.diff
