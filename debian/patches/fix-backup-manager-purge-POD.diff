@@ -1,4 +1,8 @@
-## 06_fix_pods.dpatch by  <sukria@>
+** POD in backup-manager-purge has been cleaned
+   Needs to be applied upstream.
+
+   Provided by: Alexis Sukrieh <sukria@sukria.net>
+
 
 --- a/backup-manager-purge
 +++ b/backup-manager-purge
