@@ -15,7 +15,7 @@
  "Project-Id-Version: backup-manager 0.6\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2008-04-14 19:33+0200\n"
-+"POT-Creation-Date: 2009-07-12 15:34+0200\n"
++"POT-Creation-Date: 2009-07-12 16:10+0200\n"
  "PO-Revision-Date: 2006-09-15 15:47+0930\n"
  "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
  "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
@@ -552,7 +552,7 @@
 -#, sh-format
 -msgid "No md5file found: $md5file"
 -msgstr "Không tìm thấy tập tin MD5: $md5file"
-+#: ../lib/logger.sh:144 ../backup-manager:260
++#: ../lib/logger.sh:144 ../backup-manager:257
 +msgid "Unable to exec post-command."
 +msgstr "Không thể thực hiện hậu lệnh."
  
@@ -777,17 +777,17 @@
 +msgid "Not in interactive mode, cannot continue."
 +msgstr "Không phải trong chế độ tương tác nên không thể tiếp tục."
 +
-+#: ../backup-manager:130
++#: ../backup-manager:127
  msgid "The -b option must be followed by a valid date (YYYYMMDD)."
  msgstr "Tùy chọn « -b » phải có một ngày tháng hợp lệ theo sau (NNNNTTnn)."
  
 -#: ../backup-manager:175
-+#: ../backup-manager:165
++#: ../backup-manager:162
  msgid "The -c option must be followed by an existing filename."
  msgstr "Tùy chọn « -c » phải có một tên tập tin tồn tại theo sau."
  
 -#: ../backup-manager:215
-+#: ../backup-manager:205
++#: ../backup-manager:202
  msgid "Unable to exec the pre-command"
  msgstr "Không thể thực hiện tiền lệnh"
  

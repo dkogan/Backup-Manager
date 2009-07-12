@@ -15,7 +15,7 @@
  "Project-Id-Version: backup-manager\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2008-04-14 19:33+0200\n"
-+"POT-Creation-Date: 2009-07-12 15:34+0200\n"
++"POT-Creation-Date: 2009-07-12 16:10+0200\n"
  "PO-Revision-Date: 2006-09-05 22:14+0200\n"
  "Last-Translator: Miroslav Kure <kurem@debian.cz>\n"
  "Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
@@ -542,7 +542,7 @@
 -#, sh-format
 -msgid "No md5file found: $md5file"
 -msgstr "Nebyl nalezen soubor s md5 součty: $md5file"
-+#: ../lib/logger.sh:144 ../backup-manager:260
++#: ../lib/logger.sh:144 ../backup-manager:257
 +msgid "Unable to exec post-command."
 +msgstr "Nemohu spustit závěrečný příkaz."
  
@@ -759,17 +759,17 @@
 +msgid "Not in interactive mode, cannot continue."
 +msgstr "Nejsem v interaktivním režimu, nemohu pokračovat."
 +
-+#: ../backup-manager:130
++#: ../backup-manager:127
  msgid "The -b option must be followed by a valid date (YYYYMMDD)."
  msgstr "Za volbou -b musí následovat platný datum (YYYYMMDD)."
  
 -#: ../backup-manager:175
-+#: ../backup-manager:165
++#: ../backup-manager:162
  msgid "The -c option must be followed by an existing filename."
  msgstr "Za volbou -c musí následovat jméno existujícího souboru"
  
 -#: ../backup-manager:215
-+#: ../backup-manager:205
++#: ../backup-manager:202
  msgid "Unable to exec the pre-command"
  msgstr "Nemohu spustit úvodní příkaz"
  
