@@ -1,22 +1,21 @@
-** Backup-manager's version string includes "-debian"
+** Backup-managers version string includes "debian"
    We want people to know that it differs from upstream.
 
-   Provided by: Sven Joachim <svenjoac@gmx.de>
+   Provided by: Alexis Sukrieh <sukria@sukria.net>
 
 
 ---
- backup-manager |    3 +++
- 1 file changed, 3 insertions(+)
+ backup-manager |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 --- a/backup-manager
 +++ b/backup-manager
-@@ -84,6 +84,9 @@
-     VERSION="${VERSION}r${rev}"
- fi
+@@ -27,7 +27,7 @@
  
-+# Append "-debian" for Debian versions
-+VERSION="${VERSION}-debian"
-+
- debug "Version : $VERSION, release : $RELEASE"
+ RELEASE="true"
+ REVISION='$Revision: 590 $'
+-VERSION="0.7.8"
++VERSION="0.7.8-debian2"
  
- # set useful global variables and initial
+ # All the paths we provide
+ libdir="/usr/share/backup-manager"
