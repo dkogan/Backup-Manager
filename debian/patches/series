@@ -3,9 +3,10 @@ debian-cdrkit.diff
 debian-version.diff
 debian-perl-location.diff
 debian-user-guide-location.diff
+fix-bashism.diff
 fix-backup-manager-purge-POD.diff
-debian-remove-shebang.diff
 fix-backup-manager-upload-POD.diff
+debian-remove-shebang.diff
 cs.po.diff
 de.po.diff
 es.po.diff

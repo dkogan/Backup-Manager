@@ -1,0 +1,21 @@
+** A bashism in po/Makefile has been fixed.
+   Reported upstream, needs to be applied yet.
+
+   Provided by: Sven Joachim <svenjoac@gmx.de>
+
+
+---
+ po/Makefile |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/po/Makefile
++++ b/po/Makefile
+@@ -43,7 +43,7 @@
+ .po.mo: backup-manager.pot
+ 	@echo "Merging $(PACKAGE).pot and $*.po"
+ 	@msgmerge $*.po $(PACKAGE).pot -o $*.po.new
+-	@if [[ "`diff $*.po $*.po.new | grep '[<>]' | wc -l`" -ne 2 ]]; then \
++	@if [ "`diff $*.po $*.po.new | grep '[<>]' | wc -l`" -ne 2 ]; then \
+         mv -f $*.po.new $*.po; \
+     else \
+         rm -f $*.po.new; \
