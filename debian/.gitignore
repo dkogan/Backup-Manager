@@ -1,0 +1,7 @@
+backup-manager
+backup-manager-doc
+files
+stamp-patched
+*.substvars
+*.debhelper
+*.debhelper.log
