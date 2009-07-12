@@ -12,9 +12,9 @@ Notes for the Amazon S3 upload method
 ---------------------------------------------------------------------
 
 If you want to use the "s3" upload method (provided since version 0.7.3) 
-you have to install the Net::Amazon::S3 Perl module which is not yet
-packaged for Debian.
-See http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=368734 for the RFP.
+you have to install the libfile-slurp-perl and libnet-amazon-s3-perl
+packages, otherwise the upload will fail mysteriously.
+See http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=491199.
 
 
 Upgrade Notes for versions prior to 0.5.9a
@@ -34,4 +34,6 @@ just use the contrib script:
 This will perform the upgrade, show you the unified diff and ask for
 confirmation before overwriting.
 
--- Alexis Sukrieh <sukria@sukria.net>
+ -- Alexis Sukrieh <sukria@sukria.net>
+
+ -- Sven Joachim <svenjoac@gmx.de>, Sun, 12 Jul 2009 18:03:25 +0200

@@ -6,6 +6,8 @@ backup-manager (0.7.8-2) UNRELEASED; urgency=medium
   * Install the user guide into /usr/share/doc/backup-manager-doc
     again (Closes: #528161).
   * Update the German upstream translation (Closes: #499667).
+  * Mention in README.Debian that libfile-slurp-perl and libnet-amazon-s3-perl
+    are required for the s3 upload method (see #491199).
   * Fix a bashism in po/Makefile.
   * Switch to quilt from dpatch.
     - Don't make any direct changes outside debian/ .
