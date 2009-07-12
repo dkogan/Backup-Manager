@@ -1,3 +1,9 @@
+** (Automated) Dutch translation update
+   Upstream should have updated it before releasing their tarball.
+
+   Provided by: msgmerge
+
+
 ---
  po/nl.po |  575 ++++++++++++++++++++++++++++++++-------------------------------
  1 file changed, 298 insertions(+), 277 deletions(-)
@@ -9,7 +15,7 @@
  "Project-Id-Version: 0.1\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2008-04-14 19:33+0200\n"
-+"POT-Creation-Date: 2009-07-12 09:17+0200\n"
++"POT-Creation-Date: 2009-07-12 15:34+0200\n"
  "PO-Revision-Date: 2006-09-06 10:12+0100\n"
  "Last-Translator: Bjorn Wetzels <Bjorn.Wetzels@planet.nl>\n"
  "Language-Team: DUTCH\n"
@@ -538,7 +544,7 @@
 -#, sh-format
 -msgid "No md5file found: $md5file"
 -msgstr "geen md5file gevonden: $md5file"
-+#: ../lib/logger.sh:144 ../backup-manager:257
++#: ../lib/logger.sh:144 ../backup-manager:260
 +msgid "Unable to exec post-command."
 +msgstr "Post-commando uitvoeren niet mogelijk"
  
@@ -757,17 +763,17 @@
 +msgid "Not in interactive mode, cannot continue."
 +msgstr "Niet in interactive modus, kan niet verder gaan."
 +
-+#: ../backup-manager:127
++#: ../backup-manager:130
  msgid "The -b option must be followed by a valid date (YYYYMMDD)."
  msgstr "-b optie moet gevolgd worden door Valide datum (YYYYMMDD)."
  
 -#: ../backup-manager:175
-+#: ../backup-manager:162
++#: ../backup-manager:165
  msgid "The -c option must be followed by an existing filename."
  msgstr "-c optie moet gevolgd worden door een bestaande bestandsnaam"
  
 -#: ../backup-manager:215
-+#: ../backup-manager:202
++#: ../backup-manager:205
  msgid "Unable to exec the pre-command"
  msgstr "Pre-commando uitvoeren niet mogelijk"
  
