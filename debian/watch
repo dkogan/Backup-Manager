@@ -1,2 +1,2 @@
 version=3
-http://www.backup-manager.org/ backup-manager-([\.\d]+)\.tar\.gz
+http://www.backup-manager.org/download/ backup-manager-([\.\d]+)\.tar\.gz
