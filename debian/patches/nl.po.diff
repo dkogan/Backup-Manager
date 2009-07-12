@@ -1,3 +1,7 @@
+---
+ po/nl.po |  575 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 298 insertions(+), 277 deletions(-)
+
 --- a/po/nl.po
 +++ b/po/nl.po
 @@ -7,7 +7,7 @@
@@ -5,11 +9,11 @@
  "Project-Id-Version: 0.1\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2008-04-14 19:33+0200\n"
-+"POT-Creation-Date: 2009-02-01 15:02+0000\n"
++"POT-Creation-Date: 2009-07-12 09:17+0200\n"
  "PO-Revision-Date: 2006-09-06 10:12+0100\n"
  "Last-Translator: Bjorn Wetzels <Bjorn.Wetzels@planet.nl>\n"
  "Language-Team: DUTCH\n"
-@@ -15,9 +15,87 @@
+@@ -15,9 +15,19 @@
  "Content-Type: text/plain; charset=utf-8\n"
  "Content-Transfer-Encoding: 8bit\n"
  
@@ -29,93 +33,10 @@
 +#, sh-format
 +msgid "Archive given does not exist in the repository: $archive"
 +msgstr "opgegeven archief werd niet gevonden in de verzameling: $archive"
-+
-+#: ../lib/dialog.sh:27
-+msgid "Output:"
-+msgstr "Uitvoer:"
-+
-+#: ../lib/dialog.sh:28
-+msgid "Print this short help message."
-+msgstr "Druk dit korte help bericht af."
-+
-+#: ../lib/dialog.sh:29
-+msgid "Print what happens on STDOUT."
-+msgstr "Laat zien wat op STDOUT gebeurt."
-+
-+#: ../lib/dialog.sh:30
-+msgid "Disable warnings."
-+msgstr "Schakel waarschuwingen uit."
-+
-+#: ../lib/dialog.sh:33
-+msgid "Single actions:"
-+msgstr "Losse acties:"
-+
-+#: ../lib/dialog.sh:34
-+msgid "Just upload the files of the day."
-+msgstr "Upload de dagelijkse files."
-+
-+#: ../lib/dialog.sh:35
-+msgid "Just burn the files of the day."
-+msgstr "Brand de dagelijkse files."
-+
-+#: ../lib/dialog.sh:36
-+msgid "Just test the md5 sums."
-+msgstr "Test de md5 sommen."
-+
-+#: ../lib/dialog.sh:37
-+msgid "Just purge old archives."
-+msgstr "Verwijder de oude archieven."
-+
-+#: ../lib/dialog.sh:40
-+msgid "Behaviour:"
-+msgstr "Gedrag:"
-+
-+#: ../lib/dialog.sh:41
-+msgid "Choose an alternate config file."
-+msgstr "Kies een alternatief configuratie bestand."
-+
-+#: ../lib/dialog.sh:42
-+msgid "Force overwrite of existing archives."
-+msgstr "Forceer overschrijven van bestaande archieven."
-+
-+#: ../lib/dialog.sh:45
-+msgid "Unwanted actions:"
-+msgstr "Ongewenste acties:"
-+
-+#: ../lib/dialog.sh:46
-+msgid "Disable the upload process."
-+msgstr "Schakel het upload proces uit."
-+
-+#: ../lib/dialog.sh:47
-+msgid "Disable the burning process."
-+msgstr "Schakel het brand proces uit."
-+
-+#: ../lib/dialog.sh:48
-+msgid "Disable the purge process."
-+msgstr "Schakel het verwijder proces uit."
-+
-+#: ../lib/dialog.sh:62 ../lib/dialog.sh:81
-+msgid "Not in interactive mode, cannot continue."
-+msgstr "Niet in interactive modus, kan niet verder gaan."
  
  #: ../lib/upload-methods.sh:38
  msgid "Using the upload method \"ssh\"."
-@@ -119,6 +197,14 @@
- msgid "Using the upload method \"rsync-snapshots\"."
- msgstr "Gebruik Upload Methode \"rsync-snapshots\"."
- 
-+#: ../lib/logger.sh:144 ../backup-manager:257
-+msgid "Unable to exec post-command."
-+msgstr "Post-commando uitvoeren niet mogelijk"
-+
-+#: ../lib/logger.sh:146
-+msgid "Releasing lock"
-+msgstr "Vergrendeling vrijgeven"
-+
- #: ../lib/backup-methods.sh:26
- #, sh-format
- msgid "$file_to_create: ok (${size}M,"
-@@ -129,289 +215,204 @@
+@@ -129,201 +139,204 @@
  msgid "Unable to purge duplicates of $file_to_create"
  msgstr "Kan duplicaten van $file_to_create niet weggooien"
  
@@ -227,13 +148,13 @@
 -"\"$logfile\"."
 +#: ../lib/backup-methods.sh:515
 +msgid "Tar reported a file changed during archive creation."
++msgstr ""
++
++#: ../lib/backup-methods.sh:526
++msgid "Dar reported a file changed during archive creation."
  msgstr ""
  
 -#: ../lib/backup-methods.sh:534
-+#: ../lib/backup-methods.sh:526
-+msgid "Dar reported a file changed during archive creation."
-+msgstr ""
-+
 +#: ../lib/backup-methods.sh:564
  #, sh-format
  msgid "The archive type \"tar.bz2\" depends on the tool \"$bzip\"."
@@ -328,24 +249,24 @@
  
 -#: ../lib/backup-methods.sh:849
 +#: ../lib/backup-methods.sh:900
-+#, sh-format
-+msgid "Using existing MySQL client configuration file: $mysql_conffile"
-+msgstr ""
-+
-+#: ../lib/backup-methods.sh:904
  #, sh-format
 -msgid "Using existing MySQL client configuration file: $HOME/.my.cnf"
-+msgid "Creating a default MySQL client configuration file: $mysql_conffile"
++msgid "Using existing MySQL client configuration file: $mysql_conffile"
  msgstr ""
  
 -#: ../lib/backup-methods.sh:852
-+#: ../lib/backup-methods.sh:928
++#: ../lib/backup-methods.sh:904
  #, sh-format
 -msgid "Creating a default MySQL client configuration file: $HOME/.my.cnf"
-+msgid "Removing default MySQL client configuration file: $mysql_conffile"
++msgid "Creating a default MySQL client configuration file: $mysql_conffile"
  msgstr ""
  
 -#: ../lib/backup-methods.sh:881
++#: ../lib/backup-methods.sh:928
++#, sh-format
++msgid "Removing default MySQL client configuration file: $mysql_conffile"
++msgstr ""
++
 +#: ../lib/backup-methods.sh:940
  #, sh-format
  msgid "The \"svn\" method is chosen, but $svnadmin is not found."
@@ -376,101 +297,126 @@
 -msgid "Releasing lock"
 -msgstr "Vergrendeling vrijgeven"
 -
--#: ../lib/actions.sh:44
--msgid "No backup method used."
--msgstr "Geen backup methode gebruikt."
--
--#: ../lib/actions.sh:47
--#, sh-format
--msgid "No such backup method: $BM_ARCHIVE_METHOD"
--msgstr "Backup methode bestaat niet: $BM_ARCHIVE_METHOD"
--
--#: ../lib/actions.sh:56
--#, sh-format
--msgid "Unable to change the owner of \"$md5file\"."
--msgstr "Niet mogelijk om eigenaar van bestand  \"$md5file\" te wijzigen"
--
--#: ../lib/actions.sh:58
--#, sh-format
--msgid "Unable to change file permissions of \"$md5file\"."
--msgstr "Niet mogelijk om bestandsrechten te veranderen van \"$md5file\"."
--
--#: ../lib/actions.sh:90
--msgid "No upload method used."
--msgstr "Geen upload methode gebruikt."
--
--#: ../lib/actions.sh:93
--#, sh-format
--msgid "The upload method \"$method\" is not supported; skipping."
--msgstr "De Upload methode \"$method\" Wordt niet ondersteund; overslaan."
--
--#: ../lib/actions.sh:105
--#, sh-format
--msgid "Cleaning $BM_REPOSITORY_ROOT"
--msgstr "Opschonen $BM_REPOSITORY_ROOT"
--
--#: ../lib/actions.sh:118
--#, sh-format
--msgid "Running pre-command: $BM_PRE_BACKUP_COMMAND."
--msgstr "Uitvoeren van  pre-commando: $BM_PRE_BACKUP_COMMAND."
--
--#: ../lib/actions.sh:122
--msgid "Pre-command failed. Stopping the process."
--msgstr "Pre-commando fout. Stoppen van proces."
--
--#: ../lib/actions.sh:127
--#, sh-format
--msgid "Pre-command returned: \"$RET\" (success)."
--msgstr "Pre-commando retourneerde: \"$RET\" (success)."
--
--#: ../lib/actions.sh:139
--#, sh-format
--msgid "Running post-command: $BM_POST_BACKUP_COMMAND"
--msgstr "Uitvoeren post-commando: $BM_POST_BACKUP_COMMAND"
--
--#: ../lib/actions.sh:143
--msgid "Post-command failed."
--msgstr "Post-commando fout."
--
--#: ../lib/actions.sh:148
--#, sh-format
--msgid "Post-command returned: \"$RET\" (success)."
--msgstr "Post-commando retourneerde: \"$RET\" (success)."
--
--#: ../lib/actions.sh:175
--msgid ""
--"The BM_TARBALL_FILETYPE conf key is set to \"zip\" but zip is not installed."
--msgstr ""
--"De BM_TARBALL_FILETYPE configuratiesleutel is ingesteld op  \"zip\" maar zip "
--"is niet geinstalleerd."
--
--#: ../lib/actions.sh:180
--msgid ""
--"The BM_TARBALL_FILETYPE conf key is set to \"bzip2\" but bzip2 is not "
--"installed."
--msgstr ""
--"De BM_TARBALL_FILETYPE configuratiesleutel is ingesteld op  \"bzip2\" maar "
--"bzip2 is niet geinstalleerd."
--
--#: ../lib/actions.sh:185
--msgid ""
--"The BM_TARBALL_FILETYPE conf key is set to \"dar\" but dar is not installed."
--msgstr ""
--"De BM_TARBALL_FILETYPE configuratiesleutel is ingesteld op  \"dar\" maar dar "
--"is niet geinstalleerd."
--
--#: ../lib/actions.sh:197
--#, sh-format
--msgid "The repository $BM_REPOSITORY_ROOT does not exist, creating it."
--msgstr "$BM_REPOSITORY_ROOT bestaat niet, maken"
--
- #: ../lib/files.sh:79 ../lib/files.sh:94
- msgid "No path given."
- msgstr "Geen Pad opgegeven"
-@@ -494,80 +495,12 @@
- msgid "$file is a duplicate of $file_to_create (using symlink)."
- msgstr "$file is een duplicaat van $file_to_create (door symlink)"
+ #: ../lib/actions.sh:44
+ msgid "No backup method used."
+ msgstr "Geen backup methode gebruikt."
+@@ -385,14 +398,14 @@
+ msgid "Post-command returned: \"$RET\" (success)."
+ msgstr "Post-commando retourneerde: \"$RET\" (success)."
  
+-#: ../lib/actions.sh:175
++#: ../lib/actions.sh:180
+ msgid ""
+ "The BM_TARBALL_FILETYPE conf key is set to \"zip\" but zip is not installed."
+ msgstr ""
+ "De BM_TARBALL_FILETYPE configuratiesleutel is ingesteld op  \"zip\" maar zip "
+ "is niet geinstalleerd."
+ 
+-#: ../lib/actions.sh:180
++#: ../lib/actions.sh:185
+ msgid ""
+ "The BM_TARBALL_FILETYPE conf key is set to \"bzip2\" but bzip2 is not "
+ "installed."
+@@ -400,226 +413,25 @@
+ "De BM_TARBALL_FILETYPE configuratiesleutel is ingesteld op  \"bzip2\" maar "
+ "bzip2 is niet geinstalleerd."
+ 
+-#: ../lib/actions.sh:185
++#: ../lib/actions.sh:190
+ msgid ""
+ "The BM_TARBALL_FILETYPE conf key is set to \"dar\" but dar is not installed."
+ msgstr ""
+ "De BM_TARBALL_FILETYPE configuratiesleutel is ingesteld op  \"dar\" maar dar "
+ "is niet geinstalleerd."
+ 
+-#: ../lib/actions.sh:197
++#: ../lib/actions.sh:202
+ #, sh-format
+ msgid "The repository $BM_REPOSITORY_ROOT does not exist, creating it."
+ msgstr "$BM_REPOSITORY_ROOT bestaat niet, maken"
+ 
+-#: ../lib/files.sh:79 ../lib/files.sh:94
+-msgid "No path given."
+-msgstr "Geen Pad opgegeven"
+-
+-#: ../lib/files.sh:169
+-#, sh-format
+-msgid "Removing lock for old PID, $pid is not running."
+-msgstr "Verwijderen vergrendeling voor oude PID, $pid loopt niet."
+-
+-#: ../lib/files.sh:179
+-#, sh-format
+-msgid ""
+-"A backup-manager process ($pid) is already running with the conffile "
+-"$conffile"
+-msgstr ""
+-"Een backup-manager proces ($pid) loopt al met de configuratiefile $conffile"
+-
+-#: ../lib/files.sh:183 ../lib/files.sh:189
+-#, sh-format
+-msgid "Getting lock for backup-manager $pid with $conffile"
+-msgstr "Vergrendelen van proces: backup-manager $pid met $conffile"
+-
+-#: ../lib/files.sh:192
+-msgid "failed (check the file permissions)."
+-msgstr "Fout (controleer bestandsrechten)"
+-
+-#: ../lib/files.sh:280
+-#, sh-format
+-msgid "$file is not a regular file."
+-msgstr "$file is geen regulier bestand."
+-
+-#: ../lib/files.sh:305
+-#, sh-format
+-msgid "Removing obsolete master backup: \"$file\"."
+-msgstr "Verwijderen overbodige master backup :\"$file\"."
+-
+-#: ../lib/files.sh:313
+-#, sh-format
+-msgid "Removing obsolete master backup (isolated): \"$file\"."
+-msgstr "Verwijderen overbodige master backup (geisoleerd) :\"$file\"."
+-
+-#: ../lib/files.sh:320
+-#, sh-format
+-msgid "Removing archive \"$file\"."
+-msgstr "Verwijderen $file"
+-
+-#: ../lib/files.sh:342
+-msgid "Directory given was not found."
+-msgstr "Opgegeven map bestaat niet"
+-
+-#: ../lib/files.sh:363
+-#, sh-format
+-msgid "Removing archive \"$archive\"."
+-msgstr "Verwijderen archief \"$archive\"."
+-
+-#: ../lib/files.sh:387
+-#, sh-format
+-msgid "The given file does not exist: $file_to_create"
+-msgstr "Het opgegeven bestand bestaat niet: $file_to_create"
+-
+-#: ../lib/files.sh:392
+-msgid "No file given."
+-msgstr "Geen bestand opgegeven"
+-
+-#: ../lib/files.sh:397 ../lib/files.sh:399 ../lib/files.sh:413
+-msgid "Unable to get date from file."
+-msgstr "Niet mogelijk om datum van bestand op te halen"
+-
+-#: ../lib/files.sh:403
+-msgid "Unable to find the pattern of the file."
+-msgstr "Niet mogelijk om patroon van bestand op te halen"
+-
+-#: ../lib/files.sh:419
+-#, sh-format
+-msgid "Unable to find the md5 hash of file \"$file\" in file \"$md5file\"."
+-msgstr "md5 hash van bestand \"$file\" niet gevonden in bestand  \"$md5file\"."
+-
+-#: ../lib/files.sh:425
+-#, sh-format
+-msgid "$file is a duplicate of $file_to_create (using symlink)."
+-msgstr "$file is een duplicaat van $file_to_create (door symlink)"
+-
 -#: ../lib/dialog.sh:27
 -msgid "Output:"
 -msgstr "Uitvoer:"
@@ -540,164 +486,277 @@
 -msgstr "Niet in interactive modus, kan niet verder gaan."
 -
 -#: ../lib/sanitize.sh:32
-+#: ../lib/sanitize.sh:31
- #, sh-format
- msgid "The configuration key $key is not set, using \"$default\"."
- msgstr "De configuratiesleutel $key is niet gezet, gebruik \"$default\"."
- 
+-#, sh-format
+-msgid "The configuration key $key is not set, using \"$default\"."
+-msgstr "De configuratiesleutel $key is niet gezet, gebruik \"$default\"."
+-
 -#: ../lib/sanitize.sh:43
-+#: ../lib/sanitize.sh:42
- #, sh-format
- msgid ""
- "The configuration key \"$deprecated_key\" is deprecated, you should rename "
-@@ -576,29 +509,34 @@
- "De configuratiesleutel  \"$deprecated_key\" is verouderd, hernoemdeze naar "
- "\"$new_key\". Gebruik nu \"$deprecated_value\""
- 
+-#, sh-format
+-msgid ""
+-"The configuration key \"$deprecated_key\" is deprecated, you should rename "
+-"it \"$new_key\". Using \"$deprecated_value\"."
+-msgstr ""
+-"De configuratiesleutel  \"$deprecated_key\" is verouderd, hernoemdeze naar "
+-"\"$new_key\". Gebruik nu \"$deprecated_value\""
+-
 -#: ../lib/sanitize.sh:84
-+#: ../lib/sanitize.sh:83
- #, sh-format
- msgid "The configuration key $key is not set but $keymandatory is enabled."
- msgstr ""
- "De configuratiesleutel $key is niet ingesteld, maar $keymandatory is wel "
- "aangezet."
- 
+-#, sh-format
+-msgid "The configuration key $key is not set but $keymandatory is enabled."
+-msgstr ""
+-"De configuratiesleutel $key is niet ingesteld, maar $keymandatory is wel "
+-"aangezet."
+-
 -#: ../lib/sanitize.sh:100
-+#: ../lib/sanitize.sh:99
- #, sh-format
- msgid "Deprecated boolean, $key is set to \"yes\", setting \"true\" instead."
- msgstr "Verouderde boolean, $key is ingesteld op \"yes\", Gebruik nu \"true"
- 
+-#, sh-format
+-msgid "Deprecated boolean, $key is set to \"yes\", setting \"true\" instead."
+-msgstr "Verouderde boolean, $key is ingesteld op \"yes\", Gebruik nu \"true"
+-
 -#: ../lib/sanitize.sh:105
-+#: ../lib/sanitize.sh:104
- #, sh-format
- msgid "Deprecated boolean, $key is set to \"no\", setting \"false\" instead."
- msgstr "Verouderde boolean, $key is ingesteld op \"no\", Gebruik nu \"false"
- 
+-#, sh-format
+-msgid "Deprecated boolean, $key is set to \"no\", setting \"false\" instead."
+-msgstr "Verouderde boolean, $key is ingesteld op \"no\", Gebruik nu \"false"
+-
 -#: ../lib/sanitize.sh:162
+-msgid ""
+-"BM_TARBALLINC_MASTERDATEVALUE should not be greater than 6, falling back to 0"
+-msgstr ""
+-
+-#: ../lib/sanitize.sh:272
+-#, sh-format
+-msgid ""
+-"When validating the configuration file $conffile, $nb_warnings warnings were "
+-"found."
+-msgstr ""
+-"Tijdens het valideren van het configuratiebestand $conffile zijn "
+-"$nb_warnings waarchuwing(en)  gevonden"
+-
+-#: ../lib/md5sum.sh:30
+-msgid "Internal error: bad usage of function get_md5sum_from_file()"
+-msgstr "Interne error: fout gebruik van functie get_md5sum_from_file()"
+-
+-#: ../lib/md5sum.sh:34
+-#, sh-format
+-msgid "No md5file found: $md5file"
+-msgstr "geen md5file gevonden: $md5file"
++#: ../lib/logger.sh:144 ../backup-manager:257
++msgid "Unable to exec post-command."
++msgstr "Post-commando uitvoeren niet mogelijk"
+ 
+-#: ../lib/md5sum.sh:82
+-#, sh-format
+-msgid "Archive given does not exist in the repository: $archive"
+-msgstr "opgegeven archief werd niet gevonden in de verzameling: $archive"
++#: ../lib/logger.sh:146
++msgid "Releasing lock"
++msgstr "Vergrendeling vrijgeven"
+ 
+ #: ../lib/burning-methods.sh:37
+ #, sh-format
+@@ -824,18 +636,227 @@
+ msgid "Burning content of $index"
+ msgstr "Branden inhoud van $index"
+ 
+-#: ../backup-manager:140
++#: ../lib/files.sh:79 ../lib/files.sh:94
++msgid "No path given."
++msgstr "Geen Pad opgegeven"
++
++#: ../lib/files.sh:169
++#, sh-format
++msgid "Removing lock for old PID, $pid is not running."
++msgstr "Verwijderen vergrendeling voor oude PID, $pid loopt niet."
++
++#: ../lib/files.sh:179
++#, sh-format
++msgid ""
++"A backup-manager process ($pid) is already running with the conffile "
++"$conffile"
++msgstr ""
++"Een backup-manager proces ($pid) loopt al met de configuratiefile $conffile"
++
++#: ../lib/files.sh:183 ../lib/files.sh:189
++#, sh-format
++msgid "Getting lock for backup-manager $pid with $conffile"
++msgstr "Vergrendelen van proces: backup-manager $pid met $conffile"
++
++#: ../lib/files.sh:192
++msgid "failed (check the file permissions)."
++msgstr "Fout (controleer bestandsrechten)"
++
++#: ../lib/files.sh:280
++#, sh-format
++msgid "$file is not a regular file."
++msgstr "$file is geen regulier bestand."
++
++#: ../lib/files.sh:305
++#, sh-format
++msgid "Removing obsolete master backup: \"$file\"."
++msgstr "Verwijderen overbodige master backup :\"$file\"."
++
++#: ../lib/files.sh:313
++#, sh-format
++msgid "Removing obsolete master backup (isolated): \"$file\"."
++msgstr "Verwijderen overbodige master backup (geisoleerd) :\"$file\"."
++
++#: ../lib/files.sh:320
++#, sh-format
++msgid "Removing archive \"$file\"."
++msgstr "Verwijderen $file"
++
++#: ../lib/files.sh:342
++msgid "Directory given was not found."
++msgstr "Opgegeven map bestaat niet"
++
++#: ../lib/files.sh:363
++#, sh-format
++msgid "Removing archive \"$archive\"."
++msgstr "Verwijderen archief \"$archive\"."
++
++#: ../lib/files.sh:387
++#, sh-format
++msgid "The given file does not exist: $file_to_create"
++msgstr "Het opgegeven bestand bestaat niet: $file_to_create"
++
++#: ../lib/files.sh:392
++msgid "No file given."
++msgstr "Geen bestand opgegeven"
++
++#: ../lib/files.sh:397 ../lib/files.sh:399 ../lib/files.sh:413
++msgid "Unable to get date from file."
++msgstr "Niet mogelijk om datum van bestand op te halen"
++
++#: ../lib/files.sh:403
++msgid "Unable to find the pattern of the file."
++msgstr "Niet mogelijk om patroon van bestand op te halen"
++
++#: ../lib/files.sh:419
++#, sh-format
++msgid "Unable to find the md5 hash of file \"$file\" in file \"$md5file\"."
++msgstr "md5 hash van bestand \"$file\" niet gevonden in bestand  \"$md5file\"."
++
++#: ../lib/files.sh:425
++#, sh-format
++msgid "$file is a duplicate of $file_to_create (using symlink)."
++msgstr "$file is een duplicaat van $file_to_create (door symlink)"
++
++#: ../lib/sanitize.sh:31
++#, sh-format
++msgid "The configuration key $key is not set, using \"$default\"."
++msgstr "De configuratiesleutel $key is niet gezet, gebruik \"$default\"."
++
++#: ../lib/sanitize.sh:42
++#, sh-format
++msgid ""
++"The configuration key \"$deprecated_key\" is deprecated, you should rename "
++"it \"$new_key\". Using \"$deprecated_value\"."
++msgstr ""
++"De configuratiesleutel  \"$deprecated_key\" is verouderd, hernoemdeze naar "
++"\"$new_key\". Gebruik nu \"$deprecated_value\""
++
++#: ../lib/sanitize.sh:83
++#, sh-format
++msgid "The configuration key $key is not set but $keymandatory is enabled."
++msgstr ""
++"De configuratiesleutel $key is niet ingesteld, maar $keymandatory is wel "
++"aangezet."
++
++#: ../lib/sanitize.sh:99
++#, sh-format
++msgid "Deprecated boolean, $key is set to \"yes\", setting \"true\" instead."
++msgstr "Verouderde boolean, $key is ingesteld op \"yes\", Gebruik nu \"true"
++
++#: ../lib/sanitize.sh:104
++#, sh-format
++msgid "Deprecated boolean, $key is set to \"no\", setting \"false\" instead."
++msgstr "Verouderde boolean, $key is ingesteld op \"no\", Gebruik nu \"false"
++
 +#: ../lib/sanitize.sh:127
 +#, sh-format
 +msgid "Unable to create BM_TEMP_DIR: \"$BM_TEMP_DIR\"."
 +msgstr ""
 +
 +#: ../lib/sanitize.sh:165
- msgid ""
- "BM_TARBALLINC_MASTERDATEVALUE should not be greater than 6, falling back to 0"
- msgstr ""
- 
--#: ../lib/sanitize.sh:272
++msgid ""
++"BM_TARBALLINC_MASTERDATEVALUE should not be greater than 6, falling back to 0"
++msgstr ""
++
 +#: ../lib/sanitize.sh:275
- #, sh-format
- msgid ""
- "When validating the configuration file $conffile, $nb_warnings warnings were "
-@@ -607,19 +545,93 @@
- "Tijdens het valideren van het configuratiebestand $conffile zijn "
- "$nb_warnings waarchuwing(en)  gevonden"
- 
--#: ../lib/md5sum.sh:30
--msgid "Internal error: bad usage of function get_md5sum_from_file()"
--msgstr "Interne error: fout gebruik van functie get_md5sum_from_file()"
-+#: ../lib/actions.sh:44
-+msgid "No backup method used."
-+msgstr "Geen backup methode gebruikt."
- 
--#: ../lib/md5sum.sh:34
-+#: ../lib/actions.sh:47
- #, sh-format
--msgid "No md5file found: $md5file"
--msgstr "geen md5file gevonden: $md5file"
-+msgid "No such backup method: $BM_ARCHIVE_METHOD"
-+msgstr "Backup methode bestaat niet: $BM_ARCHIVE_METHOD"
- 
--#: ../lib/md5sum.sh:82
-+#: ../lib/actions.sh:56
- #, sh-format
--msgid "Archive given does not exist in the repository: $archive"
--msgstr "opgegeven archief werd niet gevonden in de verzameling: $archive"
-+msgid "Unable to change the owner of \"$md5file\"."
-+msgstr "Niet mogelijk om eigenaar van bestand  \"$md5file\" te wijzigen"
-+
-+#: ../lib/actions.sh:58
 +#, sh-format
-+msgid "Unable to change file permissions of \"$md5file\"."
-+msgstr "Niet mogelijk om bestandsrechten te veranderen van \"$md5file\"."
-+
-+#: ../lib/actions.sh:90
-+msgid "No upload method used."
-+msgstr "Geen upload methode gebruikt."
-+
-+#: ../lib/actions.sh:93
-+#, sh-format
-+msgid "The upload method \"$method\" is not supported; skipping."
-+msgstr "De Upload methode \"$method\" Wordt niet ondersteund; overslaan."
-+
-+#: ../lib/actions.sh:105
-+#, sh-format
-+msgid "Cleaning $BM_REPOSITORY_ROOT"
-+msgstr "Opschonen $BM_REPOSITORY_ROOT"
-+
-+#: ../lib/actions.sh:118
-+#, sh-format
-+msgid "Running pre-command: $BM_PRE_BACKUP_COMMAND."
-+msgstr "Uitvoeren van  pre-commando: $BM_PRE_BACKUP_COMMAND."
-+
-+#: ../lib/actions.sh:122
-+msgid "Pre-command failed. Stopping the process."
-+msgstr "Pre-commando fout. Stoppen van proces."
-+
-+#: ../lib/actions.sh:127
-+#, sh-format
-+msgid "Pre-command returned: \"$RET\" (success)."
-+msgstr "Pre-commando retourneerde: \"$RET\" (success)."
-+
-+#: ../lib/actions.sh:139
-+#, sh-format
-+msgid "Running post-command: $BM_POST_BACKUP_COMMAND"
-+msgstr "Uitvoeren post-commando: $BM_POST_BACKUP_COMMAND"
-+
-+#: ../lib/actions.sh:143
-+msgid "Post-command failed."
-+msgstr "Post-commando fout."
-+
-+#: ../lib/actions.sh:148
-+#, sh-format
-+msgid "Post-command returned: \"$RET\" (success)."
-+msgstr "Post-commando retourneerde: \"$RET\" (success)."
-+
-+#: ../lib/actions.sh:180
 +msgid ""
-+"The BM_TARBALL_FILETYPE conf key is set to \"zip\" but zip is not installed."
++"When validating the configuration file $conffile, $nb_warnings warnings were "
++"found."
 +msgstr ""
-+"De BM_TARBALL_FILETYPE configuratiesleutel is ingesteld op  \"zip\" maar zip "
-+"is niet geinstalleerd."
++"Tijdens het valideren van het configuratiebestand $conffile zijn "
++"$nb_warnings waarchuwing(en)  gevonden"
 +
-+#: ../lib/actions.sh:185
-+msgid ""
-+"The BM_TARBALL_FILETYPE conf key is set to \"bzip2\" but bzip2 is not "
-+"installed."
-+msgstr ""
-+"De BM_TARBALL_FILETYPE configuratiesleutel is ingesteld op  \"bzip2\" maar "
-+"bzip2 is niet geinstalleerd."
++#: ../lib/dialog.sh:27
++msgid "Output:"
++msgstr "Uitvoer:"
 +
-+#: ../lib/actions.sh:190
-+msgid ""
-+"The BM_TARBALL_FILETYPE conf key is set to \"dar\" but dar is not installed."
-+msgstr ""
-+"De BM_TARBALL_FILETYPE configuratiesleutel is ingesteld op  \"dar\" maar dar "
-+"is niet geinstalleerd."
++#: ../lib/dialog.sh:28
++msgid "Print this short help message."
++msgstr "Druk dit korte help bericht af."
 +
-+#: ../lib/actions.sh:202
-+#, sh-format
-+msgid "The repository $BM_REPOSITORY_ROOT does not exist, creating it."
-+msgstr "$BM_REPOSITORY_ROOT bestaat niet, maken"
- 
- #: ../lib/burning-methods.sh:37
- #, sh-format
-@@ -824,18 +836,27 @@
- msgid "Burning content of $index"
- msgstr "Branden inhoud van $index"
- 
--#: ../backup-manager:140
++#: ../lib/dialog.sh:29
++msgid "Print what happens on STDOUT."
++msgstr "Laat zien wat op STDOUT gebeurt."
++
++#: ../lib/dialog.sh:30
++msgid "Disable warnings."
++msgstr "Schakel waarschuwingen uit."
++
++#: ../lib/dialog.sh:33
++msgid "Single actions:"
++msgstr "Losse acties:"
++
++#: ../lib/dialog.sh:34
++msgid "Just upload the files of the day."
++msgstr "Upload de dagelijkse files."
++
++#: ../lib/dialog.sh:35
++msgid "Just burn the files of the day."
++msgstr "Brand de dagelijkse files."
++
++#: ../lib/dialog.sh:36
++msgid "Just test the md5 sums."
++msgstr "Test de md5 sommen."
++
++#: ../lib/dialog.sh:37
++msgid "Just purge old archives."
++msgstr "Verwijder de oude archieven."
++
++#: ../lib/dialog.sh:40
++msgid "Behaviour:"
++msgstr "Gedrag:"
++
++#: ../lib/dialog.sh:41
++msgid "Choose an alternate config file."
++msgstr "Kies een alternatief configuratie bestand."
++
++#: ../lib/dialog.sh:42
++msgid "Force overwrite of existing archives."
++msgstr "Forceer overschrijven van bestaande archieven."
++
++#: ../lib/dialog.sh:45
++msgid "Unwanted actions:"
++msgstr "Ongewenste acties:"
++
++#: ../lib/dialog.sh:46
++msgid "Disable the upload process."
++msgstr "Schakel het upload proces uit."
++
++#: ../lib/dialog.sh:47
++msgid "Disable the burning process."
++msgstr "Schakel het brand proces uit."
++
++#: ../lib/dialog.sh:48
++msgid "Disable the purge process."
++msgstr "Schakel het verwijder proces uit."
++
++#: ../lib/dialog.sh:62 ../lib/dialog.sh:81
++msgid "Not in interactive mode, cannot continue."
++msgstr "Niet in interactive modus, kan niet verder gaan."
++
 +#: ../backup-manager:127
  msgid "The -b option must be followed by a valid date (YYYYMMDD)."
  msgstr "-b optie moet gevolgd worden door Valide datum (YYYYMMDD)."

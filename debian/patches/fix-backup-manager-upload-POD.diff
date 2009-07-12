@@ -4,6 +4,10 @@
    Provided by: Alexis Sukrieh <sukria@sukria.net>
 
 
+---
+ backup-manager-upload |    5 +++++
+ 1 file changed, 5 insertions(+)
+
 --- a/backup-manager-upload
 +++ b/backup-manager-upload
 @@ -37,9 +37,12 @@

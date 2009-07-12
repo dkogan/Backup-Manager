@@ -5,6 +5,7 @@ backup-manager (0.7.8-2) UNRELEASED; urgency=medium
   * Make debian/rules less verbose (Closes: #535372).
   * Install the user guide into /usr/share/doc/backup-manager-doc
     again (Closes: #528161).
+  * Update the German upstream translation (Closes: #499667).
   * Switch to quilt from dpatch.
     - Don't make any direct changes outside debian/ .
     - Add a short README.source as recommended by policy.

@@ -1,6 +1,10 @@
 ## 04_backup-manager.conf.tpl.dpatch by Alexis Sukrieh <sukria@debian.org>
 ## Some changes for the postinst phase needs.
 
+---
+ backup-manager.conf.tpl |   18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
 --- a/backup-manager.conf.tpl
 +++ b/backup-manager.conf.tpl
 @@ -87,13 +87,14 @@

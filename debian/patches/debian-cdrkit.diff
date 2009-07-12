@@ -5,6 +5,10 @@
    Provided by: Sven Joachim <svenjoac@gmx.de>
 
 
+---
+ lib/externals.sh |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
 --- a/lib/externals.sh
 +++ b/lib/externals.sh
 @@ -7,10 +7,10 @@

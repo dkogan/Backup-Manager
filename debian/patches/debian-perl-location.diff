@@ -4,6 +4,10 @@
    Provided by: Alexis Sukrieh <sukria@sukria.net>
 
 
+---
+ Makefile |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 --- a/Makefile
 +++ b/Makefile
 @@ -30,7 +30,7 @@

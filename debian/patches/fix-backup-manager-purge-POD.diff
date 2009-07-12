@@ -4,6 +4,10 @@
    Provided by: Alexis Sukrieh <sukria@sukria.net>
 
 
+---
+ backup-manager-purge |    4 ++++
+ 1 file changed, 4 insertions(+)
+
 --- a/backup-manager-purge
 +++ b/backup-manager-purge
 @@ -49,8 +49,12 @@

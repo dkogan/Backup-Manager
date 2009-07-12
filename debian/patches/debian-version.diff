@@ -4,6 +4,10 @@
    Provided by: Alexis Sukrieh <sukria@sukria.net>
 
 
+---
+ backup-manager |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 --- a/backup-manager
 +++ b/backup-manager
 @@ -27,7 +27,7 @@

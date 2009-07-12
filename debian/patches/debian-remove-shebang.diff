@@ -5,6 +5,10 @@
    Provided by: Alexis Sukrieh <sukria@sukria.net>
 
 
+---
+ lib/sanitize.sh |    3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
 --- a/lib/sanitize.sh
 +++ b/lib/sanitize.sh
 @@ -1,5 +1,4 @@

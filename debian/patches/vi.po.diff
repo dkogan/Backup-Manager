@@ -1,3 +1,7 @@
+---
+ po/vi.po |  587 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 304 insertions(+), 283 deletions(-)
+
 --- a/po/vi.po
 +++ b/po/vi.po
 @@ -6,7 +6,7 @@
@@ -5,11 +9,11 @@
  "Project-Id-Version: backup-manager 0.6\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2008-04-14 19:33+0200\n"
-+"POT-Creation-Date: 2009-02-01 15:02+0000\n"
++"POT-Creation-Date: 2009-07-12 09:17+0200\n"
  "PO-Revision-Date: 2006-09-15 15:47+0930\n"
  "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
  "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
-@@ -16,9 +16,87 @@
+@@ -16,9 +16,19 @@
  "Plural-Forms: nplurals=1; plural=0;\n"
  "X-Generator: LocFactoryEditor 1.6fc1\n"
  
@@ -29,93 +33,10 @@
 +#, sh-format
 +msgid "Archive given does not exist in the repository: $archive"
 +msgstr "Kho nén đã cho không nằm trong kho lưu: $archive"
-+
-+#: ../lib/dialog.sh:27
-+msgid "Output:"
-+msgstr "Kết xuất:"
-+
-+#: ../lib/dialog.sh:28
-+msgid "Print this short help message."
-+msgstr "Hiển thị trợ giúp ngắn này."
-+
-+#: ../lib/dialog.sh:29
-+msgid "Print what happens on STDOUT."
-+msgstr "In ra thiết bị xuất chuẩn."
-+
-+#: ../lib/dialog.sh:30
-+msgid "Disable warnings."
-+msgstr "Tắt mọi cảnh báo."
-+
-+#: ../lib/dialog.sh:33
-+msgid "Single actions:"
-+msgstr "Hành động đơn:"
-+
-+#: ../lib/dialog.sh:34
-+msgid "Just upload the files of the day."
-+msgstr "Tải lên chỉ những tập tin của hôm nay."
-+
-+#: ../lib/dialog.sh:35
-+msgid "Just burn the files of the day."
-+msgstr "Ghi chỉ những tập tin của hôm nay."
-+
-+#: ../lib/dialog.sh:36
-+msgid "Just test the md5 sums."
-+msgstr "Kiểm tra chỉ tổng MD5."
-+
-+#: ../lib/dialog.sh:37
-+msgid "Just purge old archives."
-+msgstr "Tẩy chỉ các kho cũ."
-+
-+#: ../lib/dialog.sh:40
-+msgid "Behaviour:"
-+msgstr "Ứng xử :"
-+
-+#: ../lib/dialog.sh:41
-+msgid "Choose an alternate config file."
-+msgstr "Chọn tập tin cấu hình thay thế."
-+
-+#: ../lib/dialog.sh:42
-+msgid "Force overwrite of existing archives."
-+msgstr "Buộc ghi đè lên các kho đã có."
-+
-+#: ../lib/dialog.sh:45
-+msgid "Unwanted actions:"
-+msgstr "Hành động vô ích:"
-+
-+#: ../lib/dialog.sh:46
-+msgid "Disable the upload process."
-+msgstr "Tắt tiến trình tải lên."
-+
-+#: ../lib/dialog.sh:47
-+msgid "Disable the burning process."
-+msgstr "Tắt tiến trình ghi."
-+
-+#: ../lib/dialog.sh:48
-+msgid "Disable the purge process."
-+msgstr "Tắt tiến trình tẩy."
-+
-+#: ../lib/dialog.sh:62 ../lib/dialog.sh:81
-+msgid "Not in interactive mode, cannot continue."
-+msgstr "Không phải trong chế độ tương tác nên không thể tiếp tục."
  
  #: ../lib/upload-methods.sh:38
  msgid "Using the upload method \"ssh\"."
-@@ -126,6 +204,14 @@
- msgid "Using the upload method \"rsync-snapshots\"."
- msgstr "Đang dùng phương pháp tải lên « rsync-snapshots »."
- 
-+#: ../lib/logger.sh:144 ../backup-manager:257
-+msgid "Unable to exec post-command."
-+msgstr "Không thể thực hiện hậu lệnh."
-+
-+#: ../lib/logger.sh:146
-+msgid "Releasing lock"
-+msgstr "Đang nhả khóa"
-+
- #: ../lib/backup-methods.sh:26
- #, sh-format
- msgid "$file_to_create: ok (${size}M,"
-@@ -136,291 +222,206 @@
+@@ -136,203 +146,206 @@
  msgid "Unable to purge duplicates of $file_to_create"
  msgstr "Không thể tẩy các bản sao của tập tin « $file_to_create »"
  
@@ -330,24 +251,24 @@
  
 -#: ../lib/backup-methods.sh:849
 +#: ../lib/backup-methods.sh:900
-+#, sh-format
-+msgid "Using existing MySQL client configuration file: $mysql_conffile"
-+msgstr ""
-+
-+#: ../lib/backup-methods.sh:904
  #, sh-format
 -msgid "Using existing MySQL client configuration file: $HOME/.my.cnf"
-+msgid "Creating a default MySQL client configuration file: $mysql_conffile"
++msgid "Using existing MySQL client configuration file: $mysql_conffile"
  msgstr ""
  
 -#: ../lib/backup-methods.sh:852
-+#: ../lib/backup-methods.sh:928
++#: ../lib/backup-methods.sh:904
  #, sh-format
 -msgid "Creating a default MySQL client configuration file: $HOME/.my.cnf"
-+msgid "Removing default MySQL client configuration file: $mysql_conffile"
++msgid "Creating a default MySQL client configuration file: $mysql_conffile"
  msgstr ""
  
 -#: ../lib/backup-methods.sh:881
++#: ../lib/backup-methods.sh:928
++#, sh-format
++msgid "Removing default MySQL client configuration file: $mysql_conffile"
++msgstr ""
++
 +#: ../lib/backup-methods.sh:940
  #, sh-format
  msgid "The \"svn\" method is chosen, but $svnadmin is not found."
@@ -378,101 +299,131 @@
 -msgid "Releasing lock"
 -msgstr "Đang nhả khóa"
 -
--#: ../lib/actions.sh:44
--msgid "No backup method used."
--msgstr "Chưa dùng phương pháp sao lưu."
--
--#: ../lib/actions.sh:47
--#, sh-format
--msgid "No such backup method: $BM_ARCHIVE_METHOD"
--msgstr "Không có phương pháp sao lưu như vậy: $BM_ARCHIVE_METHOD"
--
--#: ../lib/actions.sh:56
--#, sh-format
--msgid "Unable to change the owner of \"$md5file\"."
--msgstr "Không thể thay đổi người sở hữu tập tin « $md5file »."
--
--#: ../lib/actions.sh:58
--#, sh-format
--msgid "Unable to change file permissions of \"$md5file\"."
--msgstr "Không thể thay đổi quyền hạn của tập tin « $md5file »."
--
--#: ../lib/actions.sh:90
--msgid "No upload method used."
--msgstr "Chưa dùng phương pháp tải lên."
--
--#: ../lib/actions.sh:93
--#, sh-format
--msgid "The upload method \"$method\" is not supported; skipping."
--msgstr "Không hỗ trợ phương pháp tải lên « $method » nên bỏ qua."
--
--#: ../lib/actions.sh:105
--#, sh-format
--msgid "Cleaning $BM_REPOSITORY_ROOT"
--msgstr "Đang xóa sạch « $BM_REPOSITORY_ROOT »"
--
--#: ../lib/actions.sh:118
--#, sh-format
--msgid "Running pre-command: $BM_PRE_BACKUP_COMMAND."
--msgstr "Đang chạy tiền lệnh: $BM_PRE_BACKUP_COMMAND."
--
--#: ../lib/actions.sh:122
--msgid "Pre-command failed. Stopping the process."
--msgstr "Tiền lệnh bị lỗi nên ngừng tiến trình."
--
--#: ../lib/actions.sh:127
--#, sh-format
--msgid "Pre-command returned: \"$RET\" (success)."
--msgstr "Tiền lệnh đã trả lại: « $RET » (thành công)."
--
--#: ../lib/actions.sh:139
--#, sh-format
--msgid "Running post-command: $BM_POST_BACKUP_COMMAND"
--msgstr "Đang chạy hậu lệnh: $BM_POST_BACKUP_COMMAND"
--
--#: ../lib/actions.sh:143
--msgid "Post-command failed."
--msgstr "Hậu lệnh bị lỗi."
--
--#: ../lib/actions.sh:148
--#, sh-format
--msgid "Post-command returned: \"$RET\" (success)."
--msgstr "Hậu lệnh đã trả lại: « $RET » (thành công)."
--
--#: ../lib/actions.sh:175
--msgid ""
--"The BM_TARBALL_FILETYPE conf key is set to \"zip\" but zip is not installed."
--msgstr ""
--"Khóa cấu hình « BM_TARBALL_FILETYPE » được đặt thành « zip » nhưng chưa cài "
--"đặt phần mềm zip."
--
--#: ../lib/actions.sh:180
--msgid ""
--"The BM_TARBALL_FILETYPE conf key is set to \"bzip2\" but bzip2 is not "
--"installed."
--msgstr ""
--"Khóa cấu hình « BM_TARBALL_FILETYPE » được đặt thành « bzip » nhưng chưa cài "
--"đặt phần mềm bzip."
--
--#: ../lib/actions.sh:185
--msgid ""
--"The BM_TARBALL_FILETYPE conf key is set to \"dar\" but dar is not installed."
--msgstr ""
--"Khóa cấu hình « BM_TARBALL_FILETYPE » được đặt thành « dar » nhưng chưa cài "
--"đặt phần mềm dar."
--
--#: ../lib/actions.sh:197
--#, sh-format
--msgid "The repository $BM_REPOSITORY_ROOT does not exist, creating it."
--msgstr "Không có kho « $BM_REPOSITORY_ROOT » nên đang tạo nó."
--
- #: ../lib/files.sh:79 ../lib/files.sh:94
- msgid "No path given."
- msgstr "Chưa nhập đường dẫn."
-@@ -508,80 +509,12 @@
- "Tập tin « $file » là bản sao của tập tin « $file_to_create » (dùng liên kết "
- "tượng trưng)."
+ #: ../lib/actions.sh:44
+ msgid "No backup method used."
+ msgstr "Chưa dùng phương pháp sao lưu."
+@@ -394,14 +407,14 @@
+ msgid "Post-command returned: \"$RET\" (success)."
+ msgstr "Hậu lệnh đã trả lại: « $RET » (thành công)."
  
+-#: ../lib/actions.sh:175
++#: ../lib/actions.sh:180
+ msgid ""
+ "The BM_TARBALL_FILETYPE conf key is set to \"zip\" but zip is not installed."
+ msgstr ""
+ "Khóa cấu hình « BM_TARBALL_FILETYPE » được đặt thành « zip » nhưng chưa cài "
+ "đặt phần mềm zip."
+ 
+-#: ../lib/actions.sh:180
++#: ../lib/actions.sh:185
+ msgid ""
+ "The BM_TARBALL_FILETYPE conf key is set to \"bzip2\" but bzip2 is not "
+ "installed."
+@@ -409,232 +422,25 @@
+ "Khóa cấu hình « BM_TARBALL_FILETYPE » được đặt thành « bzip » nhưng chưa cài "
+ "đặt phần mềm bzip."
+ 
+-#: ../lib/actions.sh:185
++#: ../lib/actions.sh:190
+ msgid ""
+ "The BM_TARBALL_FILETYPE conf key is set to \"dar\" but dar is not installed."
+ msgstr ""
+ "Khóa cấu hình « BM_TARBALL_FILETYPE » được đặt thành « dar » nhưng chưa cài "
+ "đặt phần mềm dar."
+ 
+-#: ../lib/actions.sh:197
++#: ../lib/actions.sh:202
+ #, sh-format
+ msgid "The repository $BM_REPOSITORY_ROOT does not exist, creating it."
+ msgstr "Không có kho « $BM_REPOSITORY_ROOT » nên đang tạo nó."
+ 
+-#: ../lib/files.sh:79 ../lib/files.sh:94
+-msgid "No path given."
+-msgstr "Chưa nhập đường dẫn."
+-
+-#: ../lib/files.sh:169
+-#, sh-format
+-msgid "Removing lock for old PID, $pid is not running."
+-msgstr "Đang gỡ bỏ khóa cho PID cũ, tiến trình số $pid không đang chạy."
+-
+-#: ../lib/files.sh:179
+-#, sh-format
+-msgid ""
+-"A backup-manager process ($pid) is already running with the conffile "
+-"$conffile"
+-msgstr ""
+-"Một tiến trình backup-manager ($pid) đang chạy với tập tin cấu hình « "
+-"$conffile »."
+-
+-#: ../lib/files.sh:183 ../lib/files.sh:189
+-#, sh-format
+-msgid "Getting lock for backup-manager $pid with $conffile"
+-msgstr ""
+-"Đang lấy khóa cho backup-manager $pid với tập tin cấu hình « $conffile »"
+-
+-#: ../lib/files.sh:192
+-msgid "failed (check the file permissions)."
+-msgstr "bị lỗi (hãy kiểm tra lại quyền hạn tập tin)."
+-
+-#: ../lib/files.sh:280
+-#, sh-format
+-msgid "$file is not a regular file."
+-msgstr "$file không phải là tập tin chuẩn."
+-
+-#: ../lib/files.sh:305
+-#, sh-format
+-msgid "Removing obsolete master backup: \"$file\"."
+-msgstr "Đang gỡ bỏ bản sao lưu chính cũ : « $file »."
+-
+-#: ../lib/files.sh:313
+-#, sh-format
+-msgid "Removing obsolete master backup (isolated): \"$file\"."
+-msgstr "Đang gỡ bỏ bản sao lưu chính cũ (cô lập): « $file »."
+-
+-#: ../lib/files.sh:320
+-#, sh-format
+-msgid "Removing archive \"$file\"."
+-msgstr "Đang gỡ bỏ kho nén « $file »."
+-
+-#: ../lib/files.sh:342
+-msgid "Directory given was not found."
+-msgstr "Không tìm thấy thư mục đã cho."
+-
+-#: ../lib/files.sh:363
+-#, sh-format
+-msgid "Removing archive \"$archive\"."
+-msgstr "Đang gỡ bỏ kho nén « $archive »."
+-
+-#: ../lib/files.sh:387
+-#, sh-format
+-msgid "The given file does not exist: $file_to_create"
+-msgstr "Không có tập tin đã cho : $file_to_create"
+-
+-#: ../lib/files.sh:392
+-msgid "No file given."
+-msgstr "Chưa nhập tập tin."
+-
+-#: ../lib/files.sh:397 ../lib/files.sh:399 ../lib/files.sh:413
+-msgid "Unable to get date from file."
+-msgstr "Không thể lấy ngày tháng từ tập tin."
+-
+-#: ../lib/files.sh:403
+-msgid "Unable to find the pattern of the file."
+-msgstr "Không tìm thấy mẫu của tập tin."
+-
+-#: ../lib/files.sh:419
+-#, sh-format
+-msgid "Unable to find the md5 hash of file \"$file\" in file \"$md5file\"."
+-msgstr ""
+-"Không tìm thấy tổng MD5 của tập tin « $file » trong tập tin « $md5file »."
+-
+-#: ../lib/files.sh:425
+-#, sh-format
+-msgid "$file is a duplicate of $file_to_create (using symlink)."
+-msgstr ""
+-"Tập tin « $file » là bản sao của tập tin « $file_to_create » (dùng liên kết "
+-"tượng trưng)."
+-
 -#: ../lib/dialog.sh:27
 -msgid "Output:"
 -msgstr "Kết xuất:"
@@ -542,166 +493,284 @@
 -msgstr "Không phải trong chế độ tương tác nên không thể tiếp tục."
 -
 -#: ../lib/sanitize.sh:32
-+#: ../lib/sanitize.sh:31
- #, sh-format
- msgid "The configuration key $key is not set, using \"$default\"."
- msgstr "Chưa đặt khóa cấu hình « $key » nên dùng mặc định « $default »."
- 
+-#, sh-format
+-msgid "The configuration key $key is not set, using \"$default\"."
+-msgstr "Chưa đặt khóa cấu hình « $key » nên dùng mặc định « $default »."
+-
 -#: ../lib/sanitize.sh:43
-+#: ../lib/sanitize.sh:42
- #, sh-format
- msgid ""
- "The configuration key \"$deprecated_key\" is deprecated, you should rename "
-@@ -590,31 +523,36 @@
- "Khóa cấu hình « $deprecated_key » bị phản đối nên bạn hãy thay đổi tên nó "
- "thành « $new_key ». Như thế thì đang sử dụng « $deprecated_value »."
- 
+-#, sh-format
+-msgid ""
+-"The configuration key \"$deprecated_key\" is deprecated, you should rename "
+-"it \"$new_key\". Using \"$deprecated_value\"."
+-msgstr ""
+-"Khóa cấu hình « $deprecated_key » bị phản đối nên bạn hãy thay đổi tên nó "
+-"thành « $new_key ». Như thế thì đang sử dụng « $deprecated_value »."
+-
 -#: ../lib/sanitize.sh:84
-+#: ../lib/sanitize.sh:83
- #, sh-format
- msgid "The configuration key $key is not set but $keymandatory is enabled."
- msgstr "Khóa cấu hình « $key » chưa được đặt còn « $keymandatory » đã được bật."
- 
+-#, sh-format
+-msgid "The configuration key $key is not set but $keymandatory is enabled."
+-msgstr "Khóa cấu hình « $key » chưa được đặt còn « $keymandatory » đã được bật."
+-
 -#: ../lib/sanitize.sh:100
-+#: ../lib/sanitize.sh:99
- #, sh-format
- msgid "Deprecated boolean, $key is set to \"yes\", setting \"true\" instead."
- msgstr ""
- "Biểu thực bun bị phản đối, khóa « $key » được lập thành « yes » (có) nên lập "
- "nó thành « true » (đúng) thay thế."
- 
+-#, sh-format
+-msgid "Deprecated boolean, $key is set to \"yes\", setting \"true\" instead."
+-msgstr ""
+-"Biểu thực bun bị phản đối, khóa « $key » được lập thành « yes » (có) nên lập "
+-"nó thành « true » (đúng) thay thế."
+-
 -#: ../lib/sanitize.sh:105
-+#: ../lib/sanitize.sh:104
- #, sh-format
- msgid "Deprecated boolean, $key is set to \"no\", setting \"false\" instead."
- msgstr ""
- "Biểu thực bun bị phản đối, khóa « $key » được lập thành « nó » (không) nên lập "
- "nó thành « false » (sai) thay thế."
- 
+-#, sh-format
+-msgid "Deprecated boolean, $key is set to \"no\", setting \"false\" instead."
+-msgstr ""
+-"Biểu thực bun bị phản đối, khóa « $key » được lập thành « nó » (không) nên lập "
+-"nó thành « false » (sai) thay thế."
+-
 -#: ../lib/sanitize.sh:162
+-msgid ""
+-"BM_TARBALLINC_MASTERDATEVALUE should not be greater than 6, falling back to 0"
+-msgstr ""
+-
+-#: ../lib/sanitize.sh:272
+-#, sh-format
+-msgid ""
+-"When validating the configuration file $conffile, $nb_warnings warnings were "
+-"found."
+-msgstr ""
+-"Gặp $nb_warnings cảnh báo khi hợp lệ hóa tập tin cấu hình « $conffile »."
+-
+-#: ../lib/md5sum.sh:30
+-msgid "Internal error: bad usage of function get_md5sum_from_file()"
+-msgstr "Lỗi nội bộ : dùng sai hàm « get_md5sum_from_file() »"
+-
+-#: ../lib/md5sum.sh:34
+-#, sh-format
+-msgid "No md5file found: $md5file"
+-msgstr "Không tìm thấy tập tin MD5: $md5file"
++#: ../lib/logger.sh:144 ../backup-manager:257
++msgid "Unable to exec post-command."
++msgstr "Không thể thực hiện hậu lệnh."
+ 
+-#: ../lib/md5sum.sh:82
+-#, sh-format
+-msgid "Archive given does not exist in the repository: $archive"
+-msgstr "Kho nén đã cho không nằm trong kho lưu: $archive"
++#: ../lib/logger.sh:146
++msgid "Releasing lock"
++msgstr "Đang nhả khóa"
+ 
+ #: ../lib/burning-methods.sh:37
+ #, sh-format
+@@ -848,18 +654,233 @@
+ msgid "Burning content of $index"
+ msgstr "Đang ghi nội dung của « $index »"
+ 
+-#: ../backup-manager:140
++#: ../lib/files.sh:79 ../lib/files.sh:94
++msgid "No path given."
++msgstr "Chưa nhập đường dẫn."
++
++#: ../lib/files.sh:169
++#, sh-format
++msgid "Removing lock for old PID, $pid is not running."
++msgstr "Đang gỡ bỏ khóa cho PID cũ, tiến trình số $pid không đang chạy."
++
++#: ../lib/files.sh:179
++#, sh-format
++msgid ""
++"A backup-manager process ($pid) is already running with the conffile "
++"$conffile"
++msgstr ""
++"Một tiến trình backup-manager ($pid) đang chạy với tập tin cấu hình « "
++"$conffile »."
++
++#: ../lib/files.sh:183 ../lib/files.sh:189
++#, sh-format
++msgid "Getting lock for backup-manager $pid with $conffile"
++msgstr ""
++"Đang lấy khóa cho backup-manager $pid với tập tin cấu hình « $conffile »"
++
++#: ../lib/files.sh:192
++msgid "failed (check the file permissions)."
++msgstr "bị lỗi (hãy kiểm tra lại quyền hạn tập tin)."
++
++#: ../lib/files.sh:280
++#, sh-format
++msgid "$file is not a regular file."
++msgstr "$file không phải là tập tin chuẩn."
++
++#: ../lib/files.sh:305
++#, sh-format
++msgid "Removing obsolete master backup: \"$file\"."
++msgstr "Đang gỡ bỏ bản sao lưu chính cũ : « $file »."
++
++#: ../lib/files.sh:313
++#, sh-format
++msgid "Removing obsolete master backup (isolated): \"$file\"."
++msgstr "Đang gỡ bỏ bản sao lưu chính cũ (cô lập): « $file »."
++
++#: ../lib/files.sh:320
++#, sh-format
++msgid "Removing archive \"$file\"."
++msgstr "Đang gỡ bỏ kho nén « $file »."
++
++#: ../lib/files.sh:342
++msgid "Directory given was not found."
++msgstr "Không tìm thấy thư mục đã cho."
++
++#: ../lib/files.sh:363
++#, sh-format
++msgid "Removing archive \"$archive\"."
++msgstr "Đang gỡ bỏ kho nén « $archive »."
++
++#: ../lib/files.sh:387
++#, sh-format
++msgid "The given file does not exist: $file_to_create"
++msgstr "Không có tập tin đã cho : $file_to_create"
++
++#: ../lib/files.sh:392
++msgid "No file given."
++msgstr "Chưa nhập tập tin."
++
++#: ../lib/files.sh:397 ../lib/files.sh:399 ../lib/files.sh:413
++msgid "Unable to get date from file."
++msgstr "Không thể lấy ngày tháng từ tập tin."
++
++#: ../lib/files.sh:403
++msgid "Unable to find the pattern of the file."
++msgstr "Không tìm thấy mẫu của tập tin."
++
++#: ../lib/files.sh:419
++#, sh-format
++msgid "Unable to find the md5 hash of file \"$file\" in file \"$md5file\"."
++msgstr ""
++"Không tìm thấy tổng MD5 của tập tin « $file » trong tập tin « $md5file »."
++
++#: ../lib/files.sh:425
++#, sh-format
++msgid "$file is a duplicate of $file_to_create (using symlink)."
++msgstr ""
++"Tập tin « $file » là bản sao của tập tin « $file_to_create » (dùng liên kết "
++"tượng trưng)."
++
++#: ../lib/sanitize.sh:31
++#, sh-format
++msgid "The configuration key $key is not set, using \"$default\"."
++msgstr "Chưa đặt khóa cấu hình « $key » nên dùng mặc định « $default »."
++
++#: ../lib/sanitize.sh:42
++#, sh-format
++msgid ""
++"The configuration key \"$deprecated_key\" is deprecated, you should rename "
++"it \"$new_key\". Using \"$deprecated_value\"."
++msgstr ""
++"Khóa cấu hình « $deprecated_key » bị phản đối nên bạn hãy thay đổi tên nó "
++"thành « $new_key ». Như thế thì đang sử dụng « $deprecated_value »."
++
++#: ../lib/sanitize.sh:83
++#, sh-format
++msgid "The configuration key $key is not set but $keymandatory is enabled."
++msgstr "Khóa cấu hình « $key » chưa được đặt còn « $keymandatory » đã được bật."
++
++#: ../lib/sanitize.sh:99
++#, sh-format
++msgid "Deprecated boolean, $key is set to \"yes\", setting \"true\" instead."
++msgstr ""
++"Biểu thực bun bị phản đối, khóa « $key » được lập thành « yes » (có) nên lập "
++"nó thành « true » (đúng) thay thế."
++
++#: ../lib/sanitize.sh:104
++#, sh-format
++msgid "Deprecated boolean, $key is set to \"no\", setting \"false\" instead."
++msgstr ""
++"Biểu thực bun bị phản đối, khóa « $key » được lập thành « nó » (không) nên lập "
++"nó thành « false » (sai) thay thế."
++
 +#: ../lib/sanitize.sh:127
 +#, sh-format
 +msgid "Unable to create BM_TEMP_DIR: \"$BM_TEMP_DIR\"."
 +msgstr ""
 +
 +#: ../lib/sanitize.sh:165
- msgid ""
- "BM_TARBALLINC_MASTERDATEVALUE should not be greater than 6, falling back to 0"
- msgstr ""
- 
--#: ../lib/sanitize.sh:272
++msgid ""
++"BM_TARBALLINC_MASTERDATEVALUE should not be greater than 6, falling back to 0"
++msgstr ""
++
 +#: ../lib/sanitize.sh:275
- #, sh-format
- msgid ""
- "When validating the configuration file $conffile, $nb_warnings warnings were "
-@@ -622,19 +560,93 @@
- msgstr ""
- "Gặp $nb_warnings cảnh báo khi hợp lệ hóa tập tin cấu hình « $conffile »."
- 
--#: ../lib/md5sum.sh:30
--msgid "Internal error: bad usage of function get_md5sum_from_file()"
--msgstr "Lỗi nội bộ : dùng sai hàm « get_md5sum_from_file() »"
-+#: ../lib/actions.sh:44
-+msgid "No backup method used."
-+msgstr "Chưa dùng phương pháp sao lưu."
- 
--#: ../lib/md5sum.sh:34
-+#: ../lib/actions.sh:47
- #, sh-format
--msgid "No md5file found: $md5file"
--msgstr "Không tìm thấy tập tin MD5: $md5file"
-+msgid "No such backup method: $BM_ARCHIVE_METHOD"
-+msgstr "Không có phương pháp sao lưu như vậy: $BM_ARCHIVE_METHOD"
- 
--#: ../lib/md5sum.sh:82
-+#: ../lib/actions.sh:56
- #, sh-format
--msgid "Archive given does not exist in the repository: $archive"
--msgstr "Kho nén đã cho không nằm trong kho lưu: $archive"
-+msgid "Unable to change the owner of \"$md5file\"."
-+msgstr "Không thể thay đổi người sở hữu tập tin « $md5file »."
-+
-+#: ../lib/actions.sh:58
 +#, sh-format
-+msgid "Unable to change file permissions of \"$md5file\"."
-+msgstr "Không thể thay đổi quyền hạn của tập tin « $md5file »."
-+
-+#: ../lib/actions.sh:90
-+msgid "No upload method used."
-+msgstr "Chưa dùng phương pháp tải lên."
-+
-+#: ../lib/actions.sh:93
-+#, sh-format
-+msgid "The upload method \"$method\" is not supported; skipping."
-+msgstr "Không hỗ trợ phương pháp tải lên « $method » nên bỏ qua."
-+
-+#: ../lib/actions.sh:105
-+#, sh-format
-+msgid "Cleaning $BM_REPOSITORY_ROOT"
-+msgstr "Đang xóa sạch « $BM_REPOSITORY_ROOT »"
-+
-+#: ../lib/actions.sh:118
-+#, sh-format
-+msgid "Running pre-command: $BM_PRE_BACKUP_COMMAND."
-+msgstr "Đang chạy tiền lệnh: $BM_PRE_BACKUP_COMMAND."
-+
-+#: ../lib/actions.sh:122
-+msgid "Pre-command failed. Stopping the process."
-+msgstr "Tiền lệnh bị lỗi nên ngừng tiến trình."
-+
-+#: ../lib/actions.sh:127
-+#, sh-format
-+msgid "Pre-command returned: \"$RET\" (success)."
-+msgstr "Tiền lệnh đã trả lại: « $RET » (thành công)."
-+
-+#: ../lib/actions.sh:139
-+#, sh-format
-+msgid "Running post-command: $BM_POST_BACKUP_COMMAND"
-+msgstr "Đang chạy hậu lệnh: $BM_POST_BACKUP_COMMAND"
-+
-+#: ../lib/actions.sh:143
-+msgid "Post-command failed."
-+msgstr "Hậu lệnh bị lỗi."
-+
-+#: ../lib/actions.sh:148
-+#, sh-format
-+msgid "Post-command returned: \"$RET\" (success)."
-+msgstr "Hậu lệnh đã trả lại: « $RET » (thành công)."
-+
-+#: ../lib/actions.sh:180
 +msgid ""
-+"The BM_TARBALL_FILETYPE conf key is set to \"zip\" but zip is not installed."
++"When validating the configuration file $conffile, $nb_warnings warnings were "
++"found."
 +msgstr ""
-+"Khóa cấu hình « BM_TARBALL_FILETYPE » được đặt thành « zip » nhưng chưa cài "
-+"đặt phần mềm zip."
++"Gặp $nb_warnings cảnh báo khi hợp lệ hóa tập tin cấu hình « $conffile »."
 +
-+#: ../lib/actions.sh:185
-+msgid ""
-+"The BM_TARBALL_FILETYPE conf key is set to \"bzip2\" but bzip2 is not "
-+"installed."
-+msgstr ""
-+"Khóa cấu hình « BM_TARBALL_FILETYPE » được đặt thành « bzip » nhưng chưa cài "
-+"đặt phần mềm bzip."
++#: ../lib/dialog.sh:27
++msgid "Output:"
++msgstr "Kết xuất:"
 +
-+#: ../lib/actions.sh:190
-+msgid ""
-+"The BM_TARBALL_FILETYPE conf key is set to \"dar\" but dar is not installed."
-+msgstr ""
-+"Khóa cấu hình « BM_TARBALL_FILETYPE » được đặt thành « dar » nhưng chưa cài "
-+"đặt phần mềm dar."
++#: ../lib/dialog.sh:28
++msgid "Print this short help message."
++msgstr "Hiển thị trợ giúp ngắn này."
 +
-+#: ../lib/actions.sh:202
-+#, sh-format
-+msgid "The repository $BM_REPOSITORY_ROOT does not exist, creating it."
-+msgstr "Không có kho « $BM_REPOSITORY_ROOT » nên đang tạo nó."
- 
- #: ../lib/burning-methods.sh:37
- #, sh-format
-@@ -848,18 +860,27 @@
- msgid "Burning content of $index"
- msgstr "Đang ghi nội dung của « $index »"
- 
--#: ../backup-manager:140
++#: ../lib/dialog.sh:29
++msgid "Print what happens on STDOUT."
++msgstr "In ra thiết bị xuất chuẩn."
++
++#: ../lib/dialog.sh:30
++msgid "Disable warnings."
++msgstr "Tắt mọi cảnh báo."
++
++#: ../lib/dialog.sh:33
++msgid "Single actions:"
++msgstr "Hành động đơn:"
++
++#: ../lib/dialog.sh:34
++msgid "Just upload the files of the day."
++msgstr "Tải lên chỉ những tập tin của hôm nay."
++
++#: ../lib/dialog.sh:35
++msgid "Just burn the files of the day."
++msgstr "Ghi chỉ những tập tin của hôm nay."
++
++#: ../lib/dialog.sh:36
++msgid "Just test the md5 sums."
++msgstr "Kiểm tra chỉ tổng MD5."
++
++#: ../lib/dialog.sh:37
++msgid "Just purge old archives."
++msgstr "Tẩy chỉ các kho cũ."
++
++#: ../lib/dialog.sh:40
++msgid "Behaviour:"
++msgstr "Ứng xử :"
++
++#: ../lib/dialog.sh:41
++msgid "Choose an alternate config file."
++msgstr "Chọn tập tin cấu hình thay thế."
++
++#: ../lib/dialog.sh:42
++msgid "Force overwrite of existing archives."
++msgstr "Buộc ghi đè lên các kho đã có."
++
++#: ../lib/dialog.sh:45
++msgid "Unwanted actions:"
++msgstr "Hành động vô ích:"
++
++#: ../lib/dialog.sh:46
++msgid "Disable the upload process."
++msgstr "Tắt tiến trình tải lên."
++
++#: ../lib/dialog.sh:47
++msgid "Disable the burning process."
++msgstr "Tắt tiến trình ghi."
++
++#: ../lib/dialog.sh:48
++msgid "Disable the purge process."
++msgstr "Tắt tiến trình tẩy."
++
++#: ../lib/dialog.sh:62 ../lib/dialog.sh:81
++msgid "Not in interactive mode, cannot continue."
++msgstr "Không phải trong chế độ tương tác nên không thể tiếp tục."
++
 +#: ../backup-manager:127
  msgid "The -b option must be followed by a valid date (YYYYMMDD)."
  msgstr "Tùy chọn « -b » phải có một ngày tháng hợp lệ theo sau (NNNNTTnn)."
