@@ -1,4 +1,4 @@
-01_backup-manager.conf.tpl.diff
+debian-backup-manager.conf.tpl.diff
 debian-remove-shebang.diff
 debian-cdrkit.diff
 debian-version.diff
