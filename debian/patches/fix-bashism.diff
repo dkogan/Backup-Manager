@@ -1,5 +1,5 @@
 ** A bashism in po/Makefile has been fixed.
-   Reported upstream, needs to be applied yet.
+   This patch has been applied upstream.
 
    Provided by: Sven Joachim <svenjoac@gmx.de>
 
