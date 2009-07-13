@@ -1,5 +1,7 @@
-## 04_backup-manager.conf.tpl.dpatch by Alexis Sukrieh <sukria@debian.org>
-## Some changes for the postinst phase needs.
+** Some changes for the postinst phase needs
+   TODO: the Debian package should support BM_TARBALL_TARGETS.
+
+   Provided by: Alexis Sukrieh <sukria@sukria.net>
 
 ---
  backup-manager.conf.tpl |   18 +++++++++---------
