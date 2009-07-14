@@ -22,6 +22,7 @@ backup-manager (0.7.8-2) UNRELEASED; urgency=medium
   * Some small debian/control cleanups:
     - Let backup-manager-doc and backup-manager suggest each other,
       do not suggest libnet-perl and perl-modules (redundant).
+    - Drop versioned dependency on gzip, even Woody had a newer version.
     - Expand backup-manager-doc's extended description a bit.
     - Upgrade Standards-Version to 3.8.2.
     - Add Homepage field.
