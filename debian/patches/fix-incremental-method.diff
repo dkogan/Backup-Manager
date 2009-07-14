@@ -1,0 +1,20 @@
+A problem with incremental backups on the 8th and 9th of each month
+has been fixed.  See http://bugs.debian.org/518956.
+
+Provided by: Margarita Manterola <margamanterola@gmail.com>
+
+---
+ lib/backup-methods.sh |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/lib/backup-methods.sh
++++ b/lib/backup-methods.sh
+@@ -347,7 +347,7 @@
+         master_day=$(date +'%w')
+     ;;
+     monthly)
+-        master_day=$(date +'%d')
++        master_day=$(date +'%-d')
+     ;;
+     *)
+         error "Unknown frequency: \$BM_TARBALLINC_MASTERDATETYPE"

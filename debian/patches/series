@@ -5,6 +5,7 @@ debian-version.diff
 debian-perl-location.diff
 debian-user-guide-location.diff
 fix-bashism.diff
+fix-incremental-method.diff
 fix-backup-manager-purge-POD.diff
 fix-backup-manager-upload-POD.diff
 cs.po.diff
