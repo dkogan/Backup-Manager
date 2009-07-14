@@ -3,8 +3,10 @@ backup-manager (0.7.8-2) UNRELEASED; urgency=medium
   * New maintainer (Closes: #536155).
   * Add missing build dependencies (Closes: #516060).
   * Make debian/rules less verbose (Closes: #535372).
-  * Fix problem with the tarball-incremental method failing on the 8th and 9th
+  * Fix failure of the tarball-incremental method on the 8th and 9th
     day of each month (Closes: #518956). Thanks to Margarita Manterola.
+  * Fix bug that treated tar warnings as fatal errors (Closes: #532976).
+    Thanks to Alexey Salmin.
   * Install the user guide into /usr/share/doc/backup-manager-doc
     again (Closes: #528161).
   * Update the German upstream translation (Closes: #499667).

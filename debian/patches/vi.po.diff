@@ -15,7 +15,7 @@
  "Project-Id-Version: backup-manager 0.6\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2008-04-14 19:33+0200\n"
-+"POT-Creation-Date: 2009-07-12 16:10+0200\n"
++"POT-Creation-Date: 2009-07-14 21:57+0200\n"
  "PO-Revision-Date: 2006-09-15 15:47+0930\n"
  "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
  "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
@@ -189,111 +189,111 @@
  
 -#: ../lib/backup-methods.sh:560 ../lib/backup-methods.sh:642
 -#: ../lib/backup-methods.sh:688
-+#: ../lib/backup-methods.sh:590 ../lib/backup-methods.sh:677
-+#: ../lib/backup-methods.sh:723
++#: ../lib/backup-methods.sh:590 ../lib/backup-methods.sh:682
++#: ../lib/backup-methods.sh:728
  #, sh-format
  msgid "The archive type \"$BM_TARBALL_FILETYPE\" is not supported."
  msgstr "Không hỗ trợ kiểu kho nén « $BM_TARBALL_FILETYPE »."
  
 -#: ../lib/backup-methods.sh:616
-+#: ../lib/backup-methods.sh:651
++#: ../lib/backup-methods.sh:656
  msgid "The configuration variable \"BM_ENCRYPTION_RECIPIENT\" must be defined."
  msgstr "Phải xác định biến cấu hình « $BM_ENCRYPTION_RECIPIENT »."
  
 -#: ../lib/backup-methods.sh:622
-+#: ../lib/backup-methods.sh:657
++#: ../lib/backup-methods.sh:662
  #, sh-format
  msgid ""
  "The encryption is not yet possible with \"$BM_TARBALL_FILETYPE\" archives."
  msgstr "Chưa có khả năng mật mã hoá kho nén kiểu « $BM_TARBALL_FILETYPE »."
  
 -#: ../lib/backup-methods.sh:660
-+#: ../lib/backup-methods.sh:695
++#: ../lib/backup-methods.sh:700
  #, sh-format
  msgid "The program \"$gpg\" is needed."
  msgstr "Cần thiết chương trình « $gpg »."
  
 -#: ../lib/backup-methods.sh:669 ../lib/backup-methods.sh:702
-+#: ../lib/backup-methods.sh:704 ../lib/backup-methods.sh:737
++#: ../lib/backup-methods.sh:709 ../lib/backup-methods.sh:742
  #, sh-format
  msgid "File $file_to_check already exists, skipping."
  msgstr "Tập tin « $file_to_check » đã có nên bỏ qua."
  
 -#: ../lib/backup-methods.sh:725
-+#: ../lib/backup-methods.sh:769
++#: ../lib/backup-methods.sh:774
 +#, fuzzy, sh-format
 +msgid "Target \"$t\" is found in blacklist, skipping."
 +msgstr "Không có đích « $t » nên bỏ qua."
 +
-+#: ../lib/backup-methods.sh:773
++#: ../lib/backup-methods.sh:778
  #, sh-format
  msgid "Target \"$t\" does not exist, skipping."
  msgstr "Không có đích « $t » nên bỏ qua."
  
 -#: ../lib/backup-methods.sh:800 ../lib/backup-methods.sh:837
 -#: ../lib/backup-methods.sh:879 ../lib/backup-methods.sh:903
-+#: ../lib/backup-methods.sh:849 ../lib/backup-methods.sh:888
-+#: ../lib/backup-methods.sh:938 ../lib/backup-methods.sh:962
++#: ../lib/backup-methods.sh:854 ../lib/backup-methods.sh:893
++#: ../lib/backup-methods.sh:943 ../lib/backup-methods.sh:967
  #, sh-format
  msgid "Using method \"$method\"."
  msgstr "Đang dùng phương pháp « $method »."
  
 -#: ../lib/backup-methods.sh:826
-+#: ../lib/backup-methods.sh:875
++#: ../lib/backup-methods.sh:880
  msgid "1 error occurred during the tarball generation."
  msgstr "Gặp 1 lỗi trong tiến trình tạo ra kho nén « .tar »."
  
 -#: ../lib/backup-methods.sh:828
-+#: ../lib/backup-methods.sh:877
++#: ../lib/backup-methods.sh:882
  #, sh-format
  msgid "$nb_err errors occurred during the tarball generation."
  msgstr "Gặp $nb_err lỗi trong tiến trình tạo ra kho nén « .tar »."
  
 -#: ../lib/backup-methods.sh:839
-+#: ../lib/backup-methods.sh:890
++#: ../lib/backup-methods.sh:895
  #, sh-format
  msgid "The \"mysql\" method is chosen, but $mysqldump is not found."
  msgstr "Phương pháp « mysql » đã chọn còn không tìm thấy $mysqldump."
  
 -#: ../lib/backup-methods.sh:849
-+#: ../lib/backup-methods.sh:900
++#: ../lib/backup-methods.sh:905
  #, sh-format
 -msgid "Using existing MySQL client configuration file: $HOME/.my.cnf"
 +msgid "Using existing MySQL client configuration file: $mysql_conffile"
  msgstr ""
  
 -#: ../lib/backup-methods.sh:852
-+#: ../lib/backup-methods.sh:904
++#: ../lib/backup-methods.sh:909
  #, sh-format
 -msgid "Creating a default MySQL client configuration file: $HOME/.my.cnf"
 +msgid "Creating a default MySQL client configuration file: $mysql_conffile"
  msgstr ""
  
 -#: ../lib/backup-methods.sh:881
-+#: ../lib/backup-methods.sh:928
++#: ../lib/backup-methods.sh:933
 +#, sh-format
 +msgid "Removing default MySQL client configuration file: $mysql_conffile"
 +msgstr ""
 +
-+#: ../lib/backup-methods.sh:940
++#: ../lib/backup-methods.sh:945
  #, sh-format
  msgid "The \"svn\" method is chosen, but $svnadmin is not found."
  msgstr "Phương pháp « svn » đã chọn còn không tìm thấy $svnadmin."
  
 -#: ../lib/backup-methods.sh:887
-+#: ../lib/backup-methods.sh:946
++#: ../lib/backup-methods.sh:951
  #, sh-format
  msgid "SVN repository \"$repository\" is not valid; skipping."
  msgstr "Kho SVN « $repository » không hợp lệ nên bỏ qua."
  
 -#: ../lib/backup-methods.sh:912
-+#: ../lib/backup-methods.sh:971
++#: ../lib/backup-methods.sh:976
  #, sh-format
  msgid "Not enough args for this archive ($archive), skipping."
  msgstr "Không đủ đối số cho kho này ($archive) nên bỏ qua."
  
 -#: ../lib/backup-methods.sh:919
-+#: ../lib/backup-methods.sh:978
++#: ../lib/backup-methods.sh:983
  msgid "Cannot create archive."
  msgstr "Không thể tạo kho."
  

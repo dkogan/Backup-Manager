@@ -28,7 +28,7 @@
 -"POT-Creation-Date: 2008-04-14 19:33+0200\n"
 -"PO-Revision-Date: 2006-09-08 21:55+0200\n"
 -"Last-Translator: Sven Joachim <sven_joachim@web.de>\n"
-+"POT-Creation-Date: 2009-07-12 16:10+0200\n"
++"POT-Creation-Date: 2009-07-14 21:57+0200\n"
 +"PO-Revision-Date: 2009-07-11 22:42+0200\n"
 +"Last-Translator: Sven Joachim <svenjoac@gmx.de>\n"
  "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -295,20 +295,20 @@
  
 -#: ../lib/backup-methods.sh:560 ../lib/backup-methods.sh:642
 -#: ../lib/backup-methods.sh:688
-+#: ../lib/backup-methods.sh:590 ../lib/backup-methods.sh:677
-+#: ../lib/backup-methods.sh:723
++#: ../lib/backup-methods.sh:590 ../lib/backup-methods.sh:682
++#: ../lib/backup-methods.sh:728
  #, sh-format
  msgid "The archive type \"$BM_TARBALL_FILETYPE\" is not supported."
  msgstr "Der Archivtyp »$BM_TARBALL_FILETYPE« wird nicht unterstützt."
  
 -#: ../lib/backup-methods.sh:616
-+#: ../lib/backup-methods.sh:651
++#: ../lib/backup-methods.sh:656
  msgid "The configuration variable \"BM_ENCRYPTION_RECIPIENT\" must be defined."
  msgstr ""
  "Die Konfigurationsvariable »$BM_ENCRYPTION_RECIPIENT« muss definiert sein."
  
 -#: ../lib/backup-methods.sh:622
-+#: ../lib/backup-methods.sh:657
++#: ../lib/backup-methods.sh:662
  #, sh-format
  msgid ""
  "The encryption is not yet possible with \"$BM_TARBALL_FILETYPE\" archives."
@@ -317,64 +317,64 @@
  "möglich. "
  
 -#: ../lib/backup-methods.sh:660
-+#: ../lib/backup-methods.sh:695
++#: ../lib/backup-methods.sh:700
  #, sh-format
  msgid "The program \"$gpg\" is needed."
  msgstr "Das Programm »$gpg« wird benötigt."
  
 -#: ../lib/backup-methods.sh:669 ../lib/backup-methods.sh:702
-+#: ../lib/backup-methods.sh:704 ../lib/backup-methods.sh:737
++#: ../lib/backup-methods.sh:709 ../lib/backup-methods.sh:742
  #, sh-format
  msgid "File $file_to_check already exists, skipping."
  msgstr "Datei $file_to_check existiert bereits, wird übergangen."
  
 -#: ../lib/backup-methods.sh:725
-+#: ../lib/backup-methods.sh:769
++#: ../lib/backup-methods.sh:774
 +#, sh-format
 +msgid "Target \"$t\" is found in blacklist, skipping."
 +msgstr "Ziel »$t« wurde in Blacklist gefunden, wird übergangen."
 +
-+#: ../lib/backup-methods.sh:773
++#: ../lib/backup-methods.sh:778
  #, sh-format
  msgid "Target \"$t\" does not exist, skipping."
  msgstr "Ziel »$t« existiert nicht, wird übergangen."
  
 -#: ../lib/backup-methods.sh:800 ../lib/backup-methods.sh:837
 -#: ../lib/backup-methods.sh:879 ../lib/backup-methods.sh:903
-+#: ../lib/backup-methods.sh:849 ../lib/backup-methods.sh:888
-+#: ../lib/backup-methods.sh:938 ../lib/backup-methods.sh:962
++#: ../lib/backup-methods.sh:854 ../lib/backup-methods.sh:893
++#: ../lib/backup-methods.sh:943 ../lib/backup-methods.sh:967
  #, sh-format
  msgid "Using method \"$method\"."
  msgstr "Verwende die Methode »$method«."
  
 -#: ../lib/backup-methods.sh:826
-+#: ../lib/backup-methods.sh:875
++#: ../lib/backup-methods.sh:880
  msgid "1 error occurred during the tarball generation."
 -msgstr "Beim Erzeugen der Tarbälle ist ein Fehler aufgetreten."
 +msgstr "Beim Anlegen der Tarbälle ist ein Fehler aufgetreten."
  
 -#: ../lib/backup-methods.sh:828
-+#: ../lib/backup-methods.sh:877
++#: ../lib/backup-methods.sh:882
  #, sh-format
  msgid "$nb_err errors occurred during the tarball generation."
 -msgstr "Beim Erzeugen der Tarbälle sind $nb_err Fehler aufgetreten."
 +msgstr "Beim Anlegen der Tarbälle sind $nb_err Fehler aufgetreten."
  
 -#: ../lib/backup-methods.sh:839
-+#: ../lib/backup-methods.sh:890
++#: ../lib/backup-methods.sh:895
  #, sh-format
  msgid "The \"mysql\" method is chosen, but $mysqldump is not found."
  msgstr "Die »mysql«-Methode ist gewählt, aber $mysqldump wurde nicht gefunden."
  
 -#: ../lib/backup-methods.sh:849
-+#: ../lib/backup-methods.sh:900
++#: ../lib/backup-methods.sh:905
 +#, sh-format
 +msgid "Using existing MySQL client configuration file: $mysql_conffile"
 +msgstr ""
 +"Verwende existierende Konfigurationsdatei für den MySQL-Client: "
 +"$mysql_conffile"
 +
-+#: ../lib/backup-methods.sh:904
++#: ../lib/backup-methods.sh:909
  #, sh-format
 -msgid "Using existing MySQL client configuration file: $HOME/.my.cnf"
 +msgid "Creating a default MySQL client configuration file: $mysql_conffile"
@@ -383,7 +383,7 @@
 +"$mysql_conffile"
  
 -#: ../lib/backup-methods.sh:852
-+#: ../lib/backup-methods.sh:928
++#: ../lib/backup-methods.sh:933
  #, sh-format
 -msgid "Creating a default MySQL client configuration file: $HOME/.my.cnf"
 +msgid "Removing default MySQL client configuration file: $mysql_conffile"
@@ -391,25 +391,25 @@
 +"Lösche Standard-Konfigurationsdatei für den MySQL-Client: $mysql_conffile"
  
 -#: ../lib/backup-methods.sh:881
-+#: ../lib/backup-methods.sh:940
++#: ../lib/backup-methods.sh:945
  #, sh-format
  msgid "The \"svn\" method is chosen, but $svnadmin is not found."
  msgstr "Die »svn«-Methode ist gewählt, aber $svnadmin wurde nicht gefunden."
  
 -#: ../lib/backup-methods.sh:887
-+#: ../lib/backup-methods.sh:946
++#: ../lib/backup-methods.sh:951
  #, sh-format
  msgid "SVN repository \"$repository\" is not valid; skipping."
  msgstr "SVN-Depot »$repository« ist nicht gültig; wird übergangen."
  
 -#: ../lib/backup-methods.sh:912
-+#: ../lib/backup-methods.sh:971
++#: ../lib/backup-methods.sh:976
  #, sh-format
  msgid "Not enough args for this archive ($archive), skipping."
  msgstr "Zu wenige Argumente für dieses Archiv ($archive), wird übergangen."
  
 -#: ../lib/backup-methods.sh:919
-+#: ../lib/backup-methods.sh:978
++#: ../lib/backup-methods.sh:983
  msgid "Cannot create archive."
 -msgstr "Kann Archiv nicht erzeugen."
 -

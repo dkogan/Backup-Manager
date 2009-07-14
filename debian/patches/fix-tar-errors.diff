@@ -1,0 +1,25 @@
+A bug that treats tar warnings as errors has been fixed.
+Needs to applied upstream. See http://bugs.debian.org/532976.
+
+Provided by: Alexey Salmin <alexey.salmin@gmail.com>
+
+---
+ lib/backup-methods.sh |    7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+--- a/lib/backup-methods.sh
++++ b/lib/backup-methods.sh
+@@ -629,7 +629,12 @@
+ 
+         # the common commandline
+         *)
+-            BM__CURRENT_COMMAND="generic"
++            # tar, tar.gz, tar.bz2, tar.whatever
++            if [[ "${BM_TARBALL_FILETYPE:0:3}" == "tar" ]] ; then
++                BM__CURRENT_COMMAND="tar"
++            else
++                BM__CURRENT_COMMAND="generic"
++            fi
+             debug "$command $file_to_create \"$target\" > $logfile 2>&1"
+             tail_logfile "$logfile"
+             debug "$command $file_to_create \"$target\""
