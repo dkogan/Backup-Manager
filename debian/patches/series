@@ -9,10 +9,5 @@ fix-incremental-method.diff
 fix-tar-errors.diff
 fix-backup-manager-purge-POD.diff
 fix-backup-manager-upload-POD.diff
-cs.po.diff
-de.po.diff
-es.po.diff
-fr.po.diff
-it.po.diff
-nl.po.diff
-vi.po.diff
+translation-updates.diff
+
