@@ -1,5 +1,6 @@
 A problem with incremental backups on the 8th and 9th of each month
 has been fixed.  See http://bugs.debian.org/518956.
+This patch has been applied upstream.
 
 Provided by: Margarita Manterola <margamanterola@gmail.com>
 
