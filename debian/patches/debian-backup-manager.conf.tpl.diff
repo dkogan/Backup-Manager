@@ -1,7 +1,7 @@
-** Some changes for the postinst phase needs
-   TODO: the Debian package should support BM_TARBALL_TARGETS.
+The configuration file has some changes for the postinst phase needs.
+TODO: the Debian package should support BM_TARBALL_TARGETS.
 
-   Provided by: Alexis Sukrieh <sukria@sukria.net>
+Provided by: Alexis Sukrieh <sukria@sukria.net>
 
 ---
  backup-manager.conf.tpl |   18 +++++++++---------

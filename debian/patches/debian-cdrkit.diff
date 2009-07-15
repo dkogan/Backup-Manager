@@ -1,9 +1,8 @@
-** backup-manager looks for programs from the cdrkit suite
-   Since cdrecord is not part of Debian, backup-manager searches for
-   wodim instead of cdrecord and genisoimage instead of mkisofs.
+Backup-manager looks for programs from the cdrkit suite.
+Since cdrtools are not part of Debian, backup-manager searches for
+wodim instead of cdrecord and genisoimage instead of mkisofs.
 
-   Provided by: Sven Joachim <svenjoac@gmx.de>
-
+Provided by: Sven Joachim <svenjoac@gmx.de>
 
 ---
  lib/externals.sh |    4 ++--

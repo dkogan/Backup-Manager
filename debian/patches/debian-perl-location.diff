@@ -1,8 +1,7 @@
-** Perl modules are installed in $Config{vendorlib}
-   This is the correct location for packaged versions.
+Perl modules are installed in $Config{vendorlib}.
+This is the correct location for packaged versions.
 
-   Provided by: Alexis Sukrieh <sukria@sukria.net>
-
+Provided by: Alexis Sukrieh <sukria@sukria.net>
 
 ---
  Makefile |    2 +-

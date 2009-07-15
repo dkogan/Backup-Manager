@@ -1,6 +1,6 @@
-The program translations have been updated. German is complete, other
-translaions have been run through msgmerge. Upstream should have updated
-them it before releasing their tarball.
+The program translations have been updated.
+German is complete, other translaions have been run through msgmerge.
+Upstream should have updated them it before releasing their tarball.
 
 Provided by: Sven Joachim <svenjoac@gmx.de>
 

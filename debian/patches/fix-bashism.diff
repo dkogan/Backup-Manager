@@ -1,8 +1,7 @@
-** A bashism in po/Makefile has been fixed.
-   This patch has been applied upstream.
+ A bashism in po/Makefile has been fixed.
+This patch has been applied upstream.
 
-   Provided by: Sven Joachim <svenjoac@gmx.de>
-
+Provided by: Sven Joachim <svenjoac@gmx.de>
 
 ---
  po/Makefile |    2 +-

@@ -1,8 +1,7 @@
-** POD in backup-manager-purge has been cleaned
-   Needs to be applied upstream.
+POD in backup-manager-purge has been cleaned.
+Needs to be applied upstream.
 
-   Provided by: Alexis Sukrieh <sukria@sukria.net>
-
+Provided by: Alexis Sukrieh <sukria@sukria.net>
 
 ---
  backup-manager-purge |    4 ++++
