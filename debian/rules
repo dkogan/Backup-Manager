@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
+
 #export DH_VERBOSE=1
 
-# Include quilt stuff.
 include /usr/share/quilt/quilt.make
 
 build: build-stamp
@@ -23,6 +23,7 @@ install: build
 	$(MAKE) install DESTDIR=`pwd`/debian/backup-manager
 	$(MAKE) -C doc install DESTDIR=`pwd`/debian/backup-manager-doc
 
+binary: binary-indep binary-arch
 
 binary-arch:
 # Nothing to be done here.
@@ -51,5 +52,4 @@ checkpo:
 		echo ""; \
 	done
 
-binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install patch unpatch
