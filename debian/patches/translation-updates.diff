@@ -1,6 +1,6 @@
 The program translations have been updated.
 German is complete, other translaions have been run through msgmerge.
-Upstream should have updated them it before releasing their tarball.
+This patch has been applied upstream.
 
 Provided by: Sven Joachim <svenjoac@gmx.de>
 
