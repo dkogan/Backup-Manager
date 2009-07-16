@@ -1,4 +1,5 @@
- A bashism in po/Makefile has been fixed.
+The list of files with translatable strings in po/Makefile is sorted
+and a bashism in has been fixed.
 This patch has been applied upstream.
 
 Provided by: Sven Joachim <svenjoac@gmx.de>
