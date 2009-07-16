@@ -4,11 +4,20 @@ This patch has been applied upstream.
 Provided by: Sven Joachim <svenjoac@gmx.de>
 
 ---
- po/Makefile |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ po/Makefile |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 --- a/po/Makefile
 +++ b/po/Makefile
+@@ -22,7 +22,7 @@
+ 	done
+ 
+ $(POFILES_SRC):
+-	find ../lib -type f -name \*.sh > $(POFILES_SRC)
++	find ../lib -type f -name \*.sh | sort > $(POFILES_SRC)
+ 	echo ../backup-manager >> $(POFILES_SRC)
+ 
+ $(PACKAGE).pot: $(POFILES_SRC)
 @@ -43,7 +43,7 @@
  .po.mo: backup-manager.pot
  	@echo "Merging $(PACKAGE).pot and $*.po"
