@@ -1,0 +1,310 @@
+#!/usr/bin/perl
+# Copyright © 2005-2007 Alexis Sukrieh
+# See the AUTHORS file for details.
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+use strict;
+use warnings;
+
+=pod
+
+=head1 NAME
+
+backup-manager-purge - backup-manager's wrapper for outdating files
+
+=head1 SYNOPSIS
+
+backup-manager-purge [TTL] <options> 
+
+=head1 DESCRIPTION
+
+B<backup-manager-purge> is the only authorized entity that can say if an archive
+should be purged or not. Any tasks used by backup-manager may have to know if
+an archive is deprecated (eg: the purging phase of an upload method). This tool
+is here to fulfill that need.
+
+Given a I<time to live (TTL)> and a list of archives, B<backup-manager-purge>
+will return another list of archives, corresponding to the ones that are
+outdated by the TTL. 
+
+=head1 REQUIRED ARGS
+
+=over 4
+
+=item B<--ttl=>I<time-to-live>
+
+Specify the time to live (in days) for the archives. Any archive that is older
+than I<ttl> days will be outdated.
+
+=head1 OPTIONAL ARGS
+
+=item B<--files-from=>file
+
+A file containing a list of archives to parse, one archive per line.
+If this option is not used, STDIN will be used for catching the files to parse.
+
+=back
+
+=head1 RETURN
+
+B<backup-manager-purge> will return the list of outdated files on STDOUT, one
+file per line.
+
+=head1 ERROR CODES
+
+If an error occurs, it will print the error message on stderr and will exit with
+an error code greater than 0.
+
+Here are the possible error codes:
+
+=over 4
+
+=item bad command line (wrong arguments) : 10
+
+=item internal error (should be reported as a bug) : 20
+
+=back
+
+=head1 SEE ALSO
+
+backup-manager(8) backup-manager-upload(8)
+
+=head1 AUTHORS
+
+Concept and design by Alexis Sukrieh and Jan Metzger.
+
+=cut
+
+##############################################################
+# Uses
+##############################################################
+use BackupManager::Config;
+use BackupManager::Logger;
+use BackupManager::Dialog;
+use POSIX qw(strftime);
+use File::Basename;
+use Data::Dumper;
+
+##############################################################
+# Constants
+##############################################################
+use constant E_SUCCESS => 0;
+use constant E_INVALID => 10;
+use constant E_INTERNAL => 20;
+use constant TRUE => 1;
+use constant FALSE => 0;
+use constant DIALOG_VERBOSE => 0;
+use constant MSG_INTERNAL => "Internal system error, please report the bug.";
+
+##############################################################
+# Global variables
+##############################################################
+my $g_ttl = undef;
+my $g_filelist = undef;
+my @g_archives = ();
+my @g_outdated = ();
+my $g_fh = *STDIN;
+my $g_rh_archives = {};
+
+##############################################################
+# Command line parsing
+##############################################################
+BackupManager::Config::getopt("$0 -ttl=<TTL> --files-from=<FILE>\n
+--ttl|-t:        the time to live for outdating files
+--files-from|-f: a file that contains the list of archives to process",
+'ttl|t=s'         => \$g_ttl,
+'files-from|f=s'  => \$g_filelist,
+);
+
+##############################################################
+# Subs
+##############################################################
+
+# Takes an archive an returns all meta-data contained in its name
+sub parse_archive ($)
+{
+    my ($archive) = @_;
+    unless (defined $archive) {
+        print_error MSG_INTERNAL;
+        exit E_INTERNAL;
+    }
+    my ($prefix, $name, $date, $master, $filetype);
+    $archive = basename ($archive);
+
+    if ($archive =~ m/^\s*($ENV{BM_ARCHIVE_PREFIX})-(\S+)?\.?(\d{8})\.(master\.)?(\S+)\s*$/) {
+	($prefix, $name, $date, $master, $filetype) = ($1, $2, $3, $4, $5);
+	$master = $master ? 1 : 0;
+	$name = "$prefix-md5" if $filetype eq 'md5' and not $name;
+    }
+
+    # The archive pattern
+    elsif ($archive =~ /^\s*([^-]+)-(\S+)\.(\d{8})\.(\S+)\s*$/) {
+        $prefix = $1;
+        $name = $2;
+        $date = $3;
+        my $suffix = $4;
+        if ($suffix =~ /master\.(\S+)/) {
+            $master = 1;
+            $filetype = $1;
+        }
+        elsif ($suffix =~ /\.?(.+)/) {
+            $master = 0;
+            $filetype = $1;
+        }
+    }
+
+    # The md5 file pattern
+    elsif ($archive =~ /^\s*([^-]+)-(\d{8})\.md5\s*$/) {
+        $prefix = $1;
+        $name = "$prefix-md5";
+        $date = $2;
+        $filetype = "md5";
+        $master = 0;
+    }
+
+    # Unknown pattern
+    else {
+        return undef;
+    }
+    
+    return { prefix => $prefix, 
+             name => $name, 
+             date => $date, 
+             master => $master, 
+             filetype => $filetype};
+}
+
+# Takes a file handle and an array ref, parse the file's content
+# and store in the array exiting filenames.
+sub read_archives($$)
+{
+    my ($ra_archives, $fh) = @_;
+    
+    my $archive = "";
+    while (<$fh>) {
+        chomp();
+
+        if (/^\s*(\S+)\s*$/) {
+            $archive = $1;
+        }
+        
+        my $rh_data = parse_archive ($archive);
+        next unless defined $rh_data;
+        next unless defined $rh_data->{date};
+        
+        if ($rh_data->{master}) {
+            $g_rh_archives->{$rh_data->{name}}{pathByDateMasters}{$rh_data->{date}} = $archive;
+        }
+        $g_rh_archives->{$rh_data->{name}}{pathByDate}{$rh_data->{date}} = $archive;
+        $g_rh_archives->{dataByPath}{$archive} = $rh_data;
+        
+        push @{$ra_archives}, $archive;
+    }
+}
+
+
+# Takes an archive and a meta-data hash ref
+# and return 1 if the archive is outded according to $g_ttl,
+# 0 else.
+sub outdate_master_archive($$$$$)
+{
+    my ($archive, $rh_meta, $purge_date,
+        $ra_archives, $ra_outdated) = @_;
+}
+
+
+# Takes two array refs. Reads from the first one the list of archives 
+# to process, and push in the second one the outdated archives.
+sub outdate_archives($$)
+{
+    my ($ra_archives, $ra_outdated) = @_;
+    unless (defined $ra_archives and
+            defined $ra_outdated) {
+        exit E_INTERNAL;
+    }
+
+    my $purge_date = strftime ('%Y%m%d', 
+                               localtime(time() - $g_ttl * 24 * 3600)); 
+    print_info "Outdating archives made before $purge_date";
+    
+    my %seen = ();
+    foreach my $archive (sort @{$ra_archives}) {
+        my $data = $g_rh_archives->{dataByPath}{$archive};
+        next unless defined $data;
+        next unless defined $data->{date};
+        next if $seen{$archive};
+        $seen{$archive} = 1;
+       
+        # if the date of the archive is older than $purge_date, we may have to outdate it
+        # unless, nothing to do for that archive.
+        next if ($data->{date} > $purge_date);
+
+        # we can outdate a master only if a younger master exists
+        if ($data->{master}) {
+            foreach my $master_date (
+                keys %{$g_rh_archives->{$data->{name}}{pathByDateMasters}}) {
+                if ($master_date > $data->{date}) {
+                    push @{$ra_outdated}, $archive;
+                    last;
+                }
+            }
+        }
+
+        # here the archive is deprecated, its date is < to $purge_date
+        else {
+            # if BM_ARCHIVE_STRICTPURGE is true, we can only purge 
+            # an archive prefixed with BM_ARCHIVE_PREFIX
+            next if (($ENV{BM_ARCHIVE_STRICTPURGE} eq "true") and 
+                     ($data->{prefix} ne $ENV{BM_ARCHIVE_PREFIX}));
+            
+            # now, we're sure we can outdate the archive
+            push @{$ra_outdated}, $archive;
+        }
+    }
+}
+
+##############################################################
+# Main
+##############################################################
+
+# Init
+init_dialog (DIALOG_VERBOSE);
+
+# Args check
+unless (defined $g_ttl) {
+    print_error "No TTL given";
+    exit E_INVALID;
+}
+
+# In    
+if (defined $g_filelist and -f $g_filelist) {
+    print_info "Reading archives from $g_filelist";
+    open $g_fh, $g_filelist or die "Unable to open $g_filelist";
+}
+else {
+    print_info "Reading archives from STDIN";
+}
+read_archives (\@g_archives, $g_fh);
+
+# Process
+outdate_archives (\@g_archives, \@g_outdated);
+
+# Out
+foreach my $archive (@g_outdated) {
+    print "$archive\n";
+}
+
+exit E_SUCCESS;

@@ -1,0 +1,965 @@
+# Czech translation of backup-manager
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the backup-manager package.
+# Miroslav Kure <kurem@debian.cz>, 2005,2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: backup-manager\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-04-14 19:33+0200\n"
+"PO-Revision-Date: 2006-09-05 22:14+0200\n"
+"Last-Translator: Miroslav Kure <kurem@debian.cz>\n"
+"Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../lib/archives.sh:31
+msgid "Internal error: wrong call to bm_merge_incremental_backups()."
+msgstr "Vnitřní chyba: chybné volání bm_merge_incremental_backups()."
+
+#: ../lib/upload-methods.sh:38
+msgid "Using the upload method \"ssh\"."
+msgstr "Používám nahrávací metodu \"ssh\"."
+
+#: ../lib/upload-methods.sh:47 ../lib/upload-methods.sh:85
+msgid "No valid destination found, SSH upload not possible."
+msgstr "Nebyl nalezen platný cíl, nahrání přes SSH není možné."
+
+#: ../lib/upload-methods.sh:68
+#, sh-format
+msgid ""
+"Error reported by backup-manager-upload for method \"scp\", check \"$logfile"
+"\"."
+msgstr ""
+"Metoda \"scp\" programu backup-manager-upload vrátila chybu, zkontrolujte "
+"\"$logfile\"."
+
+#: ../lib/upload-methods.sh:76
+msgid "Using the upload method \"ssh-gpg\"."
+msgstr "Používám nahrávací metodu \"ssh-gpg\"."
+
+#: ../lib/upload-methods.sh:88
+msgid ""
+"No gpg recipient given. Argument is mandatory if upload method ssh-gpg is "
+"used."
+msgstr ""
+"Nebyl zadán žádný gpg příjemce. Při použití metody ssh-gpg je argument "
+"povinný."
+
+#: ../lib/upload-methods.sh:105
+#, sh-format
+msgid ""
+"Error reported by backup-manager-upload for method \"ssh-gpg\", check "
+"\"$logfile\"."
+msgstr ""
+"Metoda \"ssh-gpg\" programu backup-manager-upload vrátila chybu, "
+"zkontrolujte \"$logfile\"."
+
+#: ../lib/upload-methods.sh:112
+msgid "Using the upload method \"ftp\"."
+msgstr "Používám nahrávací metodu \"ftp\"."
+
+#: ../lib/upload-methods.sh:122
+msgid "No valid destination found, FTP upload not possible."
+msgstr "Nebyl nalezen platný cíl, nahrání přes FTP není možné."
+
+#: ../lib/upload-methods.sh:138
+#, sh-format
+msgid ""
+"Error reported by backup-manager-upload for method \"ftp\", check \"$logfile"
+"\"."
+msgstr ""
+"Metoda \"ftp\" programu backup-manager-upload vrátila chybu, zkontrolujte "
+"\"$logfile\"."
+
+#: ../lib/upload-methods.sh:146
+msgid "Using the upload method \"S3\"."
+msgstr "Používám nahrávací metodu \"S3\"."
+
+#: ../lib/upload-methods.sh:168
+#, sh-format
+msgid ""
+"Error reported by backup-manager-upload for method \"s3\", check \"$logfile"
+"\"."
+msgstr ""
+"Metoda \"s3\" programu backup-manager-upload vrátila chybu, zkontrolujte "
+"\"$logfile\"."
+
+#: ../lib/upload-methods.sh:174
+#, sh-format
+msgid "Uploading $directory to ${host}:${BM_UPLOAD_RSYNC_DESTINATION}"
+msgstr "Nahrávám $directory na ${host}:${BM_UPLOAD_RSYNC_DESTINATION}"
+
+#: ../lib/upload-methods.sh:185
+msgid "Need a key to use rsync (set BM_UPLOAD_SSH_USER, BM_UPLOAD_SSH_KEY)."
+msgstr ""
+"Použití rsync vyžaduje klíč (nastavte BM_UPLOAD_SSH_USER, BM_UPLOAD_SSH_KEY)."
+
+#: ../lib/upload-methods.sh:196
+#, sh-format
+msgid "Upload of $directory with rsync failed; check $logfile."
+msgstr "Nahrání $directory pomocí rsync selhalo; zkontrolujte $logfile."
+
+#: ../lib/upload-methods.sh:215
+msgid "No valid destination found, RSYNC upload not possible."
+msgstr "Nebyl nalezen platný cíl, nahrání přes RSYNC není možné."
+
+#: ../lib/upload-methods.sh:234
+msgid "No hosts given to the rsync method, set BM_UPLOAD_RSYNC_HOSTS."
+msgstr ""
+"Metodě rsync nebyl předán žádný počítač, nastavte BM_UPLOAD_RSYNC_HOSTS."
+
+#: ../lib/upload-methods.sh:241
+msgid "Using the upload method \"rsync\"."
+msgstr "Používám nahrávací metodu \"rsync\"."
+
+#: ../lib/upload-methods.sh:248
+msgid "Using the upload method \"rsync-snapshots\"."
+msgstr "Používám nahrávací metodu \"rsync-snapshots\"."
+
+#: ../lib/backup-methods.sh:26
+#, sh-format
+msgid "$file_to_create: ok (${size}M,"
+msgstr "$file_to_create: ok (${size}M,"
+
+#: ../lib/backup-methods.sh:54
+#, sh-format
+msgid "Unable to purge duplicates of $file_to_create"
+msgstr "Nemohu smazat duplikáty $file_to_create"
+
+#: ../lib/backup-methods.sh:59
+#, sh-format
+msgid "Unable to change the owner of \"$file_to_create\"."
+msgstr "Nemohu změnit vlastníka \"$file_to_create\"."
+
+#: ../lib/backup-methods.sh:61
+#, sh-format
+msgid "Unable to change file permissions of \"$file_to_create\"."
+msgstr "Nemohu změnit oprávnění k \"$file_to_create\"."
+
+#: ../lib/backup-methods.sh:72
+#, fuzzy
+msgid "Warning, process interrupted."
+msgstr "Varování, proces přerušen, archivy mohou být porušeny."
+
+#: ../lib/backup-methods.sh:76
+#, fuzzy, sh-format
+msgid "Removing archive \"$bm_pending_archive\" (build interrupted)."
+msgstr "Odstraňuji archiv \"$archive\"."
+
+#: ../lib/backup-methods.sh:82
+#, sh-format
+msgid ""
+"Restoring incremental-building details list: \"$bm_pending_incremental_list"
+"\"."
+msgstr ""
+
+#: ../lib/backup-methods.sh:116
+#, sh-format
+msgid "Unable to create \"$target\", check $logfile"
+msgstr "Nemohu vytvořit \"$target\", zkontrolujte $logfile"
+
+#: ../lib/backup-methods.sh:130
+#, sh-format
+msgid "File $file_to_create already exists, skipping."
+msgstr "Soubor $file_to_create již existuje, přeskakuji."
+
+#: ../lib/backup-methods.sh:141
+msgid "gzip is not installed but gzip compression needed."
+msgstr ""
+
+#: ../lib/backup-methods.sh:149
+msgid "bzip2 is not installed but bzip2 compression needed."
+msgstr ""
+
+#: ../lib/backup-methods.sh:167 ../lib/backup-methods.sh:191
+#, sh-format
+msgid "Unable to exec $command; check $logfile"
+msgstr "Nemohu spustit $command, zkontrolujte $logfile"
+
+#: ../lib/backup-methods.sh:173
+#, fuzzy, sh-format
+msgid "Compressor $compress is needed."
+msgstr "Komprese $compress vyžaduje $gzip."
+
+#: ../lib/backup-methods.sh:198
+#, sh-format
+msgid "No such compressor supported: $compress."
+msgstr "Tato komprese není podporovaná: $compress."
+
+#: ../lib/backup-methods.sh:204
+#, sh-format
+msgid "Unable to find $file_to_create"
+msgstr "Nemohu najít $file_to_create"
+
+#: ../lib/backup-methods.sh:331
+msgid "No frequency given, set BM_TARBALLINC_MASTERDATETYPE."
+msgstr "Nebyla zadána frekvence, nastavte BM_TARBALLINC_MASTERDATETYPE."
+
+#: ../lib/backup-methods.sh:342
+#, sh-format
+msgid "Unknown frequency: $BM_TARBALLINC_MASTERDATETYPE"
+msgstr "Neznámá frekvence: $BM_TARBALLINC_MASTERDATETYPE"
+
+#: ../lib/backup-methods.sh:375
+#, sh-format
+msgid "Building master backup for target: \"$dir_name\"."
+msgstr "Vytvářím hlavní zálohu pro cíl: \"$dir_name\"."
+
+#: ../lib/backup-methods.sh:503
+#, sh-format
+msgid ""
+"The archive command returned 1 but the archive has been created; check "
+"\"$logfile\"."
+msgstr ""
+
+#: ../lib/backup-methods.sh:534
+#, sh-format
+msgid "The archive type \"tar.bz2\" depends on the tool \"$bzip\"."
+msgstr "Typ archivu \"tar.bz2\" závisí na nástroji \"$bzip\"."
+
+#: ../lib/backup-methods.sh:541
+#, sh-format
+msgid "The archive type \"tar.lz\" depends on the tool \"$lzma\"."
+msgstr "Typ archivu \"tar.lz\" závisí na nástroji \"$lzma\"."
+
+#: ../lib/backup-methods.sh:548
+#, sh-format
+msgid "The archive type \"zip\" depends on the tool \"$zip\"."
+msgstr "Typ archivu \"zip\" závisí na nástroji \"$zip\"."
+
+#: ../lib/backup-methods.sh:554
+#, sh-format
+msgid "The archive type \"dar\" depends on the tool \"$dar\"."
+msgstr "Typ archivu \"dar\" závisí na nástroji \"$dar\"."
+
+#: ../lib/backup-methods.sh:560 ../lib/backup-methods.sh:642
+#: ../lib/backup-methods.sh:688
+#, sh-format
+msgid "The archive type \"$BM_TARBALL_FILETYPE\" is not supported."
+msgstr "Typ archivu \"$BM_TARBALL_FILETYPE\" není podporován."
+
+#: ../lib/backup-methods.sh:616
+msgid "The configuration variable \"BM_ENCRYPTION_RECIPIENT\" must be defined."
+msgstr ""
+"Konfigurační proměnná \"$BM_ENCRYPTION_RECIPIENT\" musí být definována."
+
+#: ../lib/backup-methods.sh:622
+#, sh-format
+msgid ""
+"The encryption is not yet possible with \"$BM_TARBALL_FILETYPE\" archives."
+msgstr "Šifrování archivů \"$BM_TARBALL_FILETYPE\" zatím není možné."
+
+#: ../lib/backup-methods.sh:660
+#, sh-format
+msgid "The program \"$gpg\" is needed."
+msgstr "Je vyžadován program \"$gpg\"."
+
+#: ../lib/backup-methods.sh:669 ../lib/backup-methods.sh:702
+#, sh-format
+msgid "File $file_to_check already exists, skipping."
+msgstr "Soubor $file_to_check již existuje, přeskakuji."
+
+#: ../lib/backup-methods.sh:725
+#, sh-format
+msgid "Target \"$t\" does not exist, skipping."
+msgstr "Cíl \"$t\" neexistuje, přeskakuji."
+
+#: ../lib/backup-methods.sh:800 ../lib/backup-methods.sh:837
+#: ../lib/backup-methods.sh:879 ../lib/backup-methods.sh:903
+#, sh-format
+msgid "Using method \"$method\"."
+msgstr "Používám metodu \"$method\"."
+
+#: ../lib/backup-methods.sh:826
+msgid "1 error occurred during the tarball generation."
+msgstr "Během vytváření tar archivu se objevila 1 chyba."
+
+#: ../lib/backup-methods.sh:828
+#, sh-format
+msgid "$nb_err errors occurred during the tarball generation."
+msgstr "Během vytváření tar archivu se objevily chyby (celkem $nb_err)."
+
+#: ../lib/backup-methods.sh:839
+#, sh-format
+msgid "The \"mysql\" method is chosen, but $mysqldump is not found."
+msgstr "Je vybrána metoda \"mysql\", avšak $mysqldump nelze nalézt."
+
+#: ../lib/backup-methods.sh:849
+#, sh-format
+msgid "Using existing MySQL client configuration file: $HOME/.my.cnf"
+msgstr ""
+
+#: ../lib/backup-methods.sh:852
+#, sh-format
+msgid "Creating a default MySQL client configuration file: $HOME/.my.cnf"
+msgstr ""
+
+#: ../lib/backup-methods.sh:881
+#, sh-format
+msgid "The \"svn\" method is chosen, but $svnadmin is not found."
+msgstr "Je vybrána metoda \"svn\", avšak $svnadmin nelze nalézt."
+
+#: ../lib/backup-methods.sh:887
+#, sh-format
+msgid "SVN repository \"$repository\" is not valid; skipping."
+msgstr "SVN repozitář \"$repository\" není platný; přeskakuji."
+
+#: ../lib/backup-methods.sh:912
+#, sh-format
+msgid "Not enough args for this archive ($archive), skipping."
+msgstr "Pro tento archiv ($archive) nemám dost argumentů, přeskakuji."
+
+#: ../lib/backup-methods.sh:919
+msgid "Cannot create archive."
+msgstr "Nemohu vytvořit archiv."
+
+#: ../lib/logger.sh:143 ../backup-manager:265
+msgid "Unable to exec post-command."
+msgstr "Nemohu spustit závěrečný příkaz."
+
+#: ../lib/logger.sh:145
+msgid "Releasing lock"
+msgstr "Uvolňuji zámek"
+
+#: ../lib/actions.sh:44
+msgid "No backup method used."
+msgstr "Není použita žádná zálohovací metoda."
+
+#: ../lib/actions.sh:47
+#, sh-format
+msgid "No such backup method: $BM_ARCHIVE_METHOD"
+msgstr "Tato zálohovací metoda neexistuje: $BM_ARCHIVE_METHOD"
+
+#: ../lib/actions.sh:56
+#, sh-format
+msgid "Unable to change the owner of \"$md5file\"."
+msgstr "Nemohu změnit vlastníka \"$md5file\"."
+
+#: ../lib/actions.sh:58
+#, sh-format
+msgid "Unable to change file permissions of \"$md5file\"."
+msgstr "Nemohu změnit oprávnění k \"$md5file\"."
+
+#: ../lib/actions.sh:90
+msgid "No upload method used."
+msgstr "Není použita žádná nahrávací metoda."
+
+#: ../lib/actions.sh:93
+#, sh-format
+msgid "The upload method \"$method\" is not supported; skipping."
+msgstr "Nahrávací metoda \"$method\" není podporovaná; přeskakuji."
+
+#: ../lib/actions.sh:105
+#, sh-format
+msgid "Cleaning $BM_REPOSITORY_ROOT"
+msgstr "Čistím $BM_REPOSITORY_ROOT"
+
+#: ../lib/actions.sh:118
+#, sh-format
+msgid "Running pre-command: $BM_PRE_BACKUP_COMMAND."
+msgstr "Spouštím úvodní příkaz: $BM_PRE_BACKUP_COMMAND."
+
+#: ../lib/actions.sh:122
+msgid "Pre-command failed. Stopping the process."
+msgstr "Úvodní příkaz selhal. Zastavuji proces."
+
+#: ../lib/actions.sh:127
+#, sh-format
+msgid "Pre-command returned: \"$RET\" (success)."
+msgstr "Úvodní příkaz vrátil: \"$RET\" (úspěch)."
+
+#: ../lib/actions.sh:139
+#, sh-format
+msgid "Running post-command: $BM_POST_BACKUP_COMMAND"
+msgstr "Spouštím závěrečný příkaz: $BM_POST_BACKUP_COMMAND"
+
+#: ../lib/actions.sh:143
+msgid "Post-command failed."
+msgstr "Závěrečný příkaz selhal."
+
+#: ../lib/actions.sh:148
+#, sh-format
+msgid "Post-command returned: \"$RET\" (success)."
+msgstr "Závěrečný příkaz vrátil: \"$RET\" (úspěch)."
+
+#: ../lib/actions.sh:175
+msgid ""
+"The BM_TARBALL_FILETYPE conf key is set to \"zip\" but zip is not installed."
+msgstr ""
+"Konfigurační klíč BM_TARBALL_FILETYPE je nastaven na \"zip\", ale zip není "
+"nainstalován."
+
+#: ../lib/actions.sh:180
+msgid ""
+"The BM_TARBALL_FILETYPE conf key is set to \"bzip2\" but bzip2 is not "
+"installed."
+msgstr ""
+"Konfigurační klíč BM_TARBALL_FILETYPE je nastaven na \"bzip2\", ale bzip2 "
+"není nainstalován."
+
+#: ../lib/actions.sh:185
+msgid ""
+"The BM_TARBALL_FILETYPE conf key is set to \"dar\" but dar is not installed."
+msgstr ""
+"Konfigurační klíč BM_TARBALL_FILETYPE je nastaven na \"dar\", ale dar není "
+"nainstalován."
+
+#: ../lib/actions.sh:197
+#, sh-format
+msgid "The repository $BM_REPOSITORY_ROOT does not exist, creating it."
+msgstr "Úložiště $BM_REPOSITORY_ROOT neexistuje, vytvářím je."
+
+#: ../lib/files.sh:79 ../lib/files.sh:94
+msgid "No path given."
+msgstr "Nebyla zadána cesta."
+
+#: ../lib/files.sh:169
+#, sh-format
+msgid "Removing lock for old PID, $pid is not running."
+msgstr "Odstraňuji zámek pro staré PID, $pid již neběží."
+
+#: ../lib/files.sh:179
+#, sh-format
+msgid ""
+"A backup-manager process ($pid) is already running with the conffile "
+"$conffile"
+msgstr ""
+"Proces backup-manageru ($pid) již běží s konfiguračním souborem $conffile"
+
+#: ../lib/files.sh:183 ../lib/files.sh:189
+#, sh-format
+msgid "Getting lock for backup-manager $pid with $conffile"
+msgstr "Získávám zámek pro backup-manager $pid s $conffile"
+
+#: ../lib/files.sh:192
+msgid "failed (check the file permissions)."
+msgstr "selhalo (zkontrolujte přístupová práva souborů)."
+
+#: ../lib/files.sh:280
+#, sh-format
+msgid "$file is not a regular file."
+msgstr "$file není běžný soubor."
+
+#: ../lib/files.sh:305
+#, sh-format
+msgid "Removing obsolete master backup: \"$file\"."
+msgstr "Odstraňuji zastaralou hlavní zálohu: \"$file\"."
+
+#: ../lib/files.sh:313
+#, sh-format
+msgid "Removing obsolete master backup (isolated): \"$file\"."
+msgstr "Odstraňuji zastaralou hlavní zálohu (izolovaná): \"$file\"."
+
+#: ../lib/files.sh:320
+#, sh-format
+msgid "Removing archive \"$file\"."
+msgstr "Odstraňuji archiv \"$file\"."
+
+#: ../lib/files.sh:342
+msgid "Directory given was not found."
+msgstr "Zadaný adresář nebyl nalezen."
+
+#: ../lib/files.sh:363
+#, sh-format
+msgid "Removing archive \"$archive\"."
+msgstr "Odstraňuji archiv \"$archive\"."
+
+#: ../lib/files.sh:387
+#, sh-format
+msgid "The given file does not exist: $file_to_create"
+msgstr "Zadaný soubor neexistuje: $file_to_create"
+
+#: ../lib/files.sh:392
+msgid "No file given."
+msgstr "Nebyl zadán žádný soubor."
+
+#: ../lib/files.sh:397 ../lib/files.sh:399 ../lib/files.sh:413
+msgid "Unable to get date from file."
+msgstr "Nemohu ze souboru získat datum."
+
+#: ../lib/files.sh:403
+msgid "Unable to find the pattern of the file."
+msgstr "Nemohu najít vzor souboru."
+
+#: ../lib/files.sh:419
+#, sh-format
+msgid "Unable to find the md5 hash of file \"$file\" in file \"$md5file\"."
+msgstr "Nemohu najít md5 hash souboru \"$file\" v souboru \"$md5file\"."
+
+#: ../lib/files.sh:425
+#, sh-format
+msgid "$file is a duplicate of $file_to_create (using symlink)."
+msgstr "$file je kopií $file_to_create (používám symbolický odkaz)."
+
+#: ../lib/dialog.sh:27
+msgid "Output:"
+msgstr "Výstup:"
+
+#: ../lib/dialog.sh:28
+msgid "Print this short help message."
+msgstr "Vytiskne tuto krátkou nápovědu."
+
+#: ../lib/dialog.sh:29
+msgid "Print what happens on STDOUT."
+msgstr "Vytiskne na STDOUT prováděné kroky."
+
+#: ../lib/dialog.sh:30
+msgid "Disable warnings."
+msgstr "Zakáže varování."
+
+#: ../lib/dialog.sh:33
+msgid "Single actions:"
+msgstr "Samostatné akce:"
+
+#: ../lib/dialog.sh:34
+msgid "Just upload the files of the day."
+msgstr "Pouze nahraje denní soubory."
+
+#: ../lib/dialog.sh:35
+msgid "Just burn the files of the day."
+msgstr "Pouze vypálí denní soubory."
+
+#: ../lib/dialog.sh:36
+msgid "Just test the md5 sums."
+msgstr "Pouze zkontroluje md5 součty."
+
+#: ../lib/dialog.sh:37
+msgid "Just purge old archives."
+msgstr "Pouze smaže staré archivy."
+
+#: ../lib/dialog.sh:40
+msgid "Behaviour:"
+msgstr "Chování:"
+
+#: ../lib/dialog.sh:41
+msgid "Choose an alternate config file."
+msgstr "Použije alternativní konfigurační soubor."
+
+#: ../lib/dialog.sh:42
+msgid "Force overwrite of existing archives."
+msgstr "Povolí přepsání stávajících archivů."
+
+#: ../lib/dialog.sh:45
+msgid "Unwanted actions:"
+msgstr "Zakazující akce:"
+
+#: ../lib/dialog.sh:46
+msgid "Disable the upload process."
+msgstr "Zakáže nahrání na jiný počítač."
+
+#: ../lib/dialog.sh:47
+msgid "Disable the burning process."
+msgstr "Zakáže vypalování."
+
+#: ../lib/dialog.sh:48
+msgid "Disable the purge process."
+msgstr "Zakáže promazání starých archivů."
+
+#: ../lib/dialog.sh:62 ../lib/dialog.sh:81
+msgid "Not in interactive mode, cannot continue."
+msgstr "Nejsem v interaktivním režimu, nemohu pokračovat."
+
+#: ../lib/sanitize.sh:32
+#, sh-format
+msgid "The configuration key $key is not set, using \"$default\"."
+msgstr "Konfigurační klíč $key není nastaven, používám \"$default\"."
+
+#: ../lib/sanitize.sh:43
+#, sh-format
+msgid ""
+"The configuration key \"$deprecated_key\" is deprecated, you should rename "
+"it \"$new_key\". Using \"$deprecated_value\"."
+msgstr ""
+"Konfigurační klíč \"$deprecated_key\" je zastaralý, měli byste jej "
+"přejmenovat na \"$new_key\". Používám \"$deprecated_value\"."
+
+#: ../lib/sanitize.sh:84
+#, sh-format
+msgid "The configuration key $key is not set but $keymandatory is enabled."
+msgstr "Konfigurační klíč $key není nastaven, ale $keymandatory je povolen."
+
+#: ../lib/sanitize.sh:100
+#, sh-format
+msgid "Deprecated boolean, $key is set to \"yes\", setting \"true\" instead."
+msgstr "Změněn typ boolean, $key má hodnotu \"yes\", nastavuji na \"true\"."
+
+#: ../lib/sanitize.sh:105
+#, sh-format
+msgid "Deprecated boolean, $key is set to \"no\", setting \"false\" instead."
+msgstr "Změněn typ boolean, $key má hodnotu \"no\", nastavuji na \"false\"."
+
+#: ../lib/sanitize.sh:162
+msgid ""
+"BM_TARBALLINC_MASTERDATEVALUE should not be greater than 6, falling back to 0"
+msgstr ""
+
+#: ../lib/sanitize.sh:272
+#, sh-format
+msgid ""
+"When validating the configuration file $conffile, $nb_warnings warnings were "
+"found."
+msgstr ""
+"Při ověřování konfiguračního souboru $conffile bylo nalezeno $nb_warnings "
+"varování."
+
+#: ../lib/md5sum.sh:30
+msgid "Internal error: bad usage of function get_md5sum_from_file()"
+msgstr "Vnitřní chyba: chybné použití funkce get_md5sum_from_file()"
+
+#: ../lib/md5sum.sh:34
+#, sh-format
+msgid "No md5file found: $md5file"
+msgstr "Nebyl nalezen soubor s md5 součty: $md5file"
+
+#: ../lib/md5sum.sh:82
+#, sh-format
+msgid "Archive given does not exist in the repository: $archive"
+msgstr "Zadaný archiv v úložišti neexistuje: $archive"
+
+#: ../lib/burning-methods.sh:37
+#, sh-format
+msgid "Device \"/dev/$device\" is mounted on \"$m\", unmounting it."
+msgstr "Zařízení \"/dev/$device\" je připojeno na \"$m\", odpojuji."
+
+#: ../lib/burning-methods.sh:53
+#, sh-format
+msgid ""
+"MD5 checkup is only performed on disks. Please set the BM_BURNING_DEVICE in "
+"$conffile"
+msgstr ""
+"MD5 součet se počítá pouze na médiích. V $conffile prosím nastavte klíč "
+"BM_BURNING_DEVICE"
+
+#: ../lib/burning-methods.sh:59
+#, sh-format
+msgid "The mount point $mount_point is not there."
+msgstr "Přípojný bod $mount_point neexistuje."
+
+#: ../lib/burning-methods.sh:66
+#, sh-format
+msgid "Mounting $BM_BURNING_DEVICE on $mount_point."
+msgstr "Připojuji $BM_BURNING_DEVICE na $mount_point."
+
+#: ../lib/burning-methods.sh:90
+#, sh-format
+msgid "Checking MD5 sum for $base_file:"
+msgstr "Kontroluji MD5 součet $base_file:"
+
+#: ../lib/burning-methods.sh:109
+#, sh-format
+msgid "$str ok."
+msgstr "$str ok."
+
+#: ../lib/burning-methods.sh:112
+#, sh-format
+msgid "$str failed (read error)."
+msgstr "$str selhalo (chyba čtení)."
+
+#: ../lib/burning-methods.sh:116
+#, sh-format
+msgid "$str failed (MD5 hash mismatch)."
+msgstr "$str selhalo (MD5 nesouhlasí)."
+
+#: ../lib/burning-methods.sh:123
+msgid "Errors encountered during MD5 checks."
+msgstr "Během MD5 kontrol byly zaznamenány chyby."
+
+#: ../lib/burning-methods.sh:127
+#, sh-format
+msgid "Unable to unmount the mount point $mount_point"
+msgstr "Nemohu odpojit přípojný bod $mount_point"
+
+#: ../lib/burning-methods.sh:128
+#, sh-format
+msgid "Unable to remove the mount point $mount_point"
+msgstr "Nemohu odstranit přípojný bod $mount_point"
+
+#: ../lib/burning-methods.sh:147
+msgid "No burning method used."
+msgstr "Není použita žádná vypalovací metoda."
+
+#: ../lib/burning-methods.sh:171
+#, sh-format
+msgid "Number of files to burn: $nb_file."
+msgstr "Počet souborů k vypálení: $nb_file."
+
+#: ../lib/burning-methods.sh:173
+#, sh-format
+msgid ""
+"Nothing to burn for the $BM__BURNING_DATE, try the '--burn <date>' switch."
+msgstr ""
+"Pro den $BM__BURNING_DATE nemám nic k vypálení; zkuste přepínač '--burn "
+"datum'."
+
+#: ../lib/burning-methods.sh:202 ../lib/burning-methods.sh:227
+#, sh-format
+msgid "Burning archives of $BM__BURNING_DATE."
+msgstr "Vypaluji archivy ze dne $BM__BURNING_DATE."
+
+#: ../lib/burning-methods.sh:207
+#, sh-format
+msgid ""
+"Cannot burn archives of the $BM__BURNING_DATE, too big: ${size}M, must fit "
+"in $BM_BURNING_MAXSIZE"
+msgstr ""
+"Nemohu vypálit archivy ze dne $BM__BURNING_DATE, jsou příliš velké: ${size}"
+"M, se musí vejít do $BM_BURNING_MAXSIZE"
+
+#: ../lib/burning-methods.sh:231
+msgid "Burning the whole archives."
+msgstr "Vypaluji celé archivy."
+
+#: ../lib/burning-methods.sh:236
+#, sh-format
+msgid "Trying to burn $BM_REPOSITORY_ROOT ($size MB) in interactive mode."
+msgstr "Zkouším vypálit $BM_REPOSITORY_ROOT ($size MB) v interaktivním režimu."
+
+#: ../lib/burning-methods.sh:267
+#, sh-format
+msgid "Redirecting burning logs into $logfile"
+msgstr "Přesměrovávám hlášení o vypalování do $logfile"
+
+#: ../lib/burning-methods.sh:272
+#, sh-format
+msgid "Forcing dev=${BM_BURNING_DEVFORCED} for cdrecord commands."
+msgstr "Pro příkazy cdrecordu vynucuji dev=${BM_BURNING_DEVFORCED}."
+
+#: ../lib/burning-methods.sh:280
+#, sh-format
+msgid "DVD+R(W) burning requires $growisofs, aborting."
+msgstr "Vypalování DVD+R(W) vyžaduje $growisofs, končím."
+
+#: ../lib/burning-methods.sh:283
+#, sh-format
+msgid "Exporting archives to the DVD+R(W) disc in $BM_BURNING_DEVICE."
+msgstr "Exportuji archivy na DVD+R(W) médium v $BM_BURNING_DEVICE."
+
+#: ../lib/burning-methods.sh:287 ../lib/burning-methods.sh:307
+#: ../lib/burning-methods.sh:319 ../lib/burning-methods.sh:325
+#: ../lib/burning-methods.sh:338
+#, sh-format
+msgid "failed, check $logfile"
+msgstr "selhalo, zkontrolujte $logfile"
+
+#: ../lib/burning-methods.sh:292
+#, sh-format
+msgid "DVD-R(W) burning requires $growisofs, aborting."
+msgstr "Vypalování DVD-R(W) vyžaduje $growisofs, končím."
+
+#: ../lib/burning-methods.sh:295
+#, sh-format
+msgid "DVD-R(W) burning requires $dvdrwformat, aborting."
+msgstr "Vypalování DVD-R(W) vyžaduje $dvdrwformat, končím."
+
+#: ../lib/burning-methods.sh:298
+#, sh-format
+msgid "Blanking the DVD-R(W) disc in $BM_BURNING_DEVICE"
+msgstr "Mažu DVD-R(W) médium v $BM_BURNING_DEVICE"
+
+#: ../lib/burning-methods.sh:302
+#, sh-format
+msgid "Unable to blank the DVD-R(W) disc (check $logfile)."
+msgstr "Nemohu smazat DVD-R(W) médium (zkontrolujte $logfile)."
+
+#: ../lib/burning-methods.sh:304
+#, sh-format
+msgid "Exporting archives to the DVD-R(W) disc in $BM_BURNING_DEVICE."
+msgstr "Exportuji archivy na DVD-R(W) médium v $BM_BURNING_DEVICE."
+
+#: ../lib/burning-methods.sh:312 ../lib/burning-methods.sh:330
+#, sh-format
+msgid "CD-R(W) burning requires $cdrecord, aborting."
+msgstr "Vypalování CD-R(W) vyžaduje $cdrecord, končím."
+
+#: ../lib/burning-methods.sh:315
+#, sh-format
+msgid "Blanking the CDRW in $BM_BURNING_DEVICE."
+msgstr "Mažu CDRW v $BM_BURNING_DEVICE."
+
+#: ../lib/burning-methods.sh:321 ../lib/burning-methods.sh:333
+#, sh-format
+msgid "Burning data to $BM_BURNING_DEVICE."
+msgstr "Vypaluji data na $BM_BURNING_DEVICE."
+
+#: ../lib/burning-methods.sh:342
+msgid "Nothing to burn."
+msgstr "Nic k vypálení."
+
+#: ../lib/burning-methods.sh:346
+#, sh-format
+msgid ""
+"The requested burning method is not supported, check BM_BURNING_METHOD in "
+"$conffile"
+msgstr ""
+"Požadovaný způsob vypalování není podporovaný, zkontrolujte proměnnou "
+"BM_BURNING_METHOD v souboru $conffile"
+
+#: ../lib/burning-methods.sh:402
+#, sh-format
+msgid "Not burning $file because it does not fit in the disk."
+msgstr "Nevypaluji soubor $file, protože se nevejde na médium."
+
+#: ../lib/burning-methods.sh:443
+#, sh-format
+msgid "No such index file: \"$index_file\"."
+msgstr "Tento indexový soubor neexistuje: \"$index_file\"."
+
+#: ../lib/burning-methods.sh:485
+msgid "The burning process will need one disk."
+msgstr "Počet médií nutných pro vypálení: 1."
+
+#: ../lib/burning-methods.sh:487
+#, sh-format
+msgid "The burning process will need $number_of_indexes disks."
+msgstr "Počet médií nutných pro vypálení: $number_of_indexes."
+
+#: ../lib/burning-methods.sh:499
+#, sh-format
+msgid "Burning content of $index"
+msgstr "Vypaluji obsah $index"
+
+#: ../backup-manager:140
+msgid "The -b option must be followed by a valid date (YYYYMMDD)."
+msgstr "Za volbou -b musí následovat platný datum (YYYYMMDD)."
+
+#: ../backup-manager:175
+msgid "The -c option must be followed by an existing filename."
+msgstr "Za volbou -c musí následovat jméno existujícího souboru"
+
+#: ../backup-manager:215
+msgid "Unable to exec the pre-command"
+msgstr "Nemohu spustit úvodní příkaz"
+
+#, fuzzy
+#~ msgid "Compressor $compress requires $gzip."
+#~ msgstr "Komprese $compress vyžaduje $bzip."
+
+#~ msgid "Compressor $compress requires $bzip."
+#~ msgstr "Komprese $compress vyžaduje $bzip."
+
+#~ msgid "CDROM burning requires $cdrecord, aborting."
+#~ msgstr "Vypalování CD vyžaduje $cdrecord, končím."
+
+#~ msgid "Not in interactive mode, cannot follow."
+#~ msgstr "Nejsem v interaktivním režimu, nemohu následovat."
+
+#~ msgid "totoototo"
+#~ msgstr "tutůtutu"
+
+#~ msgid "During the tarballs generation, $nb_err error(s) occurred."
+#~ msgstr "Během vytváření tar archivů se vyskytly chyby (celkem $nb_err)."
+
+#~ msgid "7z blacklist are not well supported..."
+#~ msgstr "Blacklisty 7z nejsou podporovány zrovna nejlépe..."
+
+#~ msgid "unable to exec $remote_command; check $logfile"
+#~ msgstr "Nemohu spustit $remote_command, zkontrolujte $logfile"
+
+#~ msgid "Unable to unmount the device $device"
+#~ msgstr "Nemohu odpojit zařízení $device"
+
+#~ msgid "backup-manager must be run as root."
+#~ msgstr "backup-manager musí být spuštěn pod uživatelem root."
+
+#~ msgid "The BM_TARBALL_DIRECTORIES conf key is not set in $conffile"
+#~ msgstr "Konfigurační klíč BM_TARBALL_DIRECTORIES není v $conffile nastaven"
+
+#~ msgid "Entering directory $file"
+#~ msgstr "Vstupuji do adresáře $file"
+
+#~ msgid "Unable to call backup-manager-upload."
+#~ msgstr "Nemohu zavolat backup-manager-upload."
+
+#~ msgid "$command ended, but $file_to_create not found; check $logfile"
+#~ msgstr ""
+#~ "$command skončil, ale $file_to_create nebyl nalezen; zkontrolujte $logfile"
+
+#~ msgid "Using method \"$BM_ARCHIVE_METHOD\""
+#~ msgstr "Používám metodu \"$BM_ARCHIVE_METHOD\""
+
+#~ msgid "Unable to mount $BM_BURNING_DEVICE on $mount_point."
+#~ msgstr "Nemohu připojit $BM_BURNING_DEVICE na $mount_point."
+
+#~ msgid ""
+#~ "$BM_BURNING_DEVICE is mounted, unmounting before the burning session."
+#~ msgstr "$BM_BURNING_DEVICE je připojeno, před vypalováním odpojuji."
+
+#~ msgid "unable to unmount $mount_point"
+#~ msgstr "nemohu odpojit $mount_point"
+
+#~ msgid "unable to remove $mount_point"
+#~ msgstr "nemohu odstranit $mount_point"
+
+#~ msgid "unable to call backup-manager-upload"
+#~ msgstr "nemohu zavolat backup-manager-upload"
+
+#~ msgid "Mounting $BM_BURNING_DEVICE: "
+#~ msgstr "Připojuji $BM_BURNING_DEVICE: "
+
+#~ msgid "The burning system is disabled in the conf file."
+#~ msgstr "Vypalovací systém je v konfiguračním souboru zakázán."
+
+#~ msgid "The upload system is disabled in the conf file."
+#~ msgstr "Nahrávání na vzdálený počítač je v konfiguračním souboru zakázáno."
+
+#~ msgid "unable to purge duplicates"
+#~ msgstr "nemohu smazat duplikáty"
+
+#~ msgid "Need a key to use rsync"
+#~ msgstr "Pro použití programu rsync potřebuji klíč"
+
+#~ msgid "Unable to dump the content of the database $database"
+#~ msgstr "Nemohu vysypat obsah databáze $database"
+
+#~ msgid "Unable to bzip2 $file_to_create"
+#~ msgstr "Nemohu vytvořit bzip2 $file_to_create"
+
+#~ msgid "This compression format is not supported: $BM_MYSQL_FILETYPE"
+#~ msgstr "Tento kompresní formát není podporován: $BM_MYSQL_FILETYPE"
+
+#~ msgid "backup_method_pipe is not yet supported"
+#~ msgstr "backup_method_pipe zatím není podporována"
+
+#~ msgid "Unmounting $BM_BURNING_DEVICE: "
+#~ msgstr "Odpojuji $BM_BURNING_DEVICE: "
+
+#~ msgid "Removing $mount_point: "
+#~ msgstr "Odstraňuji $mount_point: "
+
+#~ msgid ""
+#~ "The configuration key BM_UPLOAD_PASSWD is not set but BM_UPLOAD_MODE is "
+#~ "set to \"ftp\"."
+#~ msgstr ""
+#~ "Konfigurační klíč BM_UPLOAD_PASSWD není nastaven, ale BM_UPLOAD_MODE je "
+#~ "nastaven na \"ftp\"."
+
+#~ msgid ""
+#~ "Please set the BM_BURNING_MEDIA conf key in $conffile, I assume you want "
+#~ "'cdrom'"
+#~ msgstr ""
+#~ "V souboru $conffile nastavte prosím konfigurační klíč BM_BURNING_MEDIA, "
+#~ "předpokládám, že chcete použít 'cdrom'"
+
+#~ msgid ""
+#~ "Please set the BM_BURNING_DEVICE conf key in $conffile, I assume you want "
+#~ "'/dev/cdrom'"
+#~ msgstr ""
+#~ "V souboru $conffile nastavte prosím konfigurační klíč BM_BURNING_DEVICE, "
+#~ "předpokládám, že chcete použít '/dev/cdrom'"
+
+#~ msgid ""
+#~ "Please set the BM_BURNING_METHOD conf key in $conffile, I assume you want "
+#~ "'CDRW'"
+#~ msgstr ""
+#~ "V souboru $conffile nastavte prosím konfigurační klíč BM_BURNING_METHOD, "
+#~ "předpokládám, že chcete použít 'CDRW'"
+
+#~ msgid ""
+#~ "Please set the BM_BURNING_MAXSIZE conf key in $conffile, I assume you "
+#~ "want '650'"
+#~ msgstr ""
+#~ "V souboru $conffile nastavte prosím konfigurační klíč BM_BURNING_MAXSIZE, "
+#~ "předpokládám, že chcete použít '650'"

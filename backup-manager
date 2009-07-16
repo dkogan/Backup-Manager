@@ -1,0 +1,268 @@
+#!/bin/bash
+
+# Copyright © 2005-2006 Alexis Sukrieh
+# See the AUTHORS file for details.
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+# This is the main backup-manager script. 
+#
+# $Revision: 590 $
+# $Date: 2009-02-01 14:39:59 +0100 (dim 01 fÃ©v 2009) $
+# $Author: sukria $
+
+set -e
+
+RELEASE="true"
+REVISION='$Revision: 590 $'
+VERSION="0.7.8"
+
+# All the paths we provide
+libdir="/usr/share/backup-manager"
+vardir="/var/lib/backup-manager"
+bmu="/usr/bin/backup-manager-upload"
+bmp="/usr/bin/backup-manager-purge"
+
+# Find which lockfile to use
+# If we are called by an unprivileged user, use a lockfile inside the user's home;
+# else, use /var/run/backup-manager.lock
+systemlockfile="/var/run/backup-manager.lock"
+userlockfile="$HOME/.backup-manager.lock"
+if [[ "$UID" != 0 ]]; then
+    lockfile="$userlockfile"
+else
+    lockfile="$systemlockfile"
+fi
+
+# Load the backup-manager's library
+source $libdir/externals.sh
+source $libdir/gettext.sh
+source $libdir/logger.sh
+source $libdir/dialog.sh
+source $libdir/files.sh
+source $libdir/md5sum.sh
+source $libdir/backup-methods.sh
+source $libdir/upload-methods.sh
+source $libdir/burning-methods.sh
+source $libdir/actions.sh
+source $libdir/dbus.sh
+debug "Libraries loaded successfuly from \"$libdir\"."
+
+# Initialize defautls values of arguments
+verbosedebug="false"
+verbose="false"
+version="false"
+warnings="true"
+force="false"
+upload="false"
+burn="false"
+help="false"
+md5check="false"
+purge="false"
+conffile="/etc/backup-manager.conf"
+
+# the "no" flags
+nopurge="false"
+noburn="false"
+noupload="false"
+
+# Init the version / revision flag
+if [[ "$RELEASE" = "false" ]]; then    
+    rev=$(echo "$REVISION" | sed -e 's/.Revision: \([0-9]*\).*/\1/g')
+    VERSION="${VERSION}r${rev}"
+fi
+
+debug "Version : $VERSION, release : $RELEASE"
+
+# set useful global variables and initial
+# checks
+bm_init_today
+bm_dbus_init
+
+bm_dbus_send_event "startup" "Version : $VERSION, release : $RELEASE"
+bm_dbus_send_progress 0 "Initializing"
+
+# Catch signals for a nice exit.
+trap clean_exit SIGINT SIGTERM SIGKILL
+
+# Parse the command line 
+debug "Processing the command line"
+while [[ $# -ge 1 ]]; do
+    case $1 in
+        -h|--help)
+            usage
+        ;;
+        -m|--md5check) 
+            md5check="true"
+        ;;
+        -p|--purge)
+            purge="true"
+        ;;
+        --no-purge)
+            nopurge="true"
+        ;;
+        -b|--burn) 
+            burn="true"
+            # parse the second argument as a date if
+            # it does not begin with a dash (-).
+            if [[ -n "$2" ]] && 
+               [[ "${2}" == "${2#-}" ]]; then
+                # test if the date is a valid date
+                if [[ $(echo "$2" | grep "^[[:digit:]]\{8\}$") ]] ; then
+                    export BM__BURNING_DATE="$2"
+                    shift
+                else
+                    error "The -b option must be followed by a valid date (YYYYMMDD)."
+                fi
+            fi
+        ;;
+        --no-burn)
+            noburn="true"
+        ;;
+        -u|--upload) 
+            upload="true"
+        ;;
+        --no-upload)
+            noupload="true"
+        ;;
+        -d|--debug) 
+            verbosedebug="true"
+            verbose="true"
+        ;;
+        -v|--verbose) 
+            verbose="true"
+        ;;
+        --version)
+           echo "Backup Manager $VERSION"
+            _exit 0
+        ;;
+        --no-warnings)
+            warnings="false"
+        ;;
+        -f|--force) 
+            force="true"
+        ;;
+        -c|--conffile)
+            # in this case, $2 should be the conffile !
+            if [[ -f $2 ]]; then
+                conffile=$2
+            else
+                error "The -c option must be followed by an existing filename."
+                usage
+            fi
+            # we shift here to avoid processing the file path 
+            shift
+        ;;
+        *)  
+            echo "Unknown option $1"
+            usage
+            break
+        ;;
+    esac
+    shift
+done
+info "Backup Manager $VERSION - Copyright (c) 2004-2007 Alexis Sukrieh"
+
+debug "Loading configuration file : \"$conffile\"."
+source $conffile
+
+# Sanitize will try to find deprecated vartiables,
+debug "Sanitizing the configuration file."
+source $libdir/sanitize.sh
+
+debug "Initializing environment"
+bm_init_env 
+
+debug "Checking if logger is available"
+check_logger
+
+debug "Getting lock"
+get_lock
+check_filetypes
+
+# For security reasons, change the umask
+# for the backup-manager session.
+# Every file created by the process will be -rw------
+BM_UMASK=$(umask)
+umask 0077
+
+debug "Running pre-command"
+exec_pre_command || error "Unable to exec the pre-command"
+
+create_directories
+
+if [[ "$upload" == "true" ]]; then
+    debug "Running the upload methods"
+    upload_files
+    _exit 0
+fi
+
+if [[ "$burn" == "true" ]]; then
+    debug "Running the burning methods"
+    burn_files
+    _exit 0
+fi
+
+if [[ "$md5check" == "true" ]]; then
+    debug "Runing the MD5 checks"
+    check_cdrom_md5_sums
+    _exit 0
+fi
+
+if [[ "$purge" == "true" ]]; then
+    debug "Purging the repository"
+    clean_repositories
+    _exit 0
+fi
+
+# Default process : doing everything unless --no-flags 
+# are given.
+
+if [[ "$nopurge" != "true" ]]; then
+    debug "Purging the repository"
+    bm_dbus_send_progress 10 "Cleaning repositories"
+    clean_repositories
+fi
+
+debug "Building archives"
+bm_dbus_send_progress 20 "Building archives"
+make_archives
+
+if [[ "$noupload" != "true" ]]; then
+    debug "Running the upload methods"
+    bm_dbus_send_progress 60 "Uploading backups"
+    upload_files
+fi
+
+if [[ "$noburn" != "true" ]]; then
+    debug "Running the burning methods"
+    bm_dbus_send_progress 80 "Burning backups"
+    burn_files
+fi
+
+debug "Running post-command"
+bm_dbus_send_progress 90 "Cleaning up"
+exec_post_command || error "Unable to exec post-command."
+
+debug "Releasing lock"
+release_lock
+
+debug "Exiting"
+umask $BM_UMASK >/dev/null
+
+bm_dbus_send_progress 100 "Finished"
+bm_dbus_send_event "shutdown" "0"
+exit 0
+

@@ -1,0 +1,81 @@
+.TH backup-manager 8
+.SH NAME
+backup-manager - An easy to use backup tool for your Linux box.
+.SH SYNOPSIS
+  backup-manager [options]
+.SH DESCRIPTION
+Backup Manager is an easy-to-use tool for generating archives. 
+.P
+It is designed with simplicity in mind
+for those who don't want an obfuscated tool for making tarballs. 
+.P
+There are different methods for building archives: tarballs, incremental 
+tarballs, mysql dumps, svn dump. You can also write your own method with a 
+generic method that will execute a command and will archive its output.
+.P
+Every times you run Backup Manager, you can upload archives thanks to a couple
+of upload methods: through FTP, SSH or even with RSYNC.
+.P
+It's also possible to export your archives to removable media like CDR or DVD.
+.SH CONFIGURATION FILES
+Backup Manager's behavior is defined in configuration files. You can use
+different configuration files at the same time. 
+The default configuration file is `/etc/backup-manager.conf'.
+.P
+An example should have been provided with the program, most of the time it's
+installed in `/usr/share/backup-manager/backup-manager.conf.tpl'.
+.P
+If you want exhaustive details about how to write your own configuration files,
+please refer to the Backup Manager User Guide:
+http://www.backup-manager.org/documentation/user-guide/
+.SH OPTIONS
+.P
+.B --version
+Show the version number.
+.P
+.B --verbose|-v 
+Print what happens to STDOUT.
+.P
+.B --no-warnings
+Disable warnings.
+.P
+.B --help|-h 
+Print a short help message.
+.P
+.B --upload|-u
+Just upload the files.
+.P
+.B --purge|-p
+Just purge old archives.
+.P 
+.B --burn|-b 
+Just burn the archives.
+.P
+.B --md5check|-m
+Just perform the MD5 checkup on the CDR/CDRW.
+.P
+.B --config|-c file
+Use an alternate config file.
+.P
+.B --force|-f
+Force overwrite of existing archives.
+.P
+.B --no-upload
+Disable the uploading process.
+.P
+.B --no-burn
+Disable the burning process.
+.P
+.B --no-purge
+Disable the purging process.
+.SH BUGS
+If you find a bug or want to submit a wish-list to the development team, feel
+free to use the official Bug Tracking System: http://bugzilla.backup-manager.org
+.SH WEBSITE
+To find latest news and releases, come to the official website:
+http://www.backup-manager.org
+.SH SEE ALSO
+.BR backup-manager-upload (8),
+.BR ssh-keygen (1)
+.SH AUTHOR
+Alexis Sukrieh <sukria@backup-manager.org>
