@@ -4,7 +4,7 @@ debian-cdrkit.diff
 debian-version.diff
 debian-perl-location.diff
 debian-user-guide-location.diff
-fix-bashism.diff
+fix-po-Makefile.diff
 fix-incremental-method.diff
 fix-tar-errors.diff
 fix-backup-manager-purge-POD.diff
