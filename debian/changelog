@@ -1,4 +1,4 @@
-backup-manager (0.7.8-2) UNRELEASED; urgency=medium
+backup-manager (0.7.8-2) unstable; urgency=medium
 
   * New maintainer (Closes: #536155).
   * Add missing build dependencies (Closes: #516060).
@@ -29,7 +29,7 @@ backup-manager (0.7.8-2) UNRELEASED; urgency=medium
     - Remove obsolete XS-Vcs-Svn field.
   * Add debian/watch file.
 
- -- Sven Joachim <svenjoac@gmx.de>  Mon, 13 Jul 2009 17:44:41 +0200
+ -- Sven Joachim <svenjoac@gmx.de>  Fri, 17 Jul 2009 18:23:35 +0200
 
 backup-manager (0.7.8-1) unstable; urgency=low
 
