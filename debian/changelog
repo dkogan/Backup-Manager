@@ -19,17 +19,17 @@ backup-manager (0.7.8-2) unstable; urgency=medium
     - Don't make any direct changes outside debian/ .
     - Add a short README.source as recommended by policy.
   * Upgrade debhelper compatibility level to 7.
-  * Some small debian/control cleanups:
+  * Some debian/control cleanups:
     - Let backup-manager-doc and backup-manager suggest each other,
       do not suggest libnet-perl and perl-modules (redundant).
     - Drop versioned dependency on gzip, even Woody had a newer version.
     - Expand backup-manager-doc's extended description a bit.
     - Upgrade Standards-Version to 3.8.2.
     - Add Homepage field.
-    - Remove obsolete XS-Vcs-Svn field.
+    - Add Vcs-Browser and Vcs-Git fields, remove XS-Vcs-Svn field.
   * Add debian/watch file.
 
- -- Sven Joachim <svenjoac@gmx.de>  Fri, 17 Jul 2009 18:23:35 +0200
+ -- Sven Joachim <svenjoac@gmx.de>  Sat, 18 Jul 2009 16:26:11 +0200
 
 backup-manager (0.7.8-1) unstable; urgency=low
 
