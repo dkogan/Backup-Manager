@@ -13,23 +13,23 @@ Homepage: http://www.backup-manager.org/
 Package: backup-manager
 Architecture: all
 Suggests: backup-manager-doc, zip, perl, openssh-client, wodim,
-          genisoimage, gettext-base, anacron, dvd+rw-tools, dar, 
+          genisoimage, gettext-base, anacron, dvd+rw-tools, dar,
           libfile-slurp-perl, libnet-amazon-s3-perl
 Depends: ${misc:Depends}, debconf | debconf-2.0, ucf (>= 0.08), findutils (>= 4.2.28-1)
-Description: command-line backup tool 
- This is a backup program, designed to help you make daily archives of 
+Description: command-line backup tool
+ This is a backup program, designed to help you make daily archives of
  your file system.
  .
- Written in bash and perl, it can make tar, tar.gz, tar.bz2, and zip 
- archives and can be run in a parallel mode with different 
- configuration files. Other archives are possible: MySQL or SVN dumps, 
+ Written in bash and perl, it can make tar, tar.gz, tar.bz2, and zip
+ archives and can be run in a parallel mode with different
+ configuration files. Other archives are possible: MySQL or SVN dumps,
  incremental backups...
  .
- Archives are kept for a given number of days and the upload system 
- can use FTP, SSH or RSYNC to transfer the generated archives to a list of 
- remote hosts. 
+ Archives are kept for a given number of days and the upload system
+ can use FTP, SSH or RSYNC to transfer the generated archives to a list of
+ remote hosts.
  .
- Automatically burning archives to removable media such as CD or DVD is also 
+ Automatically burning archives to removable media such as CD or DVD is also
  possible.
  .
  The configuration file is very simple and basic and gettext is used for
