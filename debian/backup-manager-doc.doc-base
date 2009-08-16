@@ -1,0 +1,18 @@
+Document: backup-manager
+Title: Backup Manager User Guide
+Author: Alexis Sukrieh <sukria@sukria.net>
+Abstract: Backup-manager is a backup program, designed to help
+ you make daily archives of your file system.  This User Guide
+ documents the various features of the program and the format
+ of its configuration files.
+Section: System/Administration
+
+Format: text
+Files: /usr/share/doc/backup-manager-doc/user-guide.txt.gz
+
+Format: HTML
+Index: /usr/share/doc/backup-manager-doc/user-guide.html/index.html
+Files: /usr/share/doc/backup-manager-doc/user-guide.html/index.html
+
+Format: PDF
+Files: /usr/share/doc/backup-manager-doc/user-guide.pdf.gz
