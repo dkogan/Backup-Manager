@@ -9,5 +9,5 @@ debian-user-guide-location.diff
 fix-tar-errors.diff
 fix-backup-manager-purge-POD.diff
 #fix-backup-manager-upload-POD.diff
-#translation-updates.diff
+translation-updates.diff
 
