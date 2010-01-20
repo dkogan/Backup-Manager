@@ -5,6 +5,7 @@ backup-manager (0.7.9-1) UNRELEASED; urgency=low
     + New configuration variable BM_LOGGER_LEVEL controls which messages
       should be sent to syslog. By default, only warnings and errors are
       logged (Closes: #488077).
+  * Remove several patches that were applied upstream, refresh the others.
   * Register the user guide in doc-base.
   * Remove spurious trailing whitespace from debian/control.
   * Upgrade Standards-Version to 3.8.3, no changes needed.
