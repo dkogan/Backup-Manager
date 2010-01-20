@@ -116,11 +116,11 @@ function exec_pre_command()
 
     if [[ ! -z "$BM_PRE_BACKUP_COMMAND" ]]; then
         info "Running pre-command: \$BM_PRE_BACKUP_COMMAND."
-        RET=`$BM_PRE_BACKUP_COMMAND` || RET="false" 
+        RET=`$BM_PRE_BACKUP_COMMAND >/dev/null 2>&1` || RET="false" 
         case "$RET" in
             "false")
                 warning "Pre-command failed. Stopping the process."
-                _exit 15
+                _exit 15 "PRE_COMMAND"
             ;;
 
             *)
@@ -137,11 +137,11 @@ function exec_post_command()
 
     if [[ ! -z "$BM_POST_BACKUP_COMMAND" ]]; then
         info "Running post-command: \$BM_POST_BACKUP_COMMAND"
-        RET=`$BM_POST_BACKUP_COMMAND` || RET="false"
+        RET=`$BM_POST_BACKUP_COMMAND >/dev/null 2>&1` || RET="false"
         case "$RET" in
             "false")
                 warning "Post-command failed."
-                _exit 16
+                _exit 16 "POST_COMMAND"
             ;;
 
             *)

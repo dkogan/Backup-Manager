@@ -103,19 +103,6 @@ function log()
     fi
 }
 
-function info()
-{
-    bm_log_level="info"
-    log "$@"
-}
-
-function error()
-{
-    bm_log_level="error"
-    log "$@"
-    _exit 1
-}
-
 # That function is deprecated, soon we'll remove it.
 function __debug()
 {
@@ -125,14 +112,37 @@ function __debug()
 
 function debug()
 {
-    bm_log_level="debug"
-    log "DEBUG: $@"
+    if [[ "$BM_LOGGER_LEVEL" == "debug" ]]; then
+        bm_log_level="debug"
+        log "DEBUG: $@"
+    fi
+}
+
+function info()
+{
+    if [[ "$BM_LOGGER_LEVEL" == "debug" ]]\
+    || [[ "$BM_LOGGER_LEVEL" == "info" ]]; then
+        bm_log_level="info"
+        log "$@"
+    fi
 }
 
 function warning()
 {
-    bm_log_level="warning"
+    if [[ "$BM_LOGGER_LEVEL" == "debug" ]]\
+    || [[ "$BM_LOGGER_LEVEL" == "info" ]]\
+    || [[ "$BM_LOGGER_LEVEL" == "warning" ]]; then
+        bm_log_level="warning"
+        log "$@"
+    fi
+}
+
+# Errors are always sent to syslog
+function error()
+{
+    bm_log_level="error"
     log "$@"
+    _exit 1
 }
 
 
@@ -141,11 +151,22 @@ function warning()
 # remove the logfile
 function _exit()
 {
-    exec_post_command || error "Unable to exec post-command."
+	exit_code="$1"
+	exit_context="$2"
+	exit_reason="$3"
+
+    if [[ "$exit_context" != "POST_COMMAND" ]]; then
+		exec_post_command || error "Unable to exec post-command."
+	fi
+
     umask $BM_UMASK >/dev/null
     info "Releasing lock"
     release_lock
     bm_dbus_send_progress 100 "Finished"
     bm_dbus_send_event "shutdown" "$@"
-    exit $@
+
+	if [[ -n "$exit_reason" ]]; then 
+		info "Exit reason: \$exit_reason"
+	fi
+    exit $exit_code
 }

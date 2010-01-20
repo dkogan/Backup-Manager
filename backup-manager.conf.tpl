@@ -42,6 +42,11 @@ export BM_ARCHIVE_CHMOD="660"
 # Number of days we have to keep an archive (Time To Live)
 export BM_ARCHIVE_TTL="5"
 
+# At which frequency will you build your archives?
+# You can choose either "daily" or "hourly". 
+# This should match your CRON configuration.
+export BM_ARCHIVE_FREQUENCY="daily"
+
 # Do you want to purge only the top-level directory or all
 # directories under BM_REPOSITORY_ROOT?
 export BM_REPOSITORY_RECURSIVEPURGE="false"
@@ -213,6 +218,11 @@ export BM_MYSQL_PORT="3306"
 
 # which compression format to use? (gzip or bzip2)
 export BM_MYSQL_FILETYPE="bzip2"
+
+# Extra options to append to mysqldump
+# (take care to what you do; this will be silently added to the 
+# command line.)
+export BM_MYSQL_EXTRA_OPTIONS=""
 
 ##############################################################
 # Backup method: svn
@@ -426,6 +436,9 @@ export BM_UPLOAD_RSYNC_DUMPSYMLINKS="false"
 #  - CDR    : burn the whole ARCHIVES_REPOSITORY or 
 #             only the generated archives.
 #  - none   : disable the burning system
+#
+# Note that if backup-manager is run from interactive prompt you
+# will be asked to insert disc(s) when needed
 
 export BM_BURNING_METHOD="none"
 
@@ -460,6 +473,10 @@ export BM_BURNING_MAXSIZE="650"
 # Every output made can be sent to syslog
 # set this to "true" or "false"
 export BM_LOGGER="true"
+
+# Which level of messages do you want to log to syslog?
+# possible values are : debug,info,warning,error
+export BM_LOGGER_LEVEL="warning"
 
 # You can choose which facility to use
 export BM_LOGGER_FACILITY="user"
