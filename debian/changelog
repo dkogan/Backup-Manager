@@ -1,10 +1,15 @@
-backup-manager (0.7.8-3) UNRELEASED; urgency=low
+backup-manager (0.7.9-1) UNRELEASED; urgency=low
 
+  * New upstream release.
+    + Fix long version of the "-c" option in the manpage (Closes:#544253).
+    + New configuration variable BM_LOGGER_LEVEL controls which messages
+      should be sent to syslog. By default, only warnings and errors are
+      logged (Closes: #488077).
   * Register the user guide in doc-base.
   * Remove spurious trailing whitespace from debian/control.
   * Upgrade Standards-Version to 3.8.3, no changes needed.
 
- -- Sven Joachim <svenjoac@gmx.de>  Sun, 16 Aug 2009 14:38:21 +0200
+ -- Sven Joachim <svenjoac@gmx.de>  Wed, 20 Jan 2010 18:30:34 +0100
 
 backup-manager (0.7.8-2) unstable; urgency=medium
 
