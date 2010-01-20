@@ -12,9 +12,9 @@ Provided by: Alexis Sukrieh <sukria@sukria.net>
 @@ -27,7 +27,7 @@
  
  RELEASE="true"
- REVISION='$Revision: 590 $'
+ REVISION='$Revision$'
 -VERSION="0.7.8"
-+VERSION="0.7.8-debian2"
++VERSION="0.7.9-debian1"
  
  # All the paths we provide
  libdir="/usr/share/backup-manager"

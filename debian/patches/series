@@ -1,13 +1,13 @@
 debian-backup-manager.conf.tpl.diff
 debian-remove-shebang.diff
-debian-cdrkit.diff
+#debian-cdrkit.diff
 debian-version.diff
 debian-perl-location.diff
 debian-user-guide-location.diff
-fix-po-Makefile.diff
-fix-incremental-method.diff
+#fix-po-Makefile.diff
+#fix-incremental-method.diff
 fix-tar-errors.diff
 fix-backup-manager-purge-POD.diff
-fix-backup-manager-upload-POD.diff
-translation-updates.diff
+#fix-backup-manager-upload-POD.diff
+#translation-updates.diff
 

@@ -4,17 +4,13 @@ Needs to be applied upstream.
 Provided by: Alexis Sukrieh <sukria@sukria.net>
 
 ---
- backup-manager-purge |    4 ++++
- 1 file changed, 4 insertions(+)
+ backup-manager-purge |    2 ++
+ 1 file changed, 2 insertions(+)
 
 --- a/backup-manager-purge
 +++ b/backup-manager-purge
-@@ -49,8 +49,12 @@
- Specify the time to live (in days) for the archives. Any archive that is older
- than I<ttl> days will be outdated.
+@@ -53,6 +53,8 @@
  
-+=back
-+
  =head1 OPTIONAL ARGS
  
 +=over 4
