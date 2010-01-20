@@ -19,9 +19,9 @@
 # smart ideas for finding out perl libraries' destination come 
 # from Thomas Parmelan.
 
-# $Revision: 588 $
-# $Date: 2009-02-01 14:20:05 +0100 (dim 01 fév 2009) $
-# $Author: sukria $
+# $Revision$
+# $Date$
+# $Author$
 
 
 # Overwrite that variable if you need to prefix the destination 

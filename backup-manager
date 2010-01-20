@@ -19,14 +19,14 @@
 
 # This is the main backup-manager script. 
 #
-# $Revision: 590 $
-# $Date: 2009-02-01 14:39:59 +0100 (dim 01 fév 2009) $
-# $Author: sukria $
+# $Revision$
+# $Date$
+# $Author$
 
 set -e
 
 RELEASE="true"
-REVISION='$Revision: 590 $'
+REVISION='$Revision$'
 VERSION="0.7.8"
 
 # All the paths we provide
