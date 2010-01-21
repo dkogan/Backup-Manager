@@ -1,0 +1,34 @@
+Description: Remove two newly introduced configuration variables that
+ are not used anywhere (as of version 0.7.9).
+Author: Sven Joachim <svenjoac@gmx.de>
+
+---
+ backup-manager.conf.tpl |   10 ----------
+ 1 file changed, 10 deletions(-)
+
+--- a/backup-manager.conf.tpl
++++ b/backup-manager.conf.tpl
+@@ -42,11 +42,6 @@
+ # Number of days we have to keep an archive (Time To Live)
+ export BM_ARCHIVE_TTL="5"
+ 
+-# At which frequency will you build your archives?
+-# You can choose either "daily" or "hourly". 
+-# This should match your CRON configuration.
+-export BM_ARCHIVE_FREQUENCY="daily"
+-
+ # Do you want to purge only the top-level directory or all
+ # directories under BM_REPOSITORY_ROOT?
+ export BM_REPOSITORY_RECURSIVEPURGE="false"
+@@ -219,11 +214,6 @@
+ # which compression format to use? (gzip or bzip2)
+ export BM_MYSQL_FILETYPE="bzip2"
+ 
+-# Extra options to append to mysqldump
+-# (take care to what you do; this will be silently added to the 
+-# command line.)
+-export BM_MYSQL_EXTRA_OPTIONS=""
+-
+ ##############################################################
+ # Backup method: svn
+ #############################################################

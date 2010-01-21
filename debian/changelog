@@ -6,6 +6,8 @@ backup-manager (0.7.9-1) UNRELEASED; urgency=low
       should be sent to syslog. By default, only warnings and errors are
       logged (Closes: #488077).
   * Remove several patches that were applied upstream, refresh the others.
+  * Add new patch that removes two newly introduced but never used
+    variables form backup-manager's configuration template.
   * Convert headers of the remaining patches to DEP-3 format.
   * Register the user guide in doc-base.
   * Remove spurious trailing whitespace from debian/control.
