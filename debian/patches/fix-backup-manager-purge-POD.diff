@@ -1,7 +1,5 @@
-POD in backup-manager-purge has been cleaned.
-Needs to be applied upstream.
-
-Provided by: Alexis Sukrieh <sukria@sukria.net>
+Description: A pod2man error in backup-manager-purge has been fixed.
+Author: Sven Joachim <svenjoac@gmx.de>
 
 ---
  backup-manager-purge |    2 ++

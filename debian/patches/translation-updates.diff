@@ -1,8 +1,7 @@
-The program translations have been updated.
-German is complete, other translaions have been run through msgmerge.
-This patch has been applied upstream.
-
-Provided by: Sven Joachim <svenjoac@gmx.de>
+Description: The program translations have been updated.
+ Translations have been run through msgmerge to avoid spurious changes
+ in the po files when the package is built twice in a row.
+Author: Sven Joachim <svenjoac@gmx.de>
 
 ---
  po/cs.po |   81 ++++++++++++++++++++++++++++++++++++++-------------------------

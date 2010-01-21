@@ -1,7 +1,7 @@
-Backup-managers version string includes "-debian"
-We want people to know that it differs from upstream.
-
-Provided by: Alexis Sukrieh <sukria@sukria.net>
+Description: backup-manager's version string includes "-debian"
+ We want people to know that it differs from upstream.
+Author: Alexis Sukrieh <sukria@sukria.net>
+Forwarded: not-needed
 
 ---
  backup-manager |    2 +-

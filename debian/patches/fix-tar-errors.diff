@@ -1,7 +1,7 @@
-A bug that treats tar warnings as errors has been fixed.
-Needs to applied upstream. See http://bugs.debian.org/532976.
-
-Provided by: Alexey Salmin <alexey.salmin@gmail.com>
+Description: A bug that treats tar warnings as errors has been fixed.
+Author: Alexey Salmin <alexey.salmin@gmail.com>
+Bug: http://bugzilla.backup-manager.org/show_bug.cgi?id=219
+Bug-Debian: http://bugs.debian.org/532976
 
 ---
  lib/backup-methods.sh |    7 ++++++-

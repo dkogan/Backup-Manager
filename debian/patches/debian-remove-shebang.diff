@@ -1,8 +1,7 @@
-The shebang has been removed from lib/sanitize.sh.
-This file should not be executed directly and is not executable.
-Lintian rightfully complains about the shebang.
-
-Provided by: Alexis Sukrieh <sukria@sukria.net>
+Description: The shebang has been removed from lib/sanitize.sh.
+ This file should not be executed directly and is not executable.
+ Lintian rightfully complains about the shebang.
+Author: Alexis Sukrieh <sukria@sukria.net>
 
 ---
  lib/sanitize.sh |    1 -
