@@ -1,4 +1,4 @@
-backup-manager (0.7.9-1) UNRELEASED; urgency=high
+backup-manager (0.7.9-1) unstable; urgency=high
 
   * New upstream release.
     + Fix long version of the "-c" option in the manpage (Closes:#544253).
@@ -15,7 +15,7 @@ backup-manager (0.7.9-1) UNRELEASED; urgency=high
   * Remove spurious trailing whitespace from debian/control.
   * Upgrade Standards-Version to 3.8.3, no changes needed.
 
- -- Sven Joachim <svenjoac@gmx.de>  Wed, 20 Jan 2010 18:30:34 +0100
+ -- Sven Joachim <svenjoac@gmx.de>  Fri, 22 Jan 2010 14:16:23 +0100
 
 backup-manager (0.7.8-2) unstable; urgency=medium
 
