@@ -1,10 +1,12 @@
-backup-manager (0.7.9-1) UNRELEASED; urgency=low
+backup-manager (0.7.9-1) UNRELEASED; urgency=high
 
   * New upstream release.
     + Fix long version of the "-c" option in the manpage (Closes:#544253).
     + New configuration variable BM_LOGGER_LEVEL controls which messages
       should be sent to syslog. By default, only warnings and errors are
       logged (Closes: #488077).
+    + Fix possible leaking of MYSQL passwords to local users, hence the
+      high urgency.
   * Remove several patches that were applied upstream, refresh the others.
   * Add new patch that removes two newly introduced but never used
     variables form backup-manager's configuration template.
