@@ -6,6 +6,7 @@
 set -e
 
 tplconffile="/usr/share/backup-manager/backup-manager.conf.tpl"
+cronfile_tpl="/usr/share/backup-manager/backup-manager.cron.tpl"
 conffile="/etc/backup-manager.conf"
 cronfile="/etc/cron.daily/backup-manager"
 
@@ -85,7 +86,6 @@ case "$action" in
 	frequency="$RET"
 	
         # use our template file
-        cronfile_tpl="/usr/share/backup-manager/backup-manager.cron.tpl"
         if [ ! -f $cronfile_tpl ]; then
 		echo "No template found for the cronfile! ($cronfile_tpl)" >&2
 		exit 5
