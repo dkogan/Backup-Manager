@@ -1,3 +1,11 @@
+backup-manager (0.7.9-2) UNRELEASED; urgency=low
+
+  * The "debconf is not a registry" release.
+  * Respect manual moving/removal/installation of our cron script
+    (Closes: #567477).
+
+ -- Sven Joachim <svenjoac@gmx.de>  Tue, 09 Feb 2010 13:45:37 +0100
+
 backup-manager (0.7.9-1) unstable; urgency=high
 
   * New upstream release.
