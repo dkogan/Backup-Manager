@@ -85,12 +85,6 @@ case "$action" in
 	db_get backup-manager/cron_frequency || true
 	frequency="$RET"
 	
-        # use our template file
-        if [ ! -f $cronfile_tpl ]; then
-		echo "No template found for the cronfile! ($cronfile_tpl)" >&2
-		exit 5
-        fi
-	
         # find the current cron file
 	if [ -f /etc/cron.monthly/backup-manager ]; then
 		cronfile="/etc/cron.monthly/backup-manager"
@@ -107,6 +101,12 @@ case "$action" in
                 cronfile_tpl="$cronfile"
         fi
 
+        # use our template file if we don't find a cronfile
+        if [ ! -f $cronfile_tpl ]; then
+		echo "No template found for the cronfile! ($cronfile_tpl)" >&2
+		exit 5
+        fi
+	
 	# According to the frequency we have, move the $cronfile found in the 
         # good CRON sub-directory, or copy our template if none found.
 	case "$frequency" in
