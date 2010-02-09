@@ -25,7 +25,7 @@ replace_file()
 	fi
 }
 
-# This will substitue evrything in the conf file
+# This will substitute everything in the conf file
 confsed() 
 {
 	sed -r \
@@ -64,7 +64,7 @@ case "$action" in
    
 	# we have to purge the deprecated /etc/cron.d/backup-manager file
 	# Since 0.5.8-3, /etc/cron.d/backup-manager is considered deprecated 
-	# because it's not hanlder by anacron, whereas corn.daily is. 
+	# because it's not handled by anacron, whereas cron.daily is. 
 	if [ -e /etc/cron.d/backup-manager ]; then
 		db_get backup-manager/cron_d_remove_deprecated || true
 		if [ "$RET" = "true" ]; then
