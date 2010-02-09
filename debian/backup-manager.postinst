@@ -238,7 +238,6 @@ case "$action" in
 
 	# fix modes on conf files.
 	chmod 600 $conffile
-	chmod 644 $tplconffile
 	
 	db_stop
     ;;
