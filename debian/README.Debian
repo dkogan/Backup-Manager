@@ -8,6 +8,20 @@ debconf needs.
 If you want to hack backup-manager by hand, just edit 
 `/etc/backup-manager.conf' not the tpl one !
 
+Installing the cron script
+---------------------------------------------------------------------
+
+Backup-manager can be run by cron, but starting with version 0.7.9-2
+this facility is disabled by default as it can be rather costly.  To
+enable it, either run "dpkg-reconfigure backup-manager" and select the
+desired cron frequency, or copy the provided template file manually by
+running the following command:
+
+install /usr/share/backup-manager/backup-manager.cron.tpl /etc/cron.daily/backup-manager
+
+Replace cron.daily by cron.weekly or cron.monthly if you want less
+frequent backups.
+
 Notes for the Amazon S3 upload method
 ---------------------------------------------------------------------
 
@@ -36,4 +50,4 @@ confirmation before overwriting.
 
  -- Alexis Sukrieh <sukria@sukria.net>
 
- -- Sven Joachim <svenjoac@gmx.de>, Sun, 12 Jul 2009 18:03:25 +0200
+ -- Sven Joachim <svenjoac@gmx.de>, Fri, 12 Feb 2010 20:13:12 +0100

@@ -165,7 +165,7 @@ _Description: Remote host's repository:
 Template: backup-manager/cron_frequency
 Type: select
 __Choices: never, daily, weekly, monthly
-Default: daily
+Default: never
 _Description: CRON frequency:
  Although backup-manager is designed to make daily archives, it can be run
  less frequently, like once a week or even once a month.
