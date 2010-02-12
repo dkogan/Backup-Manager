@@ -5,6 +5,8 @@ backup-manager (0.7.9-2) UNRELEASED; urgency=low
     (Closes: #567477).
   * Source /etc/backup-manager.conf from the config script if possible
     to correct possibly outdated debconf values (Closes: #569587).
+  * Bump ucf dependency to (>= 0.28), since that version introduced the
+    --debconf-ok option.
   * Upgrade Standards-Version to 3.8.4, no changes needed.
 
  -- Sven Joachim <svenjoac@gmx.de>  Fri, 12 Feb 2010 19:14:35 +0100
