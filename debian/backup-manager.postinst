@@ -232,7 +232,7 @@ case "$action" in
 
 	# now filling the conffile with the good values
 	tmpconf=$(mktemp)
-	cat $tplconffile | confsed > $tmpconf
+	confsed < $tplconffile > $tmpconf
 	replace_file $tmpconf $conffile || exit 8
 	rm -f $tmpconf
 
