@@ -8,6 +8,9 @@ backup-manager (0.7.9-2) UNRELEASED; urgency=low
   * Do not install our possibly very expensive cron script by default
     (Closes: #518707), and mention in README.Debian how to enable it.
     Existing installations should not be affected.
+  * Allow tar.lz (LZMA compressed tarballs) as archive filetype via debconf.
+    Support for this filetype had been introduced in 0.7.5, but could
+    only be enabled by manually editing /etc/backup-manager.conf.
   * Bump ucf dependency to (>= 0.28), since that version introduced the
     --debconf-ok option.
   * Upgrade Standards-Version to 3.8.4, no changes needed.

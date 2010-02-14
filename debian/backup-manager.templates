@@ -10,7 +10,7 @@ _Description: Archives location:
 
 Template: backup-manager/filetype
 Type: select
-Choices: tar, tar.gz, tar.bz2, zip, dar
+Choices: tar, tar.gz, tar.bz2, tar.lz, zip, dar
 Default: tar.gz
 _Description: Archives storage format:
 
