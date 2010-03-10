@@ -21,7 +21,7 @@ case "$1" in
         
         # Remove the default conffile from ucf's database
         # only if ucf is available at the time of the purge.
-        if [ -x /usr/bin/ucf ]; then
+        if  which ucf >/dev/null; then
             ucf --purge /etc/backup-manager.conf
         fi
         
