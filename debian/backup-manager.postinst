@@ -21,7 +21,7 @@ replace_file()
 			mv $file_source $file_dest || exit 10
 		else
 			cp $file_dest ${file_dest}.old
-			ucf --debconf-ok $file_source $file_dest || exit 11
+			ucf --debconf-ok --three-way $file_source $file_dest || exit 11
 		fi
 	fi
 }
