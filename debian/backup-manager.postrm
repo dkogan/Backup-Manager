@@ -24,6 +24,9 @@ case "$1" in
         if  which ucf >/dev/null; then
             ucf --purge /etc/backup-manager.conf
         fi
+        if  which ucfr >/dev/null; then
+            ucfr --purge backup-manager /etc/backup-manager.conf
+        fi
         
         # Remove possible conffiles
         rm -f /etc/backup-manager.conf /etc/backup-manager.conf.old \

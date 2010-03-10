@@ -230,6 +230,9 @@ case "$action" in
 	fi
 	
 
+	# register our conffile in ucf
+	ucfr backup-manager $conffile
+
 	# now filling the conffile with the good values
 	tmpconf=$(mktemp)
 	confsed < $tplconffile > $tmpconf
