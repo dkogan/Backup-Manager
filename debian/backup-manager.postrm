@@ -26,12 +26,8 @@ case "$1" in
         fi
         
         # Remove possible conffiles
-        for conffile in backup-manager.conf.dpkg-dist backup-manager.conf.old backup-manager.conf backup-manager.conf.ucf-dist
-        do
-            if [ -e /etc/$conffile ]; then
-                rm -f /etc/$conffile
-            fi
-        done
+        rm -f /etc/backup-manager.conf /etc/backup-manager.conf.old \
+	      /etc/backup-manager.conf.ucf-dist /etc/backup-manager.conf.ucf-old
 
         # Remove the cron script if found
         for crondir in cron.d cron.daily cron.monthly cron.weekly

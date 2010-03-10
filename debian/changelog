@@ -8,6 +8,7 @@ backup-manager (0.7.9-2) unstable; urgency=low
   * Do not install our possibly very expensive cron script by default
     (Closes: #518707), and mention in README.Debian how to enable it.
     Existing installations should not be affected.
+  * Remove /etc/backup-manager.conf.ucf-old on purge.
   * Allow tar.lz (LZMA compressed tarballs) as archive filetype via debconf.
     Support for this filetype had been introduced in 0.7.5, but could
     only be enabled by manually editing /etc/backup-manager.conf.
@@ -15,7 +16,7 @@ backup-manager (0.7.9-2) unstable; urgency=low
     --debconf-ok option.
   * Upgrade Standards-Version to 3.8.4, no changes needed.
 
- -- Sven Joachim <svenjoac@gmx.de>  Sun, 14 Feb 2010 10:49:49 +0100
+ -- Sven Joachim <svenjoac@gmx.de>  Wed, 10 Mar 2010 21:08:53 +0100
 
 backup-manager (0.7.9-1) unstable; urgency=high
 
