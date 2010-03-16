@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: backup-manager\n"
-"Report-Msgid-Bugs-To: sukria@debian.org\n"
+"Report-Msgid-Bugs-To: backup-manager@packages.debian.org\n"
 "POT-Creation-Date: 2006-10-05 14:26+0200\n"
 "PO-Revision-Date: 2009-03-11 14:43+0900\n"
 "Last-Translator: Eder L. Marques <eder@edermarques.net>\n"

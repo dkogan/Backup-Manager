@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: backup-manager_0.7.7-1_sv\n"
-"Report-Msgid-Bugs-To: sukria@debian.org\n"
+"Report-Msgid-Bugs-To: backup-manager@packages.debian.org\n"
 "POT-Creation-Date: 2006-10-05 14:26+0200\n"
 "PO-Revision-Date: 2008-07-24 18:34+0200\n"
 "Last-Translator: Martin Ågren <martin.agren@gmail.com>\n"

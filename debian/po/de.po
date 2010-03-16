@@ -1,12 +1,12 @@
 # backup-manager po-debconf translation to German
-# Copyright (C) 2005, 2006 Alexis Sukria <sukria@debian.org>
+# Copyright (C) 2005, 2006 Alexis Sukria <backup-manager@packages.debian.org>
 # This file is distributed under the same license as the backup-manager package.
 # Andreas "Jimmy" Gredler <jimmy@backup-manager.org>, 2005.
 # Sven Joachim <svenjoac@gmx.de>, 2005, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: backup-manager 0.7.5\n"
-"Report-Msgid-Bugs-To: sukria@debian.org\n"
+"Report-Msgid-Bugs-To: backup-manager@packages.debian.org\n"
 "POT-Creation-Date: 2006-10-05 14:26+0200\n"
 "PO-Revision-Date: 2006-09-29 18:45+0200\n"
 "Last-Translator: Sven Joachim <svenjoac@gmx.de>\n"
