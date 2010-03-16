@@ -4,6 +4,8 @@ backup-manager (0.7.9-3) UNRELEASED; urgency=low
   * Associate /etc/backup-manager.conf with backup-manager via ucfr.
   * Bump ucf dependency to (>= 2.009), since that version introduced the
     ucfr command.
+  * Update Brazilian Portuguese debconf translation, thanks to
+    Eder L. Marques (Closes: #574147).
 
  -- Sven Joachim <svenjoac@gmx.de>  Tue, 16 Mar 2010 22:05:37 +0100
 
