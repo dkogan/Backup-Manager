@@ -1,4 +1,4 @@
-backup-manager (0.7.9-3) UNRELEASED; urgency=low
+backup-manager (0.7.9-3) unstable; urgency=low
 
   * Remove /etc/backup-manager.conf.ucf-old on purge.
   * Associate /etc/backup-manager.conf with backup-manager via ucfr.
@@ -7,7 +7,7 @@ backup-manager (0.7.9-3) UNRELEASED; urgency=low
   * Update Brazilian Portuguese debconf translation, thanks to
     Eder L. Marques (Closes: #574147).
 
- -- Sven Joachim <svenjoac@gmx.de>  Tue, 16 Mar 2010 22:05:37 +0100
+ -- Sven Joachim <svenjoac@gmx.de>  Wed, 17 Mar 2010 17:10:47 +0100
 
 backup-manager (0.7.9-2) unstable; urgency=low
 
