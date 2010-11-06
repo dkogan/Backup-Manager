@@ -1,7 +1,6 @@
 backup-manager (0.7.9-4) UNRELEASED; urgency=low
 
-  * Add debian/source/format file containing "1.0"; I am not quite
-    comfortable with the 3.0 (quilt) format yet.
+  * Explicitly state source format 1.0 in debian/source/format.
 
  -- Sven Joachim <svenjoac@gmx.de>  Sun, 28 Mar 2010 20:53:30 +0200
 
