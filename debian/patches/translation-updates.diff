@@ -4,27 +4,31 @@ Description: The program translations have been updated.
 Author: Sven Joachim <svenjoac@gmx.de>
 
 ---
- po/cs.po |   81 ++++++++++++++++++++++++++++++++++++++-------------------------
- po/de.po |   81 ++++++++++++++++++++++++++++++++++++++-------------------------
- po/es.po |   81 ++++++++++++++++++++++++++++++++++++++-------------------------
- po/fr.po |   81 ++++++++++++++++++++++++++++++++++++++-------------------------
- po/it.po |   81 ++++++++++++++++++++++++++++++++++++++-------------------------
- po/nl.po |   81 ++++++++++++++++++++++++++++++++++++++-------------------------
- po/vi.po |   81 ++++++++++++++++++++++++++++++++++++++-------------------------
- 7 files changed, 343 insertions(+), 224 deletions(-)
+ po/cs.po |   82 +++++++++++++++++++++++++++++-------------------
+ po/de.po |   85 ++++++++++++++++++++++++++++++--------------------
+ po/es.po |   86 ++++++++++++++++++++++++++++++--------------------
+ po/fr.po |   92 ++++++++++++++++++++++++++++++++----------------------
+ po/it.po |   82 +++++++++++++++++++++++++++++-------------------
+ po/nl.po |   82 +++++++++++++++++++++++++++++-------------------
+ po/vi.po |  107 +++++++++++++++++++++++++++++++++++++--------------------------
+ 7 files changed, 374 insertions(+), 242 deletions(-)
 
 --- a/po/cs.po
 +++ b/po/cs.po
-@@ -7,7 +7,7 @@
+@@ -7,10 +7,11 @@
  msgstr ""
  "Project-Id-Version: backup-manager\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2009-07-15 20:27+0200\n"
-+"POT-Creation-Date: 2010-01-20 19:43+0100\n"
++"POT-Creation-Date: 2010-11-06 19:45+0100\n"
  "PO-Revision-Date: 2006-09-05 22:14+0200\n"
  "Last-Translator: Miroslav Kure <kurem@debian.cz>\n"
  "Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
-@@ -220,94 +220,94 @@
++"Language: cs\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+@@ -220,94 +221,94 @@
  msgid "The archive type \"dar\" depends on the tool \"$dar\"."
  msgstr "Typ archivu \"dar\" závisí na nástroji \"$dar\"."
  
@@ -139,7 +143,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgid "Cannot create archive."
  msgstr "Nemohu vytvořit archiv."
  
-@@ -405,8 +405,10 @@
+@@ -405,8 +406,10 @@
  msgstr "Vypaluji celé archivy."
  
  #: ../lib/burning-methods.sh:236
@@ -152,7 +156,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr "Zkouším vypálit $BM_REPOSITORY_ROOT ($size MB) v interaktivním režimu."
  
  #: ../lib/burning-methods.sh:267
-@@ -663,14 +665,29 @@
+@@ -663,14 +666,29 @@
  msgid "$file is a duplicate of $file_to_create (using symlink)."
  msgstr "$file je kopií $file_to_create (používám symbolický odkaz)."
  
@@ -184,7 +188,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #: ../lib/md5sum.sh:30
  msgid "Internal error: bad usage of function get_md5sum_from_file()"
  msgstr "Vnitřní chyba: chybné použití funkce get_md5sum_from_file()"
-@@ -685,12 +702,12 @@
+@@ -685,12 +703,12 @@
  msgid "Archive given does not exist in the repository: $archive"
  msgstr "Zadaný archiv v úložišti neexistuje: $archive"
  
@@ -199,7 +203,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #, sh-format
  msgid ""
  "The configuration key \"$deprecated_key\" is deprecated, you should rename "
-@@ -699,27 +716,27 @@
+@@ -699,27 +717,27 @@
  "Konfigurační klíč \"$deprecated_key\" je zastaralý, měli byste jej "
  "přejmenovat na \"$new_key\". Používám \"$deprecated_value\"."
  
@@ -234,16 +238,20 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr ""
 --- a/po/de.po
 +++ b/po/de.po
-@@ -9,7 +9,7 @@
+@@ -9,10 +9,11 @@
  msgstr ""
  "Project-Id-Version: backup-manager 0.7.8\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2009-07-15 20:27+0200\n"
-+"POT-Creation-Date: 2010-01-20 19:43+0100\n"
++"POT-Creation-Date: 2010-11-06 19:45+0100\n"
  "PO-Revision-Date: 2009-07-11 22:42+0200\n"
  "Last-Translator: Sven Joachim <svenjoac@gmx.de>\n"
  "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
-@@ -227,18 +227,18 @@
++"Language: de\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+@@ -227,18 +228,18 @@
  msgid "The archive type \"dar\" depends on the tool \"$dar\"."
  msgstr "Der Archivtyp »dar« hängt vom Werkzeug »$dar« ab."
  
@@ -266,7 +274,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #, sh-format
  msgid ""
  "The encryption is not yet possible with \"$BM_TARBALL_FILETYPE\" archives."
-@@ -246,82 +246,82 @@
+@@ -246,82 +247,82 @@
  "Die Verschlüsselung ist mit »$BM_TARBALL_FILETYPE«-Archiven noch nicht "
  "möglich. "
  
@@ -365,7 +373,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgid "Cannot create archive."
  msgstr "Kann Archiv nicht anlegen."
  
-@@ -420,8 +420,10 @@
+@@ -420,8 +421,10 @@
  msgstr "Brennen der gesamten Archive."
  
  #: ../lib/burning-methods.sh:236
@@ -378,7 +386,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr ""
  "Versuche $BM_REPOSITORY_ROOT ($size MB) im interaktiven Modus zu brennen."
  
-@@ -683,14 +685,29 @@
+@@ -683,14 +686,29 @@
  msgid "$file is a duplicate of $file_to_create (using symlink)."
  msgstr "$file ist ein Duplikat von $file_to_create (verwende Symlink)."
  
@@ -410,7 +418,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #: ../lib/md5sum.sh:30
  msgid "Internal error: bad usage of function get_md5sum_from_file()"
  msgstr "Interner Fehler: falscher Aufruf der Funktion get_md5sum_from_file()"
-@@ -705,12 +722,12 @@
+@@ -705,12 +723,13 @@
  msgid "Archive given does not exist in the repository: $archive"
  msgstr "Angegebenes Archiv existiert nicht im Depot: $archive"
  
@@ -418,14 +426,16 @@ Author: Sven Joachim <svenjoac@gmx.de>
 +#: ../lib/sanitize.sh:31
  #, sh-format
  msgid "The configuration key $key is not set, using \"$default\"."
- msgstr "Die Konfigurationsvariable $key ist nicht gesetzt, verwende »$default«."
+-msgstr "Die Konfigurationsvariable $key ist nicht gesetzt, verwende »$default«."
++msgstr ""
++"Die Konfigurationsvariable $key ist nicht gesetzt, verwende »$default«."
  
 -#: ../lib/sanitize.sh:43
 +#: ../lib/sanitize.sh:42
  #, sh-format
  msgid ""
  "The configuration key \"$deprecated_key\" is deprecated, you should rename "
-@@ -719,33 +736,33 @@
+@@ -719,33 +738,33 @@
  "Die Konfigurationsvariable »$deprecated_key« ist veraltet, Sie sollten\n"
  "sie in »$new_key« umbenennen. Verwende »$deprecated_value«."
  
@@ -466,16 +476,31 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr ""
 --- a/po/es.po
 +++ b/po/es.po
-@@ -30,7 +30,7 @@
+@@ -30,10 +30,11 @@
  msgstr ""
  "Project-Id-Version: backup-manager 0.6\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2009-07-15 20:27+0200\n"
-+"POT-Creation-Date: 2010-01-20 19:43+0100\n"
++"POT-Creation-Date: 2010-11-06 19:45+0100\n"
  "PO-Revision-Date: 2005-12-14 13:07+0100\n"
  "Last-Translator: Carlos Galisteo de Cabo <cgalisteo@k-rolus.net>\n"
  "Language-Team: \n"
-@@ -247,98 +247,98 @@
++"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=ISO-8859-15\n"
+ "Content-Transfer-Encoding: 8bit\n"
+@@ -112,8 +113,8 @@
+ "The BM_TARBALL_FILETYPE conf key is set to \"bzip2\" but bzip2 is not "
+ "installed."
+ msgstr ""
+-"La clave de configuración BM_TARBALL_FILETYPE está establecida como \"bzip2"
+-"\" pero el programa bzip2 no está instalado."
++"La clave de configuración BM_TARBALL_FILETYPE está establecida como "
++"\"bzip2\" pero el programa bzip2 no está instalado."
+ 
+ #: ../lib/actions.sh:190
+ msgid ""
+@@ -247,98 +248,98 @@
  msgid "The archive type \"dar\" depends on the tool \"$dar\"."
  msgstr "El tipo de fichero \"dar\" depende de la herramienta \"$dar\"."
  
@@ -594,7 +619,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgid "Cannot create archive."
  msgstr "No se puede crear el fichero."
  
-@@ -437,8 +437,10 @@
+@@ -437,8 +438,10 @@
  msgstr "Grabando todos los archivos."
  
  #: ../lib/burning-methods.sh:236
@@ -607,7 +632,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr "Intentando grabar $BM_REPOSITORY_ROOT ($size MB) en modo interactivo."
  
  #: ../lib/burning-methods.sh:267
-@@ -699,14 +701,29 @@
+@@ -699,14 +702,29 @@
  msgid "$file is a duplicate of $file_to_create (using symlink)."
  msgstr "$file es un duplicado de $file_to_create (usando un enlace simbólico)"
  
@@ -639,7 +664,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #: ../lib/md5sum.sh:30
  msgid "Internal error: bad usage of function get_md5sum_from_file()"
  msgstr "Error interno: Mal uso de la función get_md5sum_from_file()"
-@@ -721,13 +738,13 @@
+@@ -721,13 +739,13 @@
  msgid "Archive given does not exist in the repository: $archive"
  msgstr "El fichero especificado no existe en el repositorio: $archive"
  
@@ -655,7 +680,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #, sh-format
  msgid ""
  "The configuration key \"$deprecated_key\" is deprecated, you should rename "
-@@ -736,31 +753,31 @@
+@@ -736,31 +754,31 @@
  "La opción \"$deprecated_key\" esta obsoleta, debería renombrarla \"$new_key"
  "\". Se usará  \"$deprecated_value\"."
  
@@ -694,16 +719,21 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr ""
 --- a/po/fr.po
 +++ b/po/fr.po
-@@ -5,7 +5,7 @@
+@@ -5,11 +5,12 @@
  msgstr ""
  "Project-Id-Version: backup-manager 0.7.5\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2009-07-15 20:27+0200\n"
-+"POT-Creation-Date: 2010-01-20 19:43+0100\n"
++"POT-Creation-Date: 2010-11-06 19:45+0100\n"
  "PO-Revision-Date: 2006-09-04 09:27+0100\n"
  "Last-Translator: Alexis Sukrieh <sukria@sukria.net>\n"
  "Language-Team: Debian l10n French Team <debian-l10n-french@lists.debian."
-@@ -215,18 +215,18 @@
+ "org>\n"
++"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=iso-8859-1\n"
+ "Content-Transfer-Encoding: 8bit\n"
+@@ -215,18 +216,18 @@
  msgid "The archive type \"dar\" depends on the tool \"$dar\"."
  msgstr "Le type d'archive ��dar�� d�pend de l'outil ��$dar��."
  
@@ -726,7 +756,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #, sh-format
  msgid ""
  "The encryption is not yet possible with \"$BM_TARBALL_FILETYPE\" archives."
-@@ -234,77 +234,77 @@
+@@ -234,77 +235,77 @@
  "Le cryptage n'est pas support� avec les archives de type "
  "��$BM_TARBALL_FILETYPE��."
  
@@ -820,7 +850,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgid "Cannot create archive."
  msgstr "Impossible de cr�er l'archive."
  
-@@ -402,8 +402,10 @@
+@@ -402,8 +403,10 @@
  msgstr "Gravure de toutes les archives."
  
  #: ../lib/burning-methods.sh:236
@@ -833,7 +863,27 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr ""
  "Tentative de gravure de $BM_REPOSITORY_ROOT ($size Mo) en mode interactif."
  
-@@ -668,14 +670,29 @@
+@@ -426,7 +429,8 @@
+ #: ../lib/burning-methods.sh:283
+ #, sh-format
+ msgid "Exporting archives to the DVD+R(W) disc in $BM_BURNING_DEVICE."
+-msgstr "Export des archives vers le disque DVD+R(W) sur ��$BM_BURNING_DEVICE��."
++msgstr ""
++"Export des archives vers le disque DVD+R(W) sur ��$BM_BURNING_DEVICE��."
+ 
+ #: ../lib/burning-methods.sh:287 ../lib/burning-methods.sh:307
+ #: ../lib/burning-methods.sh:319 ../lib/burning-methods.sh:325
+@@ -458,7 +462,8 @@
+ #: ../lib/burning-methods.sh:304
+ #, sh-format
+ msgid "Exporting archives to the DVD-R(W) disc in $BM_BURNING_DEVICE."
+-msgstr "Export des archives vers le disque DVD-R(W) sur ��$BM_BURNING_DEVICE��."
++msgstr ""
++"Export des archives vers le disque DVD-R(W) sur ��$BM_BURNING_DEVICE��."
+ 
+ #: ../lib/burning-methods.sh:312 ../lib/burning-methods.sh:330
+ #, sh-format
+@@ -668,14 +673,29 @@
  msgstr ""
  "$file est un doublon de $file_to_create (utilisation d'un lien symbolique)."
  
@@ -865,7 +915,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #: ../lib/md5sum.sh:30
  msgid "Internal error: bad usage of function get_md5sum_from_file()"
  msgstr ""
-@@ -691,13 +708,13 @@
+@@ -691,13 +711,13 @@
  msgid "Archive given does not exist in the repository: $archive"
  msgstr "L'archive demand�e n'existe pas dans le r�pertoire�: $archive"
  
@@ -881,7 +931,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #, sh-format
  msgid ""
  "The configuration key \"$deprecated_key\" is deprecated, you should rename "
-@@ -706,33 +723,33 @@
+@@ -706,33 +726,33 @@
  "La clef de configuration ��$deprecated_key�� est obsol�te, vous devez la "
  "renommer ��$new_key��. Utilisation de ��$deprecated_value��."
  
@@ -890,8 +940,10 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #, sh-format
  msgid "The configuration key $key is not set but $keymandatory is enabled."
  msgstr ""
- "La clef de configuration ��$key�� n'est pas d�finie mais ��$keymandatory�� est "
- "activ�e."
+-"La clef de configuration ��$key�� n'est pas d�finie mais ��$keymandatory�� est "
+-"activ�e."
++"La clef de configuration ��$key�� n'est pas d�finie mais ��$keymandatory�� "
++"est activ�e."
  
 -#: ../lib/sanitize.sh:100
 +#: ../lib/sanitize.sh:99
@@ -922,16 +974,20 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr ""
 --- a/po/it.po
 +++ b/po/it.po
-@@ -7,7 +7,7 @@
+@@ -7,10 +7,11 @@
  msgstr ""
  "Project-Id-Version: BM ITALIAN VERSION\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2009-07-15 20:27+0200\n"
-+"POT-Creation-Date: 2010-01-20 19:43+0100\n"
++"POT-Creation-Date: 2010-11-06 19:45+0100\n"
  "PO-Revision-Date: 2006-09-05 12:19+0100\n"
  "Last-Translator: Matteo Frare Barutti <xenon@ngi.it>\n"
  "Language-Team: ITALIAN <xenon@ngi.it>\n"
-@@ -223,17 +223,17 @@
++"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+@@ -223,17 +224,17 @@
  msgid "The archive type \"dar\" depends on the tool \"$dar\"."
  msgstr "Il tipo di archivio \"dar\" dipende dal tool \"$dar\"."
  
@@ -953,7 +1009,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #, sh-format
  msgid ""
  "The encryption is not yet possible with \"$BM_TARBALL_FILETYPE\" archives."
-@@ -241,78 +241,78 @@
+@@ -241,78 +242,78 @@
  "La crittografia non è ancora possibile con gli archivi  "
  "\"$BM_TARBALL_FILETYPE\"."
  
@@ -1048,7 +1104,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgid "Cannot create archive."
  msgstr "Impossibile creare l'archivio."
  
-@@ -410,8 +410,10 @@
+@@ -410,8 +411,10 @@
  msgstr "Masterizzo tutti gli archivi."
  
  #: ../lib/burning-methods.sh:236
@@ -1061,7 +1117,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr ""
  "Provo a masterizzare $BM_REPOSITORY_ROOT ($size MB) in modalità interattiva."
  
-@@ -675,14 +677,29 @@
+@@ -675,14 +678,29 @@
  msgid "$file is a duplicate of $file_to_create (using symlink)."
  msgstr "$file è un duplicato di $file_to_create (utilizzo un symlink)."
  
@@ -1093,7 +1149,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #: ../lib/md5sum.sh:30
  msgid "Internal error: bad usage of function get_md5sum_from_file()"
  msgstr "Errore interno: utilizzo errato della funzione get_md5sum_from_file()"
-@@ -697,13 +714,13 @@
+@@ -697,13 +715,13 @@
  msgid "Archive given does not exist in the repository: $archive"
  msgstr "L'archivio specificato non esiste nel repository: $archive"
  
@@ -1109,7 +1165,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #, sh-format
  msgid ""
  "The configuration key \"$deprecated_key\" is deprecated, you should rename "
-@@ -712,31 +729,31 @@
+@@ -712,31 +730,31 @@
  "La chiave di configurazione \"$deprecated_key\" è deprecato, è necessario "
  "rinominarlo in \"$new_key\". Utilizzo \"$deprecated_value\"."
  
@@ -1148,16 +1204,20 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr ""
 --- a/po/nl.po
 +++ b/po/nl.po
-@@ -7,7 +7,7 @@
+@@ -7,10 +7,11 @@
  msgstr ""
  "Project-Id-Version: 0.1\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2009-07-15 20:27+0200\n"
-+"POT-Creation-Date: 2010-01-20 19:43+0100\n"
++"POT-Creation-Date: 2010-11-06 19:45+0100\n"
  "PO-Revision-Date: 2006-09-06 10:12+0100\n"
  "Last-Translator: Bjorn Wetzels <Bjorn.Wetzels@planet.nl>\n"
  "Language-Team: DUTCH\n"
-@@ -220,94 +220,94 @@
++"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+@@ -220,94 +221,94 @@
  msgid "The archive type \"dar\" depends on the tool \"$dar\"."
  msgstr "Het archieftype \"dar\" is afhankelijjk van de tool \"$dar\"."
  
@@ -1272,7 +1332,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgid "Cannot create archive."
  msgstr "Kan archief niet maken"
  
-@@ -405,8 +405,10 @@
+@@ -405,8 +406,10 @@
  msgstr "Branden complete archieven"
  
  #: ../lib/burning-methods.sh:236
@@ -1285,7 +1345,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr ""
  "Proberen van branden $BM_REPOSITORY_ROOT ($size MB) in interactive mode."
  
-@@ -664,14 +666,29 @@
+@@ -664,14 +667,29 @@
  msgid "$file is a duplicate of $file_to_create (using symlink)."
  msgstr "$file is een duplicaat van $file_to_create (door symlink)"
  
@@ -1317,7 +1377,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #: ../lib/md5sum.sh:30
  msgid "Internal error: bad usage of function get_md5sum_from_file()"
  msgstr "Interne error: fout gebruik van functie get_md5sum_from_file()"
-@@ -686,12 +703,12 @@
+@@ -686,12 +704,12 @@
  msgid "Archive given does not exist in the repository: $archive"
  msgstr "opgegeven archief werd niet gevonden in de verzameling: $archive"
  
@@ -1332,7 +1392,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #, sh-format
  msgid ""
  "The configuration key \"$deprecated_key\" is deprecated, you should rename "
-@@ -700,29 +717,29 @@
+@@ -700,29 +718,29 @@
  "De configuratiesleutel  \"$deprecated_key\" is verouderd, hernoemdeze naar "
  "\"$new_key\". Gebruik nu \"$deprecated_value\""
  
@@ -1369,16 +1429,20 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgstr ""
 --- a/po/vi.po
 +++ b/po/vi.po
-@@ -6,7 +6,7 @@
+@@ -6,10 +6,11 @@
  msgstr ""
  "Project-Id-Version: backup-manager 0.6\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2009-07-15 20:27+0200\n"
-+"POT-Creation-Date: 2010-01-20 19:43+0100\n"
++"POT-Creation-Date: 2010-11-06 19:45+0100\n"
  "PO-Revision-Date: 2006-09-15 15:47+0930\n"
  "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
  "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
-@@ -224,93 +224,93 @@
++"Language: vi\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+@@ -224,93 +225,93 @@
  msgid "The archive type \"dar\" depends on the tool \"$dar\"."
  msgstr "Kiểu kho nén « dar » phụ thuộc vào công cụ « $dar »."
  
@@ -1492,20 +1556,53 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgid "Cannot create archive."
  msgstr "Không thể tạo kho."
  
-@@ -409,8 +409,10 @@
+@@ -409,15 +410,19 @@
  msgstr "Đang ghi toàn bộ kho."
  
  #: ../lib/burning-methods.sh:236
 -#, sh-format
 -msgid "Trying to burn $BM_REPOSITORY_ROOT ($size MB) in interactive mode."
+-msgstr "Đang thử ghi « $BM_REPOSITORY_ROOT » ($size MB) trong chế độ tương tác."
 +#, fuzzy, sh-format
 +msgid ""
 +"Trying to burn $BM_REPOSITORY_ROOT ($size MB) in interactive mode. You will "
 +"be prompted to enter insert a disc when needed"
- msgstr "Đang thử ghi « $BM_REPOSITORY_ROOT » ($size MB) trong chế độ tương tác."
++msgstr ""
++"Đang thử ghi « $BM_REPOSITORY_ROOT » ($size MB) trong chế độ tương tác."
  
  #: ../lib/burning-methods.sh:267
-@@ -681,14 +683,29 @@
+ #, sh-format
+ msgid "Redirecting burning logs into $logfile"
+ msgstr ""
+-"Đang chuyển hướng các bản ghi về ghi dữ liệu sang tập tin bản ghi « $logfile »"
++"Đang chuyển hướng các bản ghi về ghi dữ liệu sang tập tin bản ghi « $logfile "
++"»"
+ 
+ #: ../lib/burning-methods.sh:272
+ #, sh-format
+@@ -464,8 +469,8 @@
+ #, sh-format
+ msgid "Unable to blank the DVD-R(W) disc (check $logfile)."
+ msgstr ""
+-"Không thể xoá trắng đĩa DVD-R(W), hãy kiểm tra lại tập tin bản ghi « $logfile "
+-"»."
++"Không thể xoá trắng đĩa DVD-R(W), hãy kiểm tra lại tập tin bản ghi « "
++"$logfile »."
+ 
+ #: ../lib/burning-methods.sh:304
+ #, sh-format
+@@ -499,8 +504,8 @@
+ "The requested burning method is not supported, check BM_BURNING_METHOD in "
+ "$conffile"
+ msgstr ""
+-"Không hỗ trợ phương pháp ghi đã yêu cầu: hãy kiểm tra lại « BM_BURNING_METHOD "
+-"» trong tập tin cấu hình « $conffile »"
++"Không hỗ trợ phương pháp ghi đã yêu cầu: hãy kiểm tra lại « "
++"BM_BURNING_METHOD » trong tập tin cấu hình « $conffile »"
+ 
+ #: ../lib/burning-methods.sh:402
+ #, sh-format
+@@ -681,14 +686,29 @@
  "Tập tin « $file » là bản sao của tập tin « $file_to_create » (dùng liên kết "
  "tượng trưng)."
  
@@ -1537,7 +1634,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #: ../lib/md5sum.sh:30
  msgid "Internal error: bad usage of function get_md5sum_from_file()"
  msgstr "Lỗi nội bộ : dùng sai hàm « get_md5sum_from_file() »"
-@@ -703,12 +720,12 @@
+@@ -703,12 +723,12 @@
  msgid "Archive given does not exist in the repository: $archive"
  msgstr "Kho nén đã cho không nằm trong kho lưu: $archive"
  
@@ -1552,7 +1649,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #, sh-format
  msgid ""
  "The configuration key \"$deprecated_key\" is deprecated, you should rename "
-@@ -717,31 +734,31 @@
+@@ -717,31 +737,32 @@
  "Khóa cấu hình « $deprecated_key » bị phản đối nên bạn hãy thay đổi tên nó "
  "thành « $new_key ». Như thế thì đang sử dụng « $deprecated_value »."
  
@@ -1560,7 +1657,9 @@ Author: Sven Joachim <svenjoac@gmx.de>
 +#: ../lib/sanitize.sh:83
  #, sh-format
  msgid "The configuration key $key is not set but $keymandatory is enabled."
- msgstr "Khóa cấu hình « $key » chưa được đặt còn « $keymandatory » đã được bật."
+-msgstr "Khóa cấu hình « $key » chưa được đặt còn « $keymandatory » đã được bật."
++msgstr ""
++"Khóa cấu hình « $key » chưa được đặt còn « $keymandatory » đã được bật."
  
 -#: ../lib/sanitize.sh:100
 +#: ../lib/sanitize.sh:99
@@ -1575,8 +1674,10 @@ Author: Sven Joachim <svenjoac@gmx.de>
  #, sh-format
  msgid "Deprecated boolean, $key is set to \"no\", setting \"false\" instead."
  msgstr ""
- "Biểu thực bun bị phản đối, khóa « $key » được lập thành « nó » (không) nên lập "
- "nó thành « false » (sai) thay thế."
+-"Biểu thực bun bị phản đối, khóa « $key » được lập thành « nó » (không) nên lập "
+-"nó thành « false » (sai) thay thế."
++"Biểu thực bun bị phản đối, khóa « $key » được lập thành « nó » (không) nên "
++"lập nó thành « false » (sai) thay thế."
  
 -#: ../lib/sanitize.sh:128
 +#: ../lib/sanitize.sh:127
@@ -1589,3 +1690,14 @@ Author: Sven Joachim <svenjoac@gmx.de>
  msgid ""
  "BM_TARBALLINC_MASTERDATEVALUE should not be greater than 6, falling back to 0"
  msgstr ""
+@@ -780,8 +801,8 @@
+ "No gpg recipient given. Argument is mandatory if upload method ssh-gpg is "
+ "used."
+ msgstr ""
+-"Chưa nhập người nhận gpg. Đối số bắt buộc phải nhập nếu phương pháp tải lên « "
+-"ssh-gpg » được dùng."
++"Chưa nhập người nhận gpg. Đối số bắt buộc phải nhập nếu phương pháp tải lên "
++"« ssh-gpg » được dùng."
+ 
+ #: ../lib/upload-methods.sh:105
+ #, sh-format

@@ -1,5 +1,8 @@
 backup-manager (0.7.9-4) UNRELEASED; urgency=low
 
+  * Refresh patch translation-updates.diff, necessary since gettext 0.18
+    adds a new "Language:" header that caused a failure when unapplying
+    the patch (Closes: #602633).
   * Explicitly state source format 1.0 in debian/source/format.
 
  -- Sven Joachim <svenjoac@gmx.de>  Sun, 28 Mar 2010 20:53:30 +0200
