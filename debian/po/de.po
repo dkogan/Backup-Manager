@@ -1,5 +1,5 @@
 # backup-manager po-debconf translation to German
-# Copyright (C) 2005, 2006 Alexis Sukria <backup-manager@packages.debian.org>
+# Copyright (C) 2005, 2006 Alexis Sukria <sukria@backup-manager.org>
 # This file is distributed under the same license as the backup-manager package.
 # Andreas "Jimmy" Gredler <jimmy@backup-manager.org>, 2005.
 # Sven Joachim <svenjoac@gmx.de>, 2005, 2006.
