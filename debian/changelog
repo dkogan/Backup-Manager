@@ -5,10 +5,10 @@ backup-manager (0.7.9-4) UNRELEASED; urgency=low
     the patch (Closes: #602633).
   * Fill out the same "Language:" header in debian/po/*.po.
   * Explicitly state source format 1.0 in debian/source/format.
-  * Upgrade Standards-Version to 3.9.1, no changes needed.
+  * Upgrade Standards-Version to 3.9.2, no changes needed.
   * Update Vcs-* fields in debian/control, switching to collab-maint.
 
- -- Sven Joachim <svenjoac@gmx.de>  Sat, 06 Nov 2010 21:03:24 +0100
+ -- Sven Joachim <svenjoac@gmx.de>  Fri, 04 Nov 2011 18:25:45 +0100
 
 backup-manager (0.7.9-3) unstable; urgency=low
 
