@@ -4,7 +4,11 @@
 
 include /usr/share/quilt/quilt.make
 
-build: build-stamp
+build build-indep: build-stamp
+
+build-arch:
+# Nothing to be done here.
+
 build-stamp: $(QUILT_STAMPFN)
 	dh_testdir
 	touch $@
@@ -28,7 +32,7 @@ binary: binary-indep binary-arch
 binary-arch:
 # Nothing to be done here.
 
-binary-indep: build install
+binary-indep: build-indep install
 	dh_testdir
 	dh_testroot
 	dh_installman man/*.8
