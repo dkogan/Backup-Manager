@@ -4,6 +4,7 @@ backup-manager (0.7.9-4) UNRELEASED; urgency=low
     adds a new "Language:" header that caused a failure when unapplying
     the patch (Closes: #602633).
   * Fill out the same "Language:" header in debian/po/*.po.
+  * Drop findutils dependency, even the version in Etch is new enough.
   * Explicitly state source format 1.0 in debian/source/format.
   * Upgrade Standards-Version to 3.9.2, no changes needed.
   * Update lintian override for Lintian 2.5.
