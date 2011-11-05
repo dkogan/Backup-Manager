@@ -8,6 +8,7 @@ backup-manager (0.7.9-4) UNRELEASED; urgency=low
   * Explicitly state source format 1.0 in debian/source/format.
   * Upgrade Standards-Version to 3.9.2, no changes needed.
   * Update lintian override for Lintian 2.5.
+  * Update debian/watch to find the 0.7.10.1 release tarball.
   * Add build-indep and (empty) build-arch targets to debian/rules.
   * Update Vcs-* fields in debian/control, switching to collab-maint.
 
