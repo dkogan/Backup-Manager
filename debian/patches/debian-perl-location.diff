@@ -9,7 +9,7 @@ Forwarded: not-needed
 
 --- a/Makefile
 +++ b/Makefile
-@@ -30,7 +30,7 @@
+@@ -31,7 +31,7 @@
  
  # Overwrite that variable with the Perl vendorlib Config value if 
  # you package Backup Manager
@@ -17,4 +17,4 @@ Forwarded: not-needed
 +PERL5DIR?="$(DESTDIR)$(shell perl -MConfig -e 'print "$$Config{vendorlib}"')"
  
  # Some static paths, specific to backup-manager
- LIBDIR=$(DESTDIR)/usr/share/backup-manager
+ BINDIR=$(PREFIX)/bin

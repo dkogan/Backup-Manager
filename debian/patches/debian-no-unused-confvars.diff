@@ -20,7 +20,7 @@ Author: Sven Joachim <svenjoac@gmx.de>
  # Do you want to purge only the top-level directory or all
  # directories under BM_REPOSITORY_ROOT?
  export BM_REPOSITORY_RECURSIVEPURGE="false"
-@@ -219,11 +214,6 @@
+@@ -220,11 +215,6 @@
  # which compression format to use? (gzip or bzip2)
  export BM_MYSQL_FILETYPE="bzip2"
  
@@ -30,5 +30,5 @@ Author: Sven Joachim <svenjoac@gmx.de>
 -export BM_MYSQL_EXTRA_OPTIONS=""
 -
  ##############################################################
- # Backup method: svn
+ # Backup method: PostgreSQL
  #############################################################

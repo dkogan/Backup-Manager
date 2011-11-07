@@ -2,9 +2,8 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
 
   * New upstream release.
     - Adds a new "postgresql" backup method (Closes: #637743).
-  * Refresh patch translation-updates.diff, necessary since gettext 0.18
-    adds a new "Language:" header that caused a failure when unapplying
-    the patch (Closes: #602633).
+  * Refresh all Debian patches, including translation-updates.diff,
+    avoiding a failure when unapplying the patch (Closes: #602633).
   * Fill out the same "Language:" header in debian/po/*.po.
   * Drop findutils dependency, even the version in Etch is new enough.
   * Explicitly state source format 1.0 in debian/source/format.

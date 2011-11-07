@@ -10,7 +10,7 @@ Forwarded: not-needed
 
 --- a/backup-manager.conf.tpl
 +++ b/backup-manager.conf.tpl
-@@ -92,13 +92,14 @@
+@@ -93,13 +93,14 @@
  # tar, tar.gz, tar.bz2
  
  # Uncomment the following line if you want to enable encryption
@@ -27,11 +27,11 @@ Forwarded: not-needed
  
  
  ##############################################################
-@@ -141,17 +142,16 @@
+@@ -142,17 +143,16 @@
  
  # It's recommanded to use BM_TARBALL_TARGETS[] though.
  # Warning! You *must not* use both variables at the same time.
-+# NOTE: The Debian package will only update BM_TARBALL_DIRECTORIES 
++# NOTE: The Debian package will only update BM_TARBALL_DIRECTORIES
  
  # Paths without spaces in their name:
 -# export BM_TARBALL_DIRECTORIES="/etc /boot"
@@ -45,7 +45,7 @@ Forwarded: not-needed
 -
 -export BM_TARBALL_TARGETS
 +# declare -a BM_TARBALL_TARGETS
-+# BM_TARBALL_TARGETS[0]="/etc" 
++# BM_TARBALL_TARGETS[0]="/etc"
 +# BM_TARBALL_TARGETS[1]="/boot"
 +# export BM_TARBALL_TARGETS
  

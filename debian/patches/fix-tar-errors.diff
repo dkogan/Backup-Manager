@@ -9,7 +9,7 @@ Bug-Debian: http://bugs.debian.org/532976
 
 --- a/lib/backup-methods.sh
 +++ b/lib/backup-methods.sh
-@@ -629,7 +629,12 @@
+@@ -621,7 +621,12 @@
  
          # the common commandline
          *)
