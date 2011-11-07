@@ -1,4 +1,4 @@
-# Copyright � 2007 Rached Ben Mustapha
+# Copyright © 2007 Rached Ben Mustapha
 #
 # See the AUTHORS file for details.
 #
@@ -43,10 +43,10 @@ LOG_MESSAGE_INTERFACE="org.backupmanager.BackupManager.LogMessageNotify"
 SYSTEM_BUS_OBJECT="/org/backupmanager/instance/SystemInstance"
 USER_BUS_OBJECT="/org/backupmanager/instance/UserInstance/${USERNAME}"
 
-bm_dbus_init()
+function bm_dbus_init()
 {
     debug "bm_dbus_init()"
-    dbus_send=$(which dbus-send) || true
+    dbus_send=$(which dbus-send 2>/dev/null) || true
 
     if [ -x "${dbus_send}" ]; then
         if [ "${UID}" = "0" ]; then
@@ -63,7 +63,7 @@ bm_dbus_init()
     fi
 }
 
-bm_dbus_send_progress()
+function bm_dbus_send_progress()
 {
     local percentage label
     percentage=${1}
@@ -74,7 +74,7 @@ bm_dbus_send_progress()
     fi
 }
 
-bm_dbus_send_log_message()
+function bm_dbus_send_log_message()
 {
     local level message
     level=${1}
@@ -85,7 +85,7 @@ bm_dbus_send_log_message()
     fi
 }
 
-bm_dbus_send_event()
+function bm_dbus_send_event()
 {
     local event_name details
     event_name=${1}

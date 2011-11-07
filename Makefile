@@ -1,4 +1,4 @@
-# Copyright © 2005-2006 The Backup Manager Authors
+# Copyright © 2005-2010 The Backup Manager Authors
 # See the AUTHORS file for details.
 #
 # This program is free software; you can redistribute it and/or
@@ -27,15 +27,19 @@
 # Overwrite that variable if you need to prefix the destination 
 # (needed for vendors).
 DESTDIR?=
+PREFIX?=/usr
 
 # Overwrite that variable with the Perl vendorlib Config value if 
 # you package Backup Manager
 PERL5DIR?="$(DESTDIR)$(shell perl -MConfig -e 'print "$$Config{sitelib}"')"
 
 # Some static paths, specific to backup-manager
-LIBDIR=$(DESTDIR)/usr/share/backup-manager
+BINDIR=$(PREFIX)/bin
+SBINDIR=$(PREFIX)/sbin
+
+LIBDIR=$(DESTDIR)/$(PREFIX)/share/backup-manager
 CONTRIB=$(LIBDIR)/contrib
-SHAREDIR=$(DESTDIR)/usr/share/backup-manager
+SHAREDIR=$(DESTDIR)/$(PREFIX)/share/backup-manager
 SHFILES=\
 	lib/externals.sh \
 	lib/dialog.sh \
@@ -53,7 +57,7 @@ SHFILES=\
 	lib/md5sum.sh 
 
 # For the backup-manager-doc package
-DOCDIR		 = $(DESTDIR)/usr/share/doc/backup-manager
+DOCDIR		 = $(DESTDIR)/$(PREFIX)/share/doc/backup-manager
 DOCHTMLDIR	 = $(DOCDIR)/user-guide.html
 DOCPDF		 = doc/user-guide.pdf
 DOCHTMLFILES = doc/user-guide.html/*.html
@@ -78,10 +82,10 @@ install_doc:
 	@echo -e "\n*** Building the User Guide ***\n"
 	$(MAKE) -C doc DESTDIR=$(DESTDIR)
 	install -d $(DOCDIR)
-	install --owner=root --group=root --mode=0644 $(DOCPDF) $(DOCDIR)
-	install --owner=root --group=root --mode=0644 $(DOCTXT) $(DOCDIR)
+	install -o root -g 0 -m 0644 $(DOCPDF) $(DOCDIR)
+	install -o root -g 0 -m 0644 $(DOCTXT) $(DOCDIR)
 	install -d $(DOCHTMLDIR)
-	install --owner=root --group=root --mode=0644 $(DOCHTMLFILES) $(DOCHTMLDIR)
+	install -o root -g 0 -m 0644 $(DOCHTMLFILES) $(DOCHTMLDIR)
 
 # The translation stuff
 install_po:
@@ -91,22 +95,22 @@ install_po:
 install_lib:
 	@echo -e "\n*** Installing libraries ***\n"
 	install -d $(LIBDIR)
-	install --owner=root --group=root --mode=0644 $(SHFILES) $(LIBDIR)
+	install -o root -g 0 -m 0644 $(SHFILES) $(LIBDIR)
 
 # The main stuff to build the backup-manager package
 install_bin:
 	@echo -e "\n*** Installing scripts ***\n"
-	mkdir -p $(DESTDIR)/usr/sbin
-	mkdir -p $(DESTDIR)/usr/bin
+	mkdir -p $(DESTDIR)/$(SBINDIR)
+	mkdir -p $(DESTDIR)/$(BINDIR)
 	mkdir -p $(SHAREDIR)
-	install --owner=root --group=root --mode=0755 backup-manager $(DESTDIR)/usr/sbin
-	install --owner=root --group=root --mode=0755 backup-manager-purge $(DESTDIR)/usr/bin
-	install --owner=root --group=root --mode=0755 backup-manager-upload $(DESTDIR)/usr/bin
-	install --owner=root --group=root --mode=0644 backup-manager.conf.tpl $(SHAREDIR)
+	install -o root -g 0 -m 0755 backup-manager $(DESTDIR)/$(SBINDIR)
+	install -o root -g 0 -m 0755 backup-manager-purge $(DESTDIR)/$(BINDIR)
+	install -o root -g 0 -m 0755 backup-manager-upload $(DESTDIR)/$(BINDIR)
+	install -o root -g 0 -m 0644 backup-manager.conf.tpl $(SHAREDIR)
 	
 	mkdir -p $(PERL5DIR)
 	mkdir -p $(PERL5DIR)/BackupManager
-	install --owner=root --group=root --mode=0644 BackupManager/*.pm $(PERL5DIR)/BackupManager
+	install -o root -g 0 -m 0644 BackupManager/*.pm $(PERL5DIR)/BackupManager
 
 # Building manpages
 man/backup-manager-upload.8:
@@ -123,8 +127,8 @@ manpages-stamp: man/backup-manager-upload.8 man/backup-manager-purge.8
 # Installing the man pages.
 install_man: manpages-stamp
 	@echo -e "\n*** Installing man pages ***\n"
-	install -d $(DESTDIR)/usr/share/man/man8/
-	install --owner=root --group=root --mode=0644 man/*.8 $(DESTDIR)/usr/share/man/man8/
+	install -d $(DESTDIR)/$(PREFIX)/share/man/man8/
+	install -o root -g 0 -m 0644 man/*.8 $(DESTDIR)/$(PREFIX)/share/man/man8/
 
 testperldir:
 	@echo "PERL5DIR: $(PERL5DIR)"

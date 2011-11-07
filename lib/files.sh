@@ -1,4 +1,4 @@
-# Copyright © 2005-2006 Alexis Sukrieh
+# Copyright © 2005-2010 Alexis Sukrieh
 #
 # See the AUTHORS file for details.
 #
@@ -58,7 +58,7 @@ function get_dir_name()
         do
             parent=$directory
         done
-        dirname=$directory
+        dirname=-$directory
         export IFS=$OLDIFS
     else
         echo ""

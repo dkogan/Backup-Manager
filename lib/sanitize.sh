@@ -1,5 +1,5 @@
-#!/bin/bash
-# Copyright © 2005-2007 Alexis Sukrieh
+#! /usr/bin/env bash
+# Copyright © 2005-2010 Alexis Sukrieh
 #
 # See the AUTHORS file for details.
 #
@@ -75,7 +75,7 @@ function confkey_require()
     fi
 }
 
-confkey_error()
+function confkey_error()
 {
     key="$1"
     keymandatory="$2"
@@ -94,17 +94,20 @@ function replace_deprecated_booleans()
     do
         key=$(echo "$line" | awk -F '=' '{print $1}')
         value=$(echo "$line" | awk -F '=' '{print $2}')
-        if [[ -n "$key" ]]; then
-            if [[ $(expr match "$key" BM_) -gt 0 ]]; then
-                if [[ "$value" = "yes" ]]; then
-                    warning "Deprecated boolean, \$key is set to \"yes\", setting \"true\" instead."
-                    nb_warnings=$(($nb_warnings + 1))
-                    eval "export $key=\"true\""
-                fi
-                if [[ "$value" = "no" ]]; then
-                    warning "Deprecated boolean, \$key is set to \"no\", setting \"false\" instead."
-                    nb_warnings=$(($nb_warnings + 1))
-                    eval "export $key=\"false\""
+        # Be sure to not treat BM_ARCHIVE_PREFIX as a deprecated boolean
+        if [[ "$key" != "BM_ARCHIVE_PREFIX" ]]; then
+            if [[ -n "$key" ]]; then
+                if [[ $(expr match "$key" BM_) -gt 0 ]]; then
+                    if [[ "$value" = "yes" ]]; then
+                        warning "Deprecated boolean, \$key is set to \"yes\", setting \"true\" instead."
+                        nb_warnings=$(($nb_warnings + 1))
+                        eval "export $key=\"true\""
+                    fi
+                    if [[ "$value" = "no" ]]; then
+                        warning "Deprecated boolean, \$key is set to \"no\", setting \"false\" instead."
+                        nb_warnings=$(($nb_warnings + 1))
+                        eval "export $key=\"false\""
+                    fi
                 fi
             fi
         fi
@@ -163,8 +166,16 @@ if [[ "$BM_ARCHIVE_METHOD" = "tarball-incremental" ]] &&
 fi
 if [[ -n "$BM_TARBALLINC_MASTERDATEVALUE" ]]; then
     if [[ "$BM_TARBALLINC_MASTERDATEVALUE" -gt "6" ]]; then
-        warning "BM_TARBALLINC_MASTERDATEVALUE should not be greater than 6, falling back to 0"
-        export BM_TARBALLINC_MASTERDATEVALUE="0"
+        if [[ "$BM_TARBALLINC_MASTERDATETYPE" = "weekly" ]]; then
+            warning "BM_TARBALLINC_MASTERDATEVALUE should not be greater than 6, falling back to 0"
+            export BM_TARBALLINC_MASTERDATEVALUE="0"
+        else
+        # monthly
+            if [[ "$BM_TARBALLINC_MASTERDATEVALUE" -gt "31" ]]; then
+                warning "BM_TARBALLINC_MASTERDATEVALUE should not be greater than 31, falling back to 1"
+                export BM_TARBALLINC_MASTERDATEVALUE="1"
+            fi
+        fi
     fi
 fi
 

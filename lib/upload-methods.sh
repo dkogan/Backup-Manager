@@ -1,4 +1,4 @@
-# Copyright (C) 2005 The Backup Manager Authors
+# Copyright (C) 2010 The Backup Manager Authors
 #
 # See the AUTHORS file for details.
 #
@@ -20,7 +20,7 @@
 
 # Reads the configuration keys in order to set the 
 # environement (hosts, sources, ...)
-bm_upload_init()
+function bm_upload_init()
 {
     hosts="$1"
     bm_upload_hosts=$(echo $hosts| sed -e 's/ /,/g')
@@ -33,7 +33,7 @@ bm_upload_init()
 }
 
 # Manages SSH uploads
-bm_upload_ssh()
+function bm_upload_ssh()
 {
     info "Using the upload method \"ssh\"."
     
@@ -71,7 +71,7 @@ bm_upload_ssh()
 
 
 # Manages encrypted SSH uploads
-bm_upload_ssh_gpg()
+function bm_upload_ssh_gpg()
 {
     info "Using the upload method \"ssh-gpg\"."
     
@@ -107,7 +107,7 @@ bm_upload_ssh_gpg()
 }
 
 # Manages FTP uploads
-bm_upload_ftp()
+function bm_upload_ftp()
 {
     info "Using the upload method \"ftp\"."
 
@@ -127,9 +127,17 @@ bm_upload_ftp()
     if [[ "$BM_UPLOAD_FTP_PURGE" = "true" ]]; then
             ftp_purge_switch="--ftp-purge"
     fi
+
+    # Additionnal flag for the FTP method
+    ftp_test_switch=""
+    if [[ "$BM_UPLOAD_FTP_TEST" = "true" ]]; then
+            ftp_test_switch="--ftp-test"
+		# create the test file
+		$dd if=/dev/zero of=$BM_REPOSITORY_ROOT/2mb_file.dat bs=1M count=2 > /dev/null 2>&1
+    fi
  
     logfile="$(mktemp ${BM_TEMP_DIR}/bmu-log.XXXXXX)"
-    $bmu $v_switch $ftp_purge_switch \
+    $bmu $v_switch $ftp_purge_switch $ftp_test_switch \
         -m="ftp" \
         -h="$bm_upload_hosts" \
         -u="$BM_UPLOAD_FTP_USER" \
@@ -141,7 +149,7 @@ bm_upload_ftp()
 }
 
 # Manages S3 uploads
-bm_upload_s3()
+function bm_upload_s3()
 {
     info "Using the upload method \"S3\"."
 
@@ -169,7 +177,7 @@ bm_upload_s3()
     rm -f $logfile
 }
 
-_exec_rsync_command()
+function _exec_rsync_command()
 {
     info "Uploading \$directory to \${host}:\${BM_UPLOAD_RSYNC_DESTINATION}"
     logfile=$(mktemp ${BM_TEMP_DIR}/bm-rsync.XXXXXX)
@@ -200,7 +208,7 @@ _exec_rsync_command()
 }
 
 # Manages RSYNC uploads
-bm_upload_rsync_common()
+function bm_upload_rsync_common()
 {
     bm_upload_hosts="$BM_UPLOAD_HOSTS $BM_UPLOAD_RSYNC_HOSTS"
     bm_upload_init "$bm_upload_hosts"
@@ -236,14 +244,14 @@ bm_upload_rsync_common()
     done
 }
 
-bm_upload_rsync()
+function bm_upload_rsync()
 {
   info "Using the upload method \"rsync\"."
   RSYNC_SUBDIR=""
   bm_upload_rsync_common
 }
 
-bm_upload_rsync_snapshots()
+function bm_upload_rsync_snapshots()
 {
   info "Using the upload method \"rsync-snapshots\"."
   RSYNC_SUBDIR=${TODAY}

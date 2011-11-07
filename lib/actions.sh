@@ -1,4 +1,4 @@
-# Copyright © 2005-2006 Alexis Sukrieh
+# Copyright © 2005-2010 Alexis Sukrieh
 #
 # See the AUTHORS file for details.
 #
@@ -30,6 +30,9 @@ function make_archives()
         case $method in
         mysql)
             backup_method_mysql "$method"
+        ;;
+        pgsql)
+            backup_method_pgsql "$method"
         ;;
         tarball|tarball-incremental)
             backup_method_tarball "$method"
@@ -182,7 +185,12 @@ function check_filetypes()
         ;;
         "tar.bz2" )
             if [[ ! -x "$bzip" ]]; then
-                error "The BM_TARBALL_FILETYPE conf key is set to \"bzip2\" but bzip2 is not installed."
+                error "The BM_TARBALL_FILETYPE conf key is set to \"tar.bz2\" but bzip2 is not installed."
+            fi
+        ;;
+         "tar.lz" )
+            if [[ ! -x "$lzma" ]]; then
+                error "The BM_TARBALL_FILETYPE conf key is set to \"tar.lz\" but lzma is not installed."
             fi
         ;;
         "dar" )
@@ -200,7 +208,7 @@ function create_directories()
     if [[ ! -d $BM_REPOSITORY_ROOT ]]
     then
         info "The repository \$BM_REPOSITORY_ROOT does not exist, creating it."
-        mkdir $BM_REPOSITORY_ROOT
+        mkdir -p $BM_REPOSITORY_ROOT
     fi
 
     # for security reason, the repository should not be world readable

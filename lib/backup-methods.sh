@@ -1,4 +1,4 @@
-# Copyright (C) 2005 The Backup Manager Authors
+# Copyright (C) 2010 The Backup Manager Authors
 #
 # See the AUTHORS file for details.
 #
@@ -129,7 +129,8 @@ function handle_tarball_error()
 
 function __exec_meta_command()
 {
-    command="$nice_bin -n $BM_ARCHIVE_NICE_LEVEL $1"
+    nice="$nice_bin -n $BM_ARCHIVE_NICE_LEVEL"
+    command="$nice $1"
     file_to_create="$2"
     compress="$3"
     debug "__exec_meta_command ($command, $file_to_create, $compress)"
@@ -165,11 +166,11 @@ function __exec_meta_command()
                 debug "$command > $file_to_create 2> $logfile"
                 tail_logfile "$logfile"
                 if [[ "$BM_ENCRYPTION_METHOD" = "gpg" ]]; then
-                    $command 2>$logfile | $compress_bin -f -q -9 2>$logfile | $gpg $BM__GPG_HOMEDIR -r "$BM_ENCRYPTION_RECIPIENT" -e > $file_to_create.$ext.gpg 2> $logfile
-                    debug "$command | $compress_bin -f -q -9 | $gpg $BM__GPG_HOMEDIR -r \"$BM_ENCRYPTION_RECIPIENT\" -e > $file_to_create.$ext.gpg 2> $logfile"
+                    $command 2>$logfile | $nice $compress_bin -f -q -9 2>$logfile | $nice $gpg $BM__GPG_HOMEDIR -r "$BM_ENCRYPTION_RECIPIENT" -e > $file_to_create.$ext.gpg 2> $logfile
+                    debug "$command | $nice $compress_bin -f -q -9 | $nice $gpg $BM__GPG_HOMEDIR -r \"$BM_ENCRYPTION_RECIPIENT\" -e > $file_to_create.$ext.gpg 2> $logfile"
                     file_to_create="$file_to_create.$ext.gpg"
                 else
-                    $command 2> $logfile | $compress_bin -f -q -9 > $file_to_create.$ext 2> $logfile
+                    $command 2> $logfile | $nice $compress_bin -f -q -9 > $file_to_create.$ext 2> $logfile
                     file_to_create="$file_to_create.$ext"
                 fi
 
@@ -191,7 +192,7 @@ function __exec_meta_command()
             debug "$command 1> $file_to_create 2>$logfile"
             tail_logfile "$logfile"
             if [[ "$BM_ENCRYPTION_METHOD" = "gpg" ]]; then
-                $command | $gpg $BM__GPG_HOMEDIR -r "$BM_ENCRYPTION_RECIPIENT" -e > $file_to_create.gpg 2> $logfile
+                $command | $nice $gpg $BM__GPG_HOMEDIR -r "$BM_ENCRYPTION_RECIPIENT" -e > $file_to_create.gpg 2> $logfile
                 file_to_create="$file_to_create.gpg"
             else
                 $command 1> $file_to_create 2>$logfile
@@ -483,6 +484,10 @@ function __get_backup_tarball_remote_command()
             __get_flags_tar_blacklist "$target"
             command="$tar $blacklist $dumpsymlinks $BM_TARBALL_EXTRA_OPTIONS -p -c -j "$target""
         ;;
+        tar.lz) 
+            __get_flags_tar_blacklist "$target"
+            command="$tar $blacklist $dumpsymlinks $BM_TARBALL_EXTRA_OPTIONS -p -c --lzma "$target""
+        ;;
         *)
             error "Remote tarball building is not possible with this archive filetype: \"$BM_TARBALL_FILETYPE\"."
         ;;
@@ -571,7 +576,7 @@ function __get_backup_tarball_command()
                 error "The archive type \"tar.lz\" depends on the tool \"\$lzma\"."
             fi
             __get_flags_tar_blacklist "$target"
-            command="$tar $incremental $blacklist $dumpsymlinks $BM_TARBALL_EXTRA_OPTIONS -p -c -f - $target | $lzma -z -"
+            command="$tar $incremental $blacklist $dumpsymlinks $BM_TARBALL_EXTRA_OPTIONS -p -c --lzma -f"
         ;;
         zip) 
             if [[ ! -x $zip ]]; then
@@ -604,19 +609,6 @@ function build_clear_archive
     # A couple of archive types have a special command line
     case "$BM_TARBALL_FILETYPE" in 
 
-        # lzma archives should be piped manually
-        "tar.lz")
-            BM__CURRENT_COMMAND="tar"
-            if [[ "$verbosedebug" == "true" ]]; then
-                tail -f $logfile &
-            fi
-            
-            debug "$tar $incremental $blacklist $dumpsymlinks $BM_TARBALL_EXTRA_OPTIONS -p -c -f - $target 2>>$logfile | $lzma -z - > $file_to_create 2>>$logfile"
-            tail_logfile "$logfile"
-            $tar $incremental $blacklist $dumpsymlinks $BM_TARBALL_EXTRA_OPTIONS -p -c -f - $target 2>>$logfile | $lzma -z - > $file_to_create 2>>$logfile || error_code=$?
-            check_error_code "$error_code" "$file_to_create" "$logfile"
-        ;;
-        
         # dar has a special commandline, that cannot fit the common tar way
         "dar")
             BM__CURRENT_COMMAND="dar"
@@ -878,6 +870,60 @@ function backup_method_tarball()
     fi
 }
 
+function backup_method_pgsql()
+{
+    method="$1"
+    pgsql_conffile="$HOME/.pgpass"
+    pgsql_conffile_bm="$HOME/.pgpass.backup-manager.bak"
+
+    debug "backup_method_pgsql ($method)"
+
+    info "Using method \"\$method\"."
+    if [[ ! -x $pgdump ]]; then
+        error "The \"pgsql\" method is chosen, but \$pgdump is not found."
+    fi
+
+    opt=" -U$BM_PGSQL_ADMINLOGIN -h$BM_PGSQL_HOST -p$BM_PGSQL_PORT" 
+    BM_SHOULD_PURGE_PGPASS="false"
+
+    if [[ -f $pgsql_conffile ]]; then
+        info "Found existing PgSQL client configuration file: \$pgsql_conffile"
+        info "Looking for matching credentials in this file..."
+        if ! grep -qE "(${BM_PGSQL_HOST}|[^:]*):(${BM_PGSQL_PORT}|[^:]*):[^:]*:${BM_PGSQL_ADMINLOGIN}:${BM_PGSQL_ADMINPASS}" $pgsql_conffile; then
+            info "No matching credentials: inserting our own."
+            cp $pgsql_conffile $pgsql_conffile_bm
+            BM_SHOULD_PURGE_PGPASS="true"
+            echo "${BM_PGSQL_HOST}:${BM_PGSQL_PORT}:${BM_PGSQL_ADMINLOGIN}:${BM_PGSQL_ADMINPASS}" >> $pgsql_conffile
+        fi
+    else
+        warning "Creating a default PgSQL client configuration file: \$HOME/.pgpass"
+        echo "${BM_PGSQL_HOST}:${BM_PGSQL_PORT}:${BM_PGSQL_ADMINLOGIN}:${BM_PGSQL_ADMINPASS}" >> $pgsql_conffile
+        chmod 0600 $pgsql_conffile
+    fi
+
+    compress="$BM_PGSQL_FILETYPE"
+
+    for database in $BM_PGSQL_DATABASES
+    do
+        if [[ "$database" = "__ALL__" ]]; then
+            file_to_create="$BM_REPOSITORY_ROOT/${BM_ARCHIVE_PREFIX}-all-pgsql-databases.$TODAY.sql"
+            command="${pgdump}all $opt $BM_PGSQL_EXTRA_OPTIONS"
+        else
+            file_to_create="$BM_REPOSITORY_ROOT/${BM_ARCHIVE_PREFIX}-${database}.$TODAY.sql"
+            command="$pgdump $opt $database $BM_PGSQL_EXTRA_OPTIONS"
+        fi
+        __create_file_with_meta_command
+    done
+
+    # purge the .pgpass file, if created by Backup Manager
+    if [[ "$BM_SHOULD_PURGE_PGPASS" == "true" ]]; then
+        info "restoring initial .pgpass file."
+        warning "To avoid problems with .pgpass, insert the configured host:port:user:pass in $pgsql_conffile"
+        mv $pgsql_conffile_bm $pgsql_conffile
+    fi
+}
+
+
 function backup_method_mysql()
 {
     method="$1"
@@ -908,7 +954,7 @@ function backup_method_mysql()
         echo "password=\"$BM_MYSQL_ADMINPASS\"" >> $mysql_conffile
         BM_SHOULD_PURGE_MYCNF="true"
     fi
-    base_command="$mysqldump --defaults-extra-file=$mysql_conffile $opt -u$BM_MYSQL_ADMINLOGIN -h$BM_MYSQL_HOST -P$BM_MYSQL_PORT"
+    base_command="$mysqldump --defaults-extra-file=$mysql_conffile $opt -u$BM_MYSQL_ADMINLOGIN -h$BM_MYSQL_HOST -P$BM_MYSQL_PORT $BM_MYSQL_EXTRA_OPTIONS"
     compress="$BM_MYSQL_FILETYPE"   
 
     for database in $BM_MYSQL_DATABASES
