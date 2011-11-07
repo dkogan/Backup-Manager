@@ -24,7 +24,7 @@ install: build
 	dh_testdir
 	dh_testroot
 	dh_prep
-	$(MAKE) install DESTDIR=`pwd`/debian/backup-manager
+	$(MAKE) install PREFIX=/usr DESTDIR=`pwd`/debian/backup-manager
 	$(MAKE) -C doc install DESTDIR=`pwd`/debian/backup-manager-doc
 
 binary: binary-indep binary-arch
