@@ -9,7 +9,7 @@ build build-indep: build-stamp
 build-arch:
 # Nothing to be done here.
 
-build-stamp: $(QUILT_STAMPFN)
+build-stamp: $(QUILT_STAMPFN) save-po-stamp
 	dh_testdir
 	touch $@
 
@@ -17,8 +17,24 @@ clean: unpatch
 	dh_testdir
 	$(MAKE) clean
 	$(MAKE) -C doc clean
+	rm -rf save_po
 	dh_clean
 	debconf-updatepo
+
+unpatch: restore-po
+
+save-po: save-po-stamp
+
+save-po-stamp: $(QUILT_STAMPFN)
+	dh_testdir
+	mkdir -p save_po
+	cp po/*.po save_po
+
+restore-po:
+	dh_testdir
+	if [ -d save_po ] ; then \
+	     for file in save_po/*.po; do cp $$file po; done \
+	fi
 
 install: build
 	dh_testdir
@@ -56,4 +72,4 @@ checkpo:
 		echo ""; \
 	done
 
-.PHONY: build clean binary-indep binary-arch binary install patch unpatch
+.PHONY: build clean binary-indep binary-arch binary install patch unpatch restore-po

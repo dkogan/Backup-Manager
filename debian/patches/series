@@ -6,5 +6,4 @@ debian-perl-location.diff
 debian-user-guide-location.diff
 fix-tar-errors.diff
 fix-backup-manager-purge-POD.diff
-translation-updates.diff
 
