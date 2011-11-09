@@ -2,7 +2,6 @@ debian-backup-manager.conf.tpl.diff
 debian-no-unused-confvars.diff
 debian-remove-shebang.diff
 debian-version.diff
-debian-perl-location.diff
 debian-user-guide-location.diff
 fix-tar-errors.diff
 fix-backup-manager-purge-POD.diff

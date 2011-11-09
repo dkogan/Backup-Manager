@@ -5,6 +5,8 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
   * Remove the fragile translation-updates.diff patch.  Instead, backup
     the upstream po files before the build and restore them in the clean
     target (Closes: #602633).
+  * Drop the debian-perl-location.diff patch, setting PERL5DIR in
+    debian/rules instead.
   * Refresh the remaining Debian patches.
   * Fill out the same "Language:" header in debian/po/*.po.
   * Drop findutils dependency, even the version in Etch is new enough.
