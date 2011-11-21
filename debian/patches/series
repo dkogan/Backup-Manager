@@ -5,4 +5,4 @@ debian-version.diff
 debian-user-guide-location.diff
 fix-tar-errors.diff
 fix-backup-manager-purge-POD.diff
-
+fix-root-absolute-blacklist-paths.diff

@@ -1,0 +1,34 @@
+Description: Allow absolute paths in BM_TARBALL_BLACKLIST for root target ('/').
+Author: Georgios M. Zarkadas <gz@member.fsf.org>
+Forwarded: https://github.com/sukria/Backup-Manager/pull/14
+Accepted: https://github.com/sukria/Backup-Manager/commit/72b93f0f6223e4cf08bad4c1cb4d0ba4b4cfe38d
+Last-Update: 2011-10-13
+
+--- a/lib/backup-methods.sh
++++ b/lib/backup-methods.sh
+@@ -238,7 +238,9 @@
+     target="$2"
+     debug "__get_flags_relative_blacklist ($switch, $target)"
+ 
+-    target=${target%/}
++    if [ "$target" != "/" ]; then
++        target=${target%/}
++    fi
+     blacklist=""
+     for pattern in $BM_TARBALL_BLACKLIST
+     do
+@@ -252,7 +254,13 @@
+                 # making a relative path...
+                 pattern="${pattern#$target}"
+                 length=$(expr length $pattern)
+-                pattern=$(expr substr $pattern 2 $length)
++                # for $target="/", no spare / is left at the beggining
++                # after the # substitution; thus take substr from pos 1
++                if [ "$target" != "/" ]; then
++                    pattern=$(expr substr $pattern 2 $length)
++                else
++                    pattern=$(expr substr $pattern 1 $length)
++                fi
+ 
+                 # ...and blacklisting it
+                 blacklist="$blacklist ${switch}${pattern}"
