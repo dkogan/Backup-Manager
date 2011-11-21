@@ -6,3 +6,4 @@ debian-user-guide-location.diff
 fix-tar-errors.diff
 fix-backup-manager-purge-POD.diff
 fix-root-absolute-blacklist-paths.diff
+fix-single-md5file.diff
