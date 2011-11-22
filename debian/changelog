@@ -1,5 +1,6 @@
 backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
 
+  [ Sven Joachim ]
   * New upstream release.
     - Adds a new "postgresql" backup method (Closes: #637743).
   * Remove the fragile translation-updates.diff patch.  Instead, backup
@@ -16,6 +17,9 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
   * Update debian/watch to find the 0.7.10.1 release tarball.
   * Add build-indep and (empty) build-arch targets to debian/rules.
   * Update Vcs-* fields in debian/control, switching to collab-maint.
+
+  [ Georgios M. Zarkadas ]
+  * Add Greek debconf translation.
 
  -- Sven Joachim <svenjoac@gmx.de>  Fri, 04 Nov 2011 18:25:45 +0100
 
