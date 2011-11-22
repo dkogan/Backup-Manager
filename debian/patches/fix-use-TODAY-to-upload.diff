@@ -1,0 +1,45 @@
+Description: Use TODAY variable to ensure all backups started a given day
+ get uploaded.
+Author: Georgios M. Zarkadas <gz@member.fsf.org>
+Forwarded: https://github.com/sukria/Backup-Manager/pull/14
+Accepted: https://github.com/sukria/Backup-Manager/commit/72b93f0f6223e4cf08bad4c1cb4d0ba4b4cfe38d
+Last-Update: 2011-10-13
+
+--- a/lib/upload-methods.sh
++++ b/lib/upload-methods.sh
+@@ -64,7 +64,7 @@
+           -h="$bm_upload_hosts" \
+           -u="$BM_UPLOAD_SSH_USER" \
+           -d="$BM_UPLOAD_SSH_DESTINATION" \
+-          -r="$BM_REPOSITORY_ROOT" today 2>$logfile || 
++          -r="$BM_REPOSITORY_ROOT" ${TODAY} 2>$logfile || 
+     error "Error reported by backup-manager-upload for method \"scp\", check \"\$logfile\"."
+     rm -f $logfile
+ }
+@@ -101,7 +101,7 @@
+          -u="$BM_UPLOAD_SSH_USER" \
+          -d="$BM_UPLOAD_SSH_DESTINATION" \
+          -r="$BM_REPOSITORY_ROOT" \
+-         --gpg-recipient="$BM_UPLOAD_SSHGPG_RECIPIENT" today 2>$logfile|| 
++         --gpg-recipient="$BM_UPLOAD_SSHGPG_RECIPIENT" ${TODAY} 2>$logfile|| 
+     error "Error reported by backup-manager-upload for method \"ssh-gpg\", check \"\$logfile\"."
+     rm -f $logfile
+ }
+@@ -134,7 +134,7 @@
+         -h="$bm_upload_hosts" \
+         -u="$BM_UPLOAD_FTP_USER" \
+         -d="$BM_UPLOAD_FTP_DESTINATION" \
+-        -r="$BM_REPOSITORY_ROOT" today 2>$logfile|| 
++        -r="$BM_REPOSITORY_ROOT" ${TODAY} 2>$logfile|| 
+     error "Error reported by backup-manager-upload for method \"ftp\", check \"\$logfile\"."
+     rm -f $logfile
+ 
+@@ -164,7 +164,7 @@
+         -h="$bm_upload_hosts" \
+         -u="$BM_UPLOAD_S3_ACCESS_KEY" \
+         -b="$BM_UPLOAD_S3_DESTINATION" \
+-        -r="$BM_REPOSITORY_ROOT" today 2>$logfile || 
++        -r="$BM_REPOSITORY_ROOT" ${TODAY} 2>$logfile || 
+     error "Error reported by backup-manager-upload for method \"s3\", check \"\$logfile\"."
+     rm -f $logfile
+ }
