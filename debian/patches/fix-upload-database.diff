@@ -107,7 +107,7 @@ Last-Update: 2011-10-13
  }
  
  # How to upload files with scp.
-@@ -644,23 +717,26 @@
+@@ -644,22 +717,25 @@
          # Put all the files over the connexion
          foreach my $file (@{$ra_files}) {
              chomp $file;
@@ -116,39 +116,32 @@ Last-Update: 2011-10-13
 -                if (!ftptls_put_file ($ftp, $file)) {
 -		    print_error "Unable to transfer $file";
 -		    return FALSE;
--                }
--                else {
--			print_info "File $file transfered\n";
--                }
 +                if (ftptls_put_file ($ftp, $file)) {
 +                    appendto_uploaded_archives($file, $host);
 +                    print_info "File $file transfered\n";
-+                }
-+                else {
+                 }
+                 else {
+-			print_info "File $file transfered\n";
 +                    print_error "Unable to transfer $file";
 +                    return FALSE;
-+                }
+                 }
              }
              else {
 -                if (!ftp_put_file ($ftp, $file)) {
 -		    print_error "Unable to transfer $file: " . $ftp->message;
 -		    return FALSE;
--                }
--                else {
--            print_info "File $file transfered\n";
--                }
 +                if (ftp_put_file ($ftp, $file)) {
 +                    appendto_uploaded_archives($file, $host);
 +                    print_info "File $file transfered\n";
-+                }
-+                else {
+                 }
+                 else {
+-            print_info "File $file transfered\n";
 +                    print_error "Unable to transfer $file: " . $ftp->message;
 +                    return FALSE;
-+                }
+                 }
              }
          }
-         print_info "All transfers done, loging out from $host\n";
-@@ -847,6 +903,8 @@
+@@ -847,6 +923,8 @@
  				);
  				$uploaded{$filename} = $file_length;
  			}
@@ -159,7 +152,7 @@ Last-Update: 2011-10-13
  		# get a list of files and confirm uploads
 --- a/backup-manager.conf.tpl
 +++ b/backup-manager.conf.tpl
-@@ -305,6 +305,20 @@
+@@ -332,6 +332,20 @@
  # Where to put archives on the remote hosts (global)
  export BM_UPLOAD_DESTINATION=""
  

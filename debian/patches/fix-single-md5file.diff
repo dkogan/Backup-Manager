@@ -19,7 +19,7 @@ Last-Update: 2011-10-13
  check_logger
 --- a/lib/actions.sh
 +++ b/lib/actions.sh
-@@ -49,13 +49,12 @@
+@@ -52,13 +52,12 @@
      esac
  
      # Now make sure the md5 file is okay.

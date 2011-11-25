@@ -6,7 +6,7 @@ Last-Update: 2011-10-13
 
 --- a/lib/backup-methods.sh
 +++ b/lib/backup-methods.sh
-@@ -238,7 +238,9 @@
+@@ -239,7 +239,9 @@
      target="$2"
      debug "__get_flags_relative_blacklist ($switch, $target)"
  
@@ -17,7 +17,7 @@ Last-Update: 2011-10-13
      blacklist=""
      for pattern in $BM_TARBALL_BLACKLIST
      do
-@@ -252,7 +254,13 @@
+@@ -253,7 +255,13 @@
                  # making a relative path...
                  pattern="${pattern#$target}"
                  length=$(expr length $pattern)

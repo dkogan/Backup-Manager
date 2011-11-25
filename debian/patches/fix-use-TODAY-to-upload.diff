@@ -25,7 +25,7 @@ Last-Update: 2011-10-13
      error "Error reported by backup-manager-upload for method \"ssh-gpg\", check \"\$logfile\"."
      rm -f $logfile
  }
-@@ -134,7 +134,7 @@
+@@ -142,7 +142,7 @@
          -h="$bm_upload_hosts" \
          -u="$BM_UPLOAD_FTP_USER" \
          -d="$BM_UPLOAD_FTP_DESTINATION" \
@@ -34,7 +34,7 @@ Last-Update: 2011-10-13
      error "Error reported by backup-manager-upload for method \"ftp\", check \"\$logfile\"."
      rm -f $logfile
  
-@@ -164,7 +164,7 @@
+@@ -172,7 +172,7 @@
          -h="$bm_upload_hosts" \
          -u="$BM_UPLOAD_S3_ACCESS_KEY" \
          -b="$BM_UPLOAD_S3_DESTINATION" \
