@@ -1,5 +1,6 @@
 backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
 
+  [ Sven Joachim ]
   * New upstream release.
     - Adds a new "postgresql" backup method (Closes: #637743).
   * Remove the fragile translation-updates.diff patch.  Instead, backup
@@ -17,7 +18,18 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
   * Add build-indep and (empty) build-arch targets to debian/rules.
   * Update Vcs-* fields in debian/control, switching to collab-maint.
 
- -- Sven Joachim <svenjoac@gmx.de>  Fri, 04 Nov 2011 18:25:45 +0100
+  [ Georgios M. Zarkadas ]
+  * Add Greek debconf translation.
+  * Allow absolute paths in BM_TARBALL_BLACKLIST even when backing up
+    the root (/) directory (Closes: #608237).
+  * Fix missed archive uploads when backups are crossing the day
+    limit (Closes: # 638803).
+  * Use a single MD5 sums file to store archive hashes instead of one
+    such file per backup job (Closes: #638919).
+  * Provide a configuration option to record all uploaded archives in
+    a single text database file (Closes: #638920).
+
+ -- Sven Joachim <svenjoac@gmx.de>  Fri, 25 Nov 2011 11:26:35 +0100
 
 backup-manager (0.7.9-3) unstable; urgency=low
 
