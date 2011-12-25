@@ -9,3 +9,4 @@ fix-root-absolute-blacklist-paths.diff
 fix-single-md5file.diff
 fix-upload-database.diff
 fix-use-TODAY-to-upload.diff
+fix-make-po-idempotent.diff
