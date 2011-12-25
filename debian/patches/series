@@ -12,3 +12,4 @@ fix-use-TODAY-to-upload.diff
 fix-make-po-idempotent.diff
 fix-pgsql-pgpass-security.diff
 fix-pgsql-use-local-sockets.diff
+fix-pgsql-test-all-dump-programs.diff
