@@ -28,8 +28,12 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
     such file per backup job (Closes: #638919).
   * Provide a configuration option to record all uploaded archives in
     a single text database file (Closes: #638920).
+  * Fix upstream makefile to make the build/clean process of gettext (po)
+    files idempotent and bring sanity back to the package's build process.
+  * Switch source format to 3.0 (quilt).
+  * Change debian/rules to use the generic 'dh$@' rule plus overrides.
 
- -- Sven Joachim <svenjoac@gmx.de>  Fri, 25 Nov 2011 11:26:35 +0100
+ -- Sven Joachim <svenjoac@gmx.de>  Sun, 25 Dec 2011 13:11:25 +0200
 
 backup-manager (0.7.9-3) unstable; urgency=low
 
