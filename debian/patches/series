@@ -13,3 +13,4 @@ fix-make-po-idempotent.diff
 fix-pgsql-pgpass-security.diff
 fix-pgsql-use-local-sockets.diff
 fix-pgsql-test-all-dump-programs.diff
+fix-sql-archives-naming-convention.diff
