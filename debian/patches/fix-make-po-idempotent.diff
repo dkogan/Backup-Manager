@@ -1,0 +1,29 @@
+Description: Fix make process of .po files to become idempotent
+ (so that issuing 'make clean' restores the original source tree).
+Author: Georgios M. Zarkadas <gz@member.fsf.org>
+Forwarded: <not yet>
+Accepted: <not yet>
+Last-Update: 2011-12-14
+
+--- a/po/Makefile
++++ b/po/Makefile
+@@ -38,13 +38,16 @@
+ 		  backup-manager.files \
+ 	      $(MOFILES) \
+ 		  messages messages.mo \
+-		  messages.po 
+-		  
++		  messages.po
++	for file in $(wildcard *.old); do \
++		mv -f $$file `echo $$file | sed 's/\.old//'`; \
++		done
++
+ .po.mo: backup-manager.pot
+ 	@echo "Merging $(PACKAGE).pot and $*.po"
+ 	@msgmerge $*.po $(PACKAGE).pot -o $*.po.new
+ 	@if [ "`diff $*.po $*.po.new | grep '[<>]' | wc -l`" -ne 2 ]; then \
+-        mv -f $*.po.new $*.po; \
++        mv -f --backup=simple --suffix='.old' $*.po.new $*.po; \
+     else \
+         rm -f $*.po.new; \
+     fi
