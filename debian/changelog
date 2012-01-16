@@ -1,7 +1,7 @@
 backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
 
   [ Sven Joachim ]
-  * New upstream release.
+  * New upstream release (Closes: #655985).
     - Adds a new "postgresql" backup method (Closes: #637743).
   * Remove the fragile translation-updates.diff patch.  Instead, backup
     the upstream po files before the build and restore them in the clean
