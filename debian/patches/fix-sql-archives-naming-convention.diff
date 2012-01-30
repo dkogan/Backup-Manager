@@ -6,7 +6,7 @@ Last-Update: 2011-12-25
 
 --- a/lib/backup-methods.sh
 +++ b/lib/backup-methods.sh
-@@ -937,7 +937,7 @@
+@@ -939,7 +939,7 @@
              file_to_create="$BM_REPOSITORY_ROOT/${BM_ARCHIVE_PREFIX}-all-pgsql-databases.$TODAY.sql"
              command="${pgdump}all $opt $BM_PGSQL_EXTRA_OPTIONS"
          else
@@ -15,7 +15,7 @@ Last-Update: 2011-12-25
              command="$pgdump $opt $database $BM_PGSQL_EXTRA_OPTIONS"
          fi
          __create_file_with_meta_command
-@@ -995,7 +995,7 @@
+@@ -997,7 +997,7 @@
              file_to_create="$BM_REPOSITORY_ROOT/${BM_ARCHIVE_PREFIX}-all-mysql-databases.$TODAY.sql"
              command="$base_command --all-databases"
          else

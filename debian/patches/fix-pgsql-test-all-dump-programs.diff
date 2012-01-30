@@ -6,7 +6,7 @@ Last-Update: 2011-12-25
 
 --- a/lib/backup-methods.sh
 +++ b/lib/backup-methods.sh
-@@ -890,8 +890,10 @@
+@@ -892,8 +892,10 @@
      debug "backup_method_pgsql ($method)"
  
      info "Using method \"\$method\"."

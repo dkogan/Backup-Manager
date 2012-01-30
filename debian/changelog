@@ -23,8 +23,6 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
     the root (/) directory (Closes: #608237).
   * Fix missed archive uploads when backups are crossing the day
     limit (Closes: # 638803).
-  * Use a single MD5 sums file to store archive hashes instead of one
-    such file per backup job (Closes: #638919).
   * Provide a configuration option to record all uploaded archives in
     a single text database file (Closes: #638920).
   * Fix upstream makefile to make the build/clean process of gettext (po)
@@ -39,7 +37,7 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
   * Switch source format to 3.0 (quilt).
   * Change debian/rules to use the generic 'dh$@' rule plus overrides.
 
- -- Sven Joachim <svenjoac@gmx.de>  Sun, 25 Dec 2011 14:28:50 +0200
+ -- Sven Joachim <svenjoac@gmx.de>  Mon, 30 Jan 2012 23:32:30 +0200
 
 backup-manager (0.7.9-3) unstable; urgency=low
 
