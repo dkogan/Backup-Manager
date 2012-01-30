@@ -5,6 +5,7 @@ Build-Depends-Indep: debiandoc-sgml, texlive-fonts-recommended, texlive-latex-ba
                      texlive-latex-recommended, texlive-latex-extra, ghostscript
 Build-Depends: po-debconf, debhelper (>= 7.0.50)
 Maintainer: Sven Joachim <svenjoac@gmx.de>
+Uploaders: Georgios M. Zarkadas <gz@member.fsf.org>
 Standards-Version: 3.9.2
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/backup-manager.git
 Vcs-Git: git://anonscm.debian.org/collab-maint/backup-manager.git
