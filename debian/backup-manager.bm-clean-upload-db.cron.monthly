@@ -1,0 +1,127 @@
+#!/bin/bash
+# Cron script to cleanup the uploaded archives database from old entries.
+
+# Do not run if backup-manager is not installed, or
+# the conf file does not exist or is not readable.
+
+[ -x /usr/sbin/backup-manager ] || exit 0
+[ -r /etc/backup-manager.conf ] || exit 0
+
+. /etc/backup-manager.conf
+
+# Do not run if the site admin has not activated the uploaded database.
+
+[ "X${BM_UPLOADED_ARCHIVES}" != "X" ] || exit 0
+
+# Guard against improper configuration values; give sensible defaults.
+
+MINPER=7        # minimum days back of entries to keep
+OTHPER=30       # days back of entries to keep for other upload methods
+
+PERIOD=$(expr ${BM_ARCHIVE_TTL} \+ 0 2>/dev/null)
+
+if [ "X${PERIOD}" = "X" ] || [ ${PERIOD} -lt 1 ]; then
+    PERIOD=${MINPER}
+fi
+
+case ${BM_UPLOAD_METHOD} in
+    scp|ssh-gpg)
+        if [ "X${BM_UPLOAD_SSH_TTL}" != "X" ]; then
+            PDIFF=$(expr ${BM_UPLOAD_SSH_TTL} - ${PERIOD} 2>/dev/null)
+        fi
+        ;;
+    ftp)
+        if [ "X${BM_UPLOAD_FTP_TTL}" != "X" ]; then
+            PDIFF=$(expr ${BM_UPLOAD_FTP_TTL} - ${PERIOD} 2>/dev/null)
+        fi
+        ;;
+    s3)
+        # For S3 we choose a conservative value because there
+        # is no way to know the time-to-live on the remote host.
+
+        PDIFF=$(expr ${OTHPER} - ${PERIOD} 2>/dev/null)
+        ;;
+    *)
+        # The upload database is not used in any other method
+        # than those listed above. Exit silently.
+
+        exit 0
+        ;;
+esac
+
+# A bad configuration may result in either a null or a negative PDIFF.
+# Correct this here.
+
+if [ "X${PDIFF}" = "X" ] || [ ${PDIFF} -lt 0 ]; then
+    PDIFF=0
+fi
+
+PERIOD=$(expr ${PERIOD} \+ ${PDIFF} 2>/dev/null)
+PURGE_DATE=$(date "+%Y%m%d" --date ${PERIOD}" days ago")
+
+if [ -f ${BM_UPLOADED_ARCHIVES} ]; then
+    :
+else
+    >&2 echo "Warning: BM_UPLOADED_ARCHIVES database does not exist."
+    >&2 echo "Maybe you have not uploaded yet? Please check the configuration."
+    exit 1
+fi
+
+NEW_UPLOAD_DB=$(mktemp)
+if [ $? -ne 0 ]; then
+    >&2 echo "Error: cannot create temporary file; aborting."
+    exit 2
+fi
+
+# Use backup-manager configuration values for permissions, but remove
+# any executable bits (database is a file not a directory).
+(
+    chown ${BM_REPOSITORY_USER}:${BM_REPOSITORY_GROUP} ${NEW_UPLOAD_DB}
+    chmod ${BM_REPOSITORY_CHMOD} ${NEW_UPLOAD_DB}
+    chmod a-x ${NEW_UPLOAD_DB}
+)
+if [ $? -ne 0 ]; then
+    >&2 echo "Error: cannot set temporary file owner/permissions; aborting."
+    rm -f ${NEW_UPLOAD_DB}
+    exit 3
+fi
+
+# Now that we have ensured that source and destination exist,
+# read in the lines and remove any older than $PURGE_DATE.
+
+while read line; do
+
+    archive=$(echo "${line}" | cut -d' ' -f1)
+    arch_date=$(echo "${archive}" \
+      | sed -e 's/.*\([0-9][0-9][0-9][0-9][01][0-9][0-3][0-9]\).*/\1/')
+
+    # Both days are pure numbers of the form YYYYMMDD. Thus comparison
+    # can be reduced to a simple numeric comparison (newer is bigger).
+
+    if [ ${arch_date} -gt ${PURGE_DATE} ]; then
+        echo "${line}"
+
+    # We do not remove hashes of existing archives, even if older than
+    # $PURGE_DATE (if it stayed there, it has to be a reason).
+
+    elif [ -f ${BM_REPOSITORY_ROOT}/${archive} ]; then
+        echo "${line}"
+    fi
+
+done < ${BM_UPLOADED_ARCHIVES} >> ${NEW_UPLOAD_DB}
+
+if [ $? -ne 0 ]; then
+    >&2 echo "Error parsing BM_UPLOADED_ARCHIVES database; file was not updated"
+    rm -f ${NEW_UPLOAD_DB}
+    exit 4
+fi
+
+# If all went well, replace the database.
+
+if mv ${NEW_UPLOAD_DB} ${BM_UPLOADED_ARCHIVES} ; then
+    :
+else
+    >&2 echo "Error replacing backup-manager BM_UPLOADED_ARCHIVES with updated values;"
+    >&2 echo "please check its status (updated file was at: $NEW_UPLOAD_DB)"
+    exit 5
+fi

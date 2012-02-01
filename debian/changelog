@@ -31,8 +31,9 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
     file handling.
   * Add support for local unix sockets connections to the pgsql backup method.
   * Add existence check for pg_dumpall to the pgsql backup method.
-  * Use the saming naming convention for database methods generated archives.
+  * Use the same naming convention for database methods generated archives.
   * Add myself to Uploaders.
+  * Add cron script to remove old entries from uploaded archives database.
 
   [ Sven Joachim, Georgios M. Zarkadas ]
   * Switch source format to 3.0 (quilt).

@@ -13,3 +13,6 @@ override_dh_auto_install:
 	    PERL5DIR=$(TMP)/usr/share/perl5
 	$(MAKE) -C $(CURDIR)/doc install DESTDIR=$(DOCTMP)
 
+override_dh_installcron:
+	dh_installcron
+	dh_installcron --name=bm-clean-upload-db
