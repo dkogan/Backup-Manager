@@ -9,9 +9,11 @@
 
 . /etc/backup-manager.conf
 
-# Do not run if the site admin has not activated the uploaded database.
+# Do not run if the site admin has not already activated
+# the uploaded database or it does not (yet) exist.
 
 [ "X${BM_UPLOADED_ARCHIVES}" != "X" ] || exit 0
+[ -f ${BM_UPLOADED_ARCHIVES} ] || exit 0
 
 # Guard against improper configuration values; give sensible defaults.
 
@@ -59,32 +61,21 @@ fi
 PERIOD=$(expr ${PERIOD} \+ ${PDIFF} 2>/dev/null)
 PURGE_DATE=$(date "+%Y%m%d" --date ${PERIOD}" days ago")
 
-if [ -f ${BM_UPLOADED_ARCHIVES} ]; then
-    :
-else
-    >&2 echo "Warning: BM_UPLOADED_ARCHIVES database does not exist."
-    >&2 echo "Maybe you have not uploaded yet? Please check the configuration."
-    exit 1
-fi
-
 NEW_UPLOAD_DB=$(mktemp)
 if [ $? -ne 0 ]; then
     >&2 echo "Error: cannot create temporary file; aborting."
     exit 2
 fi
 
-# Use backup-manager configuration values for permissions, but remove
-# any executable bits (database is a file not a directory).
-(
-    chown ${BM_REPOSITORY_USER}:${BM_REPOSITORY_GROUP} ${NEW_UPLOAD_DB}
-    chmod ${BM_REPOSITORY_CHMOD} ${NEW_UPLOAD_DB}
-    chmod a-x ${NEW_UPLOAD_DB}
-)
-if [ $? -ne 0 ]; then
-    >&2 echo "Error: cannot set temporary file owner/permissions; aborting."
-    rm -f ${NEW_UPLOAD_DB}
-    exit 3
-fi
+# Use backup-manager configuration values for permissions
+# removing the executable bits (database is a file).
+
+trap "rm -f ${NEW_UPLOAD_DB}" EXIT
+set -e
+chown ${BM_REPOSITORY_USER}:${BM_REPOSITORY_GROUP} ${NEW_UPLOAD_DB}
+chmod ${BM_REPOSITORY_CHMOD} ${NEW_UPLOAD_DB}
+chmod a-x ${NEW_UPLOAD_DB}
+set +e
 
 # Now that we have ensured that source and destination exist,
 # read in the lines and remove any older than $PURGE_DATE.
@@ -112,9 +103,9 @@ done < ${BM_UPLOADED_ARCHIVES} >> ${NEW_UPLOAD_DB}
 
 if [ $? -ne 0 ]; then
     >&2 echo "Error parsing BM_UPLOADED_ARCHIVES database; file was not updated"
-    rm -f ${NEW_UPLOAD_DB}
-    exit 4
+    exit 3
 fi
+trap - EXIT
 
 # If all went well, replace the database.
 
@@ -123,5 +114,5 @@ if mv ${NEW_UPLOAD_DB} ${BM_UPLOADED_ARCHIVES} ; then
 else
     >&2 echo "Error replacing backup-manager BM_UPLOADED_ARCHIVES with updated values;"
     >&2 echo "please check its status (updated file was at: $NEW_UPLOAD_DB)"
-    exit 5
+    exit 4
 fi
