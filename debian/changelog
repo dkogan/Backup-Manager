@@ -39,6 +39,9 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
   * Switch source format to 3.0 (quilt).
   * Change debian/rules to use the generic 'dh$@' rule plus overrides.
 
+  [ Joe Dalton ]
+  * Add Danish debconf translation (Closes: #659162).
+
  -- Sven Joachim <svenjoac@gmx.de>  Mon, 30 Jan 2012 23:32:30 +0200
 
 backup-manager (0.7.9-3) unstable; urgency=low
