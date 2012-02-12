@@ -15,7 +15,7 @@ Package: backup-manager
 Architecture: all
 Suggests: backup-manager-doc, zip, perl, openssh-client, wodim,
           genisoimage, gettext-base, anacron, dvd+rw-tools, dar,
-          libfile-slurp-perl, libnet-amazon-s3-perl
+          libnet-amazon-s3-perl
 Depends: ${misc:Depends}, debconf | debconf-2.0, ucf (>= 2.009)
 Description: command-line backup tool
  This is a backup program, designed to help you make daily archives of
