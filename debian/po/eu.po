@@ -1,17 +1,17 @@
 # translation of eu.po to librezale
 # translation of backup-manager-debconf.po to
 #
-#    Translators, if you are not familiar with the PO format, gettext
-#    documentation is worth reading, especially sections dedicated to
-#    this format, e.g. by running:
-#         info -n '(gettext)PO Files'
-#         info -n '(gettext)Header Entry'
+#   Translators, if you are not familiar with the PO format, gettext
+#   documentation is worth reading, especially sections dedicated to
+#   this format, e.g. by running:
+#        info -n '(gettext)PO Files'
+#        info -n '(gettext)Header Entry'
 #
-#    Some information specific to po-debconf are available at
-#            /usr/share/doc/po-debconf/README-trans
-#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#   Some information specific to po-debconf are available at
+#           /usr/share/doc/po-debconf/README-trans
+#        or http://www.debian.org/intl/l10n/po-debconf/README-trans
 #
-#    Developers do not need to manually edit POT or PO files.
+#   Developers do not need to manually edit POT or PO files.
 #
 # Piarres Beobide <pi@beobide.net>, 2005, 2006.
 msgid ""
@@ -178,7 +178,7 @@ msgstr ""
 #. Description
 #: ../backup-manager.templates:7001
 msgid ""
-"You should rather to enter several subdirectories instead of the parent in "
+"You should rather enter several subdirectories instead of the parent in "
 "order to have more pertinent files in your backup repository."
 msgstr ""
 "Zure babes-kopia bilduman behar dituzun fitxategiak bakarrik mantentzeko "
@@ -411,7 +411,7 @@ msgid ""
 "authorized_keys file (see ssh-keygen(1) for details about ssh key "
 "authentication)."
 msgstr ""
-"Ez ahaztu erabiltzailearen gako publikoa urruneko ostalariaren  "
+"Ez ahaztu erabiltzailearen gako publikoa urruneko ostalariaren "
 "authorized_keys fitxategian gehitu behar duzula (ssh-keygen (1) begiratu "
 "xehetasunetarako)."
 
@@ -516,7 +516,7 @@ msgstr "Errepositorioaren jabe erabiltzailea:"
 #: ../backup-manager.templates:21001
 msgid ""
 "For security reason, the repository where archives will be stored is "
-"accessible  by a specific user."
+"accessible by a specific user."
 msgstr ""
 "Segurtasun arrazoiak direla eta, fitxategiak gordeko diren errepositorioa "
 "erabiltzaile zehatz batentzat bakarrik eskuragarri da."
@@ -542,7 +542,7 @@ msgstr "Errepositorioaren jabe taldea:"
 #: ../backup-manager.templates:22001
 msgid ""
 "For security reason, the repository where archives will be stored is "
-"accessible  by a specific group."
+"accessible by a specific group."
 msgstr ""
 "Segurtasun arrazoiak direla eta, fitxategiak gordeko diren errepositorioa "
 "talde zehatz batentzat bakarrik eskuragarri da."
@@ -568,8 +568,8 @@ msgstr "Zaharkituriko /etc/cron.d/backup-manager fitxategia ezabatu?"
 #: ../backup-manager.templates:23001
 msgid ""
 "In previous version, backup-manager uses /etc/cron.d directory but this "
-"directory is not  handled by anacron. Thus, it is not possible to run backup-"
-"manager's job asynchronously, if  cron.d is used."
+"directory is not handled by anacron. Thus, it is not possible to run backup-"
+"manager's job asynchronously, if cron.d is used."
 msgstr ""
 "Aurreko bertsioan, backup manager-ek /etc/cron.d direktorioa erabiltzen zuen "
 "baina direktorio hau ez du anacron-ek kudeatzen. Horregatik ezin da backup-"
@@ -592,7 +592,7 @@ msgstr ""
 #: ../backup-manager.templates:23001
 msgid ""
 "As jobs handled by the cron.d subdirectory may be skipped if the system is "
-"not running, it is recommanded to use one of those directories instead."
+"not running, it is recommended to use one of those directories instead."
 msgstr ""
 "cron.d azpidirektorioak kudeatutako lan bat alde batetara geldi liteke "
 "sistema abiarazirik ez balego, horregatik beste direktorioak erabiltzea "
@@ -634,9 +634,9 @@ msgstr "GPG hartzailea:"
 #. Description
 #: ../backup-manager.templates:25001
 msgid ""
-"You have to set the recipient for which the archive is encrypted. A valid  "
+"You have to set the recipient for which the archive is encrypted. A valid "
 "specification is a short or long key id, or a descriptive name, as "
-"explained  in the gpg man page."
+"explained in the gpg man page."
 msgstr ""
 "Bere gakoaz paketea enkriptatu behar den hartzailea ezarri. Ezarpen zuzena "
 "id gako labur edo luzea, edo gpg man orrialdean argitzen den bezala azalapen "
@@ -647,10 +647,10 @@ msgstr ""
 #: ../backup-manager.templates:25001
 msgid ""
 "The public key for this identity must be in the key ring of the user running "
-"gpg,  which may be root in most of the cases."
+"gpg, which may be root in most of the cases."
 msgstr ""
 "Identitate honen gako publikoa gpg abiarazten duen erabiltzailearen "
-"(arruntean  root izaten dena) gako eraztunean egon behar da"
+"(arruntean root izaten dena) gako eraztunean egon behar da"
 
 #~ msgid ""
 #~ "Answer yes to that question if you want GPG encryption and if you have a "
@@ -675,4 +675,4 @@ msgstr ""
 #~ "manager to update the configuration."
 #~ msgstr ""
 #~ "Erabiltzailea sistema lokalean erabilgarri dagoenean dpkg-reconfigure "
-#~ "backup-manager  abiarazi konfigurazioa eguneratzeko."
+#~ "backup-manager abiarazi konfigurazioa eguneratzeko."

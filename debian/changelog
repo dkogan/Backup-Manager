@@ -16,6 +16,8 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
   * Update debian/watch to find the 0.7.10.1 release tarball.
   * Add build-indep and (empty) build-arch targets to debian/rules.
   * Update Vcs-* fields in debian/control, switching to collab-maint.
+  * Fix a few typos in the debconf templates, thanks to Daniele Forsi
+    for the report.
 
   [ Georgios M. Zarkadas ]
   * Add Greek debconf translation.

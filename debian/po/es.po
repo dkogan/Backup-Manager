@@ -1,15 +1,15 @@
 # translation of es.po to 
 # translation of es.po to
 #
-#    Translators, if you are not familiar with the PO format, gettext
-#    documentation is worth reading, especially sections dedicated to
-#    this format, e.g. by running:
-#         info -n '(gettext)PO Files'
-#         info -n '(gettext)Header Entry'
-#    Some information specific to po-debconf are available at
-#            /usr/share/doc/po-debconf/README-trans
-#         or http://www.debian.org/intl/l10n/po-debconf/README-trans#
-#    Developers do not need to manually edit POT or PO files.
+#   Translators, if you are not familiar with the PO format, gettext
+#   documentation is worth reading, especially sections dedicated to
+#   this format, e.g. by running:
+#        info -n '(gettext)PO Files'
+#        info -n '(gettext)Header Entry'
+#   Some information specific to po-debconf are available at
+#           /usr/share/doc/po-debconf/README-trans
+#        or http://www.debian.org/intl/l10n/po-debconf/README-trans#
+#   Developers do not need to manually edit POT or PO files.
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,7 @@ msgstr ""
 "POT-Creation-Date: 2006-10-05 14:26+0200\n"
 "PO-Revision-Date: 2005-06-07 20:30+0200\n"
 "Last-Translator: Esteban Manchado Velázquez <zoso@debian.org>\n"
-"Language-Team:  <es@li.org>\n"
+"Language-Team: <es@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
@@ -175,7 +175,7 @@ msgstr ""
 #. Description
 #: ../backup-manager.templates:7001
 msgid ""
-"You should rather to enter several subdirectories instead of the parent in "
+"You should rather enter several subdirectories instead of the parent in "
 "order to have more pertinent files in your backup repository."
 msgstr ""
 "Es preferible especificar varios subdirectorios a un directorio padre, para "
@@ -316,7 +316,7 @@ msgstr "Modo de transferencia a usar:"
 #: ../backup-manager.templates:13001
 msgid "The \"ftp\" transfer mode requires a valid FTP account on remote hosts."
 msgstr ""
-"El modo de transferencia  \"ftp\" requiere una cuenta FTP válida en el otro "
+"El modo de transferencia \"ftp\" requiere una cuenta FTP válida en el otro "
 "equipo."
 
 #. Type: select
@@ -326,7 +326,7 @@ msgid ""
 "The \"scp\" mode requires a valid SSH account on remote hosts. SSH Key "
 "authentication is used to establish the connection."
 msgstr ""
-"El modo  \"scp\" requiere una cuenta SSH válida en el otro equipo. Para "
+"El modo \"scp\" requiere una cuenta SSH válida en el otro equipo. Para "
 "establecer la conexión se usa la autenticación por clave SSH."
 
 #. Type: string
@@ -516,7 +516,7 @@ msgstr "Introduzca el usuario propietario del repositorio de copias:"
 #: ../backup-manager.templates:21001
 msgid ""
 "For security reason, the repository where archives will be stored is "
-"accessible  by a specific user."
+"accessible by a specific user."
 msgstr ""
 "Por razones de seguridad, el repositorio donde se guardan las copias de "
 "seguridad tiene permisos de acceso para un solo usuario."
@@ -542,7 +542,7 @@ msgstr "Introduzca el grupo propietario del repositorio:"
 #: ../backup-manager.templates:22001
 msgid ""
 "For security reason, the repository where archives will be stored is "
-"accessible  by a specific group."
+"accessible by a specific group."
 msgstr ""
 "Por razones de seguridad, el repositorio donde se guardan las copias de "
 "seguridad tiene permisos de acceso para un solo grupo."
@@ -568,8 +568,8 @@ msgstr "¿Eliminar el fichero desaconsejado /etc/cron.daily/backup-manager?"
 #: ../backup-manager.templates:23001
 msgid ""
 "In previous version, backup-manager uses /etc/cron.d directory but this "
-"directory is not  handled by anacron. Thus, it is not possible to run backup-"
-"manager's job asynchronously, if  cron.d is used."
+"directory is not handled by anacron. Thus, it is not possible to run backup-"
+"manager's job asynchronously, if cron.d is used."
 msgstr ""
 "En versiones anteriores, backup-manager usaba el directorio /etc/cron.d, "
 "pero anacron no usa este directorio. Por tanto, no se puede ejecutar backup-"
@@ -592,7 +592,7 @@ msgstr ""
 #: ../backup-manager.templates:23001
 msgid ""
 "As jobs handled by the cron.d subdirectory may be skipped if the system is "
-"not running, it is recommanded to use one of those directories instead."
+"not running, it is recommended to use one of those directories instead."
 msgstr ""
 "Dado que las tareas del subdirectorio cron.d podrían saltarse si el sistema "
 "no se está ejecutando en ese momento, se recomienda usar en su lugar uno de "
@@ -635,9 +635,9 @@ msgstr "Destinatario GPG:"
 #. Description
 #: ../backup-manager.templates:25001
 msgid ""
-"You have to set the recipient for which the archive is encrypted. A valid  "
+"You have to set the recipient for which the archive is encrypted. A valid "
 "specification is a short or long key id, or a descriptive name, as "
-"explained  in the gpg man page."
+"explained in the gpg man page."
 msgstr ""
 "Tiene que especificar el destinatario para el cual se cifrará la copia de "
 "seguridad. Puede usar un id de clave corto o largo, o un nombre descriptivo, "
@@ -648,7 +648,7 @@ msgstr ""
 #: ../backup-manager.templates:25001
 msgid ""
 "The public key for this identity must be in the key ring of the user running "
-"gpg,  which may be root in most of the cases."
+"gpg, which may be root in most of the cases."
 msgstr ""
 "La clave pública para esta identidad debe estar en el llavero del usuario "
 "que ejecute gpg, que en la mayoría de los casos será root."

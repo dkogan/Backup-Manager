@@ -1,15 +1,15 @@
 #
-#    Translators, if you are not familiar with the PO format, gettext
-#    documentation is worth reading, especially sections dedicated to
-#    this format, e.g. by running:
-#         info -n '(gettext)PO Files'
-#         info -n '(gettext)Header Entry'
+#   Translators, if you are not familiar with the PO format, gettext
+#   documentation is worth reading, especially sections dedicated to
+#   this format, e.g. by running:
+#        info -n '(gettext)PO Files'
+#        info -n '(gettext)Header Entry'
 #
-#    Some information specific to po-debconf are available at
-#            /usr/share/doc/po-debconf/README-trans
-#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#   Some information specific to po-debconf are available at
+#           /usr/share/doc/po-debconf/README-trans
+#        or http://www.debian.org/intl/l10n/po-debconf/README-trans
 #
-#    Developers do not need to manually edit POT or PO files.
+#   Developers do not need to manually edit POT or PO files.
 #
 msgid ""
 msgstr ""
@@ -174,7 +174,7 @@ msgstr ""
 #. Description
 #: ../backup-manager.templates:7001
 msgid ""
-"You should rather to enter several subdirectories instead of the parent in "
+"You should rather enter several subdirectories instead of the parent in "
 "order to have more pertinent files in your backup repository."
 msgstr ""
 "適切なファイルをバックアップリポジトリに入れるために、親ディレクトリの代わり"
@@ -511,7 +511,7 @@ msgstr "リポジトリの所有ユーザ:"
 #: ../backup-manager.templates:21001
 msgid ""
 "For security reason, the repository where archives will be stored is "
-"accessible  by a specific user."
+"accessible by a specific user."
 msgstr ""
 "セキュリティ上の理由で、アーカイブが格納されるリポジトリは指定のユーザでアク"
 "セスされます。"
@@ -535,7 +535,7 @@ msgstr "リポジトリの所有グループ:"
 #: ../backup-manager.templates:22001
 msgid ""
 "For security reason, the repository where archives will be stored is "
-"accessible  by a specific group."
+"accessible by a specific group."
 msgstr ""
 "セキュリティ上の理由で、アーカイブが格納されるリポジトリは指定のグループでア"
 "クセスされます。"
@@ -559,8 +559,8 @@ msgstr "廃止されたファイル /etc/cron.d/backup-manager を削除しま�
 #: ../backup-manager.templates:23001
 msgid ""
 "In previous version, backup-manager uses /etc/cron.d directory but this "
-"directory is not  handled by anacron. Thus, it is not possible to run backup-"
-"manager's job asynchronously, if  cron.d is used."
+"directory is not handled by anacron. Thus, it is not possible to run backup-"
+"manager's job asynchronously, if cron.d is used."
 msgstr ""
 "以前のバージョンでは、backup-manager は /etc/cron.d ディレクトリを使っていま"
 "したが、このディレクトリは anacron では扱われません。そのため、cron.d が使わ"
@@ -583,7 +583,7 @@ msgstr ""
 #: ../backup-manager.templates:23001
 msgid ""
 "As jobs handled by the cron.d subdirectory may be skipped if the system is "
-"not running, it is recommanded to use one of those directories instead."
+"not running, it is recommended to use one of those directories instead."
 msgstr ""
 "cron.d サブディレクトリで扱われていたジョブは、システムが実行されていないとき"
 "には飛ばされる可能性があります。代わりにこれらのディレクトリの 1 つを使うこと"
@@ -625,9 +625,9 @@ msgstr "GPG 受け取り手:"
 #. Description
 #: ../backup-manager.templates:25001
 msgid ""
-"You have to set the recipient for which the archive is encrypted. A valid  "
+"You have to set the recipient for which the archive is encrypted. A valid "
 "specification is a short or long key id, or a descriptive name, as "
-"explained  in the gpg man page."
+"explained in the gpg man page."
 msgstr ""
 "暗号化されたアーカイブの受け取り手を設定する必要があります。有効な仕様は、"
 "gpg の man ページに書かれているとおり、短いあるいは長い鍵 ID、記述名です。"
@@ -637,7 +637,7 @@ msgstr ""
 #: ../backup-manager.templates:25001
 msgid ""
 "The public key for this identity must be in the key ring of the user running "
-"gpg,  which may be root in most of the cases."
+"gpg, which may be root in most of the cases."
 msgstr ""
 "この ID の公開鍵は、gpg を実行するユーザ (ほとんどの場合は root) の鍵リングに"
 "入っていなければなりません。"

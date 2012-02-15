@@ -1,16 +1,16 @@
 # translation of fr.po to french
 #
-#    Translators, if you are not familiar with the PO format, gettext
-#    documentation is worth reading, especially sections dedicated to
-#    this format, e.g. by running:
-#         info -n '(gettext)PO Files'
-#         info -n '(gettext)Header Entry'
+#   Translators, if you are not familiar with the PO format, gettext
+#   documentation is worth reading, especially sections dedicated to
+#   this format, e.g. by running:
+#        info -n '(gettext)PO Files'
+#        info -n '(gettext)Header Entry'
 #
-#    Some information specific to po-debconf are available at
-#            /usr/share/doc/po-debconf/README-trans
-#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#   Some information specific to po-debconf are available at
+#           /usr/share/doc/po-debconf/README-trans
+#        or http://www.debian.org/intl/l10n/po-debconf/README-trans
 #
-#    Developers do not need to manually edit POT or PO files.
+#   Developers do not need to manually edit POT or PO files.
 #
 msgid ""
 msgstr ""
@@ -176,7 +176,7 @@ msgstr ""
 #. Description
 #: ../backup-manager.templates:7001
 msgid ""
-"You should rather to enter several subdirectories instead of the parent in "
+"You should rather enter several subdirectories instead of the parent in "
 "order to have more pertinent files in your backup repository."
 msgstr ""
 "Il est préférable d'indiquer plusieurs sous-répertoires plutôt que leur "
@@ -520,7 +520,7 @@ msgstr "Utilisateur propriétaire du dépôt :"
 #: ../backup-manager.templates:21001
 msgid ""
 "For security reason, the repository where archives will be stored is "
-"accessible  by a specific user."
+"accessible by a specific user."
 msgstr ""
 "Pour des raisons de sécurité, le dépôt où les archives sont sauvegardées "
 "n'est accessible que par un identifiant spécifique."
@@ -546,7 +546,7 @@ msgstr "Groupe propriétaire du dépôt :"
 #: ../backup-manager.templates:22001
 msgid ""
 "For security reason, the repository where archives will be stored is "
-"accessible  by a specific group."
+"accessible by a specific group."
 msgstr ""
 "Pour des raisons de sécurité, le dépôt où les archives sont sauvegardées est "
 "accessible par un groupe spécifique."
@@ -572,8 +572,8 @@ msgstr "Faut-il effacer le fichier obsolète /etc/cron.d/backup-manager ?"
 #: ../backup-manager.templates:23001
 msgid ""
 "In previous version, backup-manager uses /etc/cron.d directory but this "
-"directory is not  handled by anacron. Thus, it is not possible to run backup-"
-"manager's job asynchronously, if  cron.d is used."
+"directory is not handled by anacron. Thus, it is not possible to run backup-"
+"manager's job asynchronously, if cron.d is used."
 msgstr ""
 "Dans sa version précédente, backup-manager utilisait le répertoire /etc/cron."
 "d mais ce répertoire n'est pas géré par anacron. Ainsi, il n'est pas "
@@ -597,7 +597,7 @@ msgstr ""
 #: ../backup-manager.templates:23001
 msgid ""
 "As jobs handled by the cron.d subdirectory may be skipped if the system is "
-"not running, it is recommanded to use one of those directories instead."
+"not running, it is recommended to use one of those directories instead."
 msgstr ""
 "Comme les tâches gérées dans le sous-répertoire cron.d peuvent ne pas être "
 "lancées si le système est arrêté, il est recommandé d'utiliser un de ces "
@@ -640,9 +640,9 @@ msgstr "Identité GPG :"
 #. Description
 #: ../backup-manager.templates:25001
 msgid ""
-"You have to set the recipient for which the archive is encrypted. A valid  "
+"You have to set the recipient for which the archive is encrypted. A valid "
 "specification is a short or long key id, or a descriptive name, as "
-"explained  in the gpg man page."
+"explained in the gpg man page."
 msgstr ""
 "Vous devez définir l'identité avec laquelle l'archive sera chiffrée. Une "
 "identité valide peut être définie par une clé (« id ») courte ou longue ou "
@@ -653,7 +653,7 @@ msgstr ""
 #: ../backup-manager.templates:25001
 msgid ""
 "The public key for this identity must be in the key ring of the user running "
-"gpg,  which may be root in most of the cases."
+"gpg, which may be root in most of the cases."
 msgstr ""
 "La clé publique de cette identité doit être située dans le trousseau de "
 "l'utilisateur exécutant GPG, soit « root » dans la plupart des cas."
