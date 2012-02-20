@@ -5,8 +5,10 @@
 
 set -e
 
+. /usr/share/debconf/confmodule
+
 tplconffile="/usr/share/backup-manager/backup-manager.conf.tpl"
-cronfile_tpl="/usr/share/backup-manager/backup-manager.cron.tpl"
+cronfile_tpl="$tplconffile"
 conffile="/etc/backup-manager.conf"
 cronfile="/etc/cron.daily/backup-manager"
 
@@ -54,7 +56,6 @@ confsed()
 	 -e 's|BM_BURNING_MAXSIZE=".*"|'"BM_BURNING_MAXSIZE=\"$burning_maxsize\""'|g'
 }
 
-. /usr/share/debconf/confmodule
 
 action="$1"
 version="$2"
@@ -86,15 +87,11 @@ case "$action" in
 	frequency="$RET"
 	
         # find the current cron file
-	if [ -f /etc/cron.monthly/backup-manager ]; then
-		cronfile="/etc/cron.monthly/backup-manager"
-	fi
-	if [ -f /etc/cron.weekly/backup-manager ]; then
-		cronfile="/etc/cron.weekly/backup-manager"
-	fi
-	if [ -f /etc/cron.daily/backup-manager ]; then
-		cronfile="/etc/cron.daily/backup-manager"
-	fi
+        for freq in daily weekly monthly; do
+            if [ -f /etc/cron.$freq/backup-manager ]; then
+                cronfile="/etc/cron.$freq/backup-manager"
+            fi
+        done
 
         # if we find a cronfile, use it instead of the template
         if [ -f $cronfile ]; then
@@ -109,43 +106,22 @@ case "$action" in
 	
 	# According to the frequency we have, move the $cronfile found in the 
         # good CRON sub-directory, or copy our template if none found.
-	case "$frequency" in
-		"daily")
-			if [ ! -f /etc/cron.daily/backup-manager ]; then
-                                if [ "$cronfile" = "$cronfile_tpl" ]; then
-				        mv $cronfile /etc/cron.daily/backup-manager
-                                else 
-				        cp $cronfile_tpl /etc/cron.daily/backup-manager
-                                        chmod 755 /etc/cron.daily/backup-manager
-                                fi
-			fi
-		;;
-		"weekly")
-			if [ ! -f /etc/cron.weekly/backup-manager ]; then
-                                if [ "$cronfile" = "$cronfile_tpl" ]; then
-                                        mv $cronfile /etc/cron.weekly/backup-manager
-                                else 
-				        cp $cronfile_tpl /etc/cron.weekly/backup-manager
-                                        chmod 755 /etc/cron.weekly/backup-manager
-                                fi
-			fi
-		;;
-		"monthly")
-			if [ ! -f /etc/cron.monthly/backup-manager ]; then
-                                if [ "$cronfile" = "$cronfile_tpl" ]; then
-                                        mv $cronfile /etc/cron.monthly/backup-manager
-                                else 
-				        cp $cronfile_tpl /etc/cron.monthly/backup-manager
-                                        chmod 755 /etc/cron.monthly/backup-manager
-                                fi
-			fi
-		;;
-                "never")
-                        if [ -f $cronfile ]; then
-                                rm -f $cronfile
-                        fi
-                ;;
-	esac
+        case $frequency in
+            daily|weekly|monthly)
+                destfile=/etc/cron.$frequency/backup-manager
+                if [ ! -f $destfile ]; then
+                    if [ "$cronfile" = "$cronfile_tpl" ]; then
+                        mv $cronfile $destfile
+                    else 
+                        cp $cronfile_tpl $destfile
+                        chmod 755 $destfile
+                    fi
+                fi
+            ;;
+            never)
+                [ -f $cronfile ] && rm -f $cronfile
+            ;;
+        esac
 	
 	db_get backup-manager/filetype || true 
 	filetype="$RET"
