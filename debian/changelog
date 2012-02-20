@@ -38,6 +38,8 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
   * Add cron script to remove old entries from uploaded archives database.
   * Update control file to reflect upstream fix of Amazon S3 uploading
     method's dependencies (Closes: #491199).
+  * Fix missed warnings when BM_LOGGER* variables are undefined or wrongly
+    configured (Closes: #567553).
 
   [ Sven Joachim, Georgios M. Zarkadas ]
   * Switch source format to 3.0 (quilt).
