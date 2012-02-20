@@ -61,8 +61,8 @@ version="$2"
 
 case "$action" in
 
-	configure)
-   
+    configure|reconfigure)      # see debconf-devel(7) for reconfigure
+
 	# we have to purge the deprecated /etc/cron.d/backup-manager file
 	# Since 0.5.8-3, /etc/cron.d/backup-manager is considered deprecated 
 	# because it's not handled by anacron, whereas cron.daily is. 

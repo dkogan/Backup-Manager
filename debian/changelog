@@ -40,6 +40,9 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
     method's dependencies (Closes: #491199).
   * Fix missed warnings when BM_LOGGER* variables are undefined or wrongly
     configured (Closes: #567553).
+  * Change configurator to dynamically update BM_TARBALL_BLACKLIST when
+    user selections change during configuration (Closes: #610413).
+  * Add backtracking support to the configurator.
 
   [ Sven Joachim, Georgios M. Zarkadas ]
   * Switch source format to 3.0 (quilt).
