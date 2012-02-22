@@ -22,6 +22,8 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
     - Mention that backup-manager-upload requires perl.
     - The Amazon S3 upload method not longer needs libfile-slurp-perl
       (see #491199).
+  * Demote the priority of the repo_user/repo_group debconf templates to
+    medium.
 
   [ Georgios M. Zarkadas ]
   * Add Greek debconf translation.
