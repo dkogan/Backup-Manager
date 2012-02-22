@@ -22,13 +22,12 @@ install /usr/share/backup-manager/backup-manager.cron.tpl /etc/cron.daily/backup
 Replace cron.daily by cron.weekly or cron.monthly if you want less
 frequent backups.
 
-Notes for the Amazon S3 upload method
+Notes on the upload feature
 ---------------------------------------------------------------------
 
-If you want to use the "s3" upload method (provided since version 0.7.3) 
-you have to install the libfile-slurp-perl and libnet-amazon-s3-perl
-packages, otherwise the upload will fail mysteriously.
-See http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=491199.
+The upload script is written in Perl and requires that the "perl"
+package is installed.  If you want to use the "s3" upload method,
+you have to install the libnet-amazon-s3-perl package as well.
 
 
 Upgrade Notes for versions prior to 0.5.9a
@@ -50,4 +49,4 @@ confirmation before overwriting.
 
  -- Alexis Sukrieh <sukria@sukria.net>
 
- -- Sven Joachim <svenjoac@gmx.de>, Fri, 12 Feb 2010 20:13:12 +0100
+ -- Sven Joachim <svenjoac@gmx.de>, Wed, 22 Feb 2012 21:01:48 +0100

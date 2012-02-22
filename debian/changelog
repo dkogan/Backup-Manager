@@ -18,6 +18,10 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
   * Update Vcs-* fields in debian/control, switching to collab-maint.
   * Fix a few typos in the debconf templates, thanks to Daniele Forsi
     for the report.
+  * Update README.Debian:
+    - Mention that backup-manager-upload requires perl.
+    - The Amazon S3 upload method not longer needs libfile-slurp-perl
+      (see #491199).
 
   [ Georgios M. Zarkadas ]
   * Add Greek debconf translation.
