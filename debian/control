@@ -13,7 +13,7 @@ Homepage: http://www.backup-manager.org/
 
 Package: backup-manager
 Architecture: all
-Suggests: backup-manager-doc, zip, perl, openssh-client, wodim,
+Suggests: backup-manager-doc, zip, ${perl:Depends}, openssh-client, wodim,
           genisoimage, gettext-base, anacron, dvd+rw-tools, dar,
           libnet-amazon-s3-perl
 Depends: ${misc:Depends}, debconf | debconf-2.0, ucf (>= 2.009)
