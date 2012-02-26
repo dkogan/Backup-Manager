@@ -15,4 +15,4 @@ override_dh_auto_install:
 
 override_dh_installcron:
 	dh_installcron
-	dh_installcron --name=bm-clean-upload-db
+	dh_installcron --name=backup-manager-clean-upload-db
