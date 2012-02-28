@@ -13,10 +13,10 @@ Homepage: http://www.backup-manager.org/
 
 Package: backup-manager
 Architecture: all
-Suggests: backup-manager-doc, zip, ${perl:Depends}, openssh-client, wodim,
+Suggests: backup-manager-doc, zip, openssh-client, wodim,
           genisoimage, gettext-base, anacron, dvd+rw-tools, dar,
           libnet-amazon-s3-perl
-Depends: ${misc:Depends}, debconf | debconf-2.0, ucf (>= 2.009)
+Depends: ${misc:Depends}, ${perl:Depends}, debconf | debconf-2.0, ucf (>= 2.009)
 Description: command-line backup tool
  This is a backup program, designed to help you make daily archives of
  your file system.

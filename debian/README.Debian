@@ -22,12 +22,11 @@ install /usr/share/backup-manager/backup-manager.cron.tpl /etc/cron.daily/backup
 Replace cron.daily by cron.weekly or cron.monthly if you want less
 frequent backups.
 
-Notes on the upload feature
+Notes for the Amazon S3 upload method
 ---------------------------------------------------------------------
 
-The upload script is written in Perl and requires that the "perl"
-package is installed.  If you want to use the "s3" upload method,
-you have to install the libnet-amazon-s3-perl package as well.
+If you want to use the "s3" upload method (provided since version 0.7.3),
+you need to install the libnet-amazon-s3-perl package.
 
 
 Upgrade Notes for versions prior to 0.5.9a
@@ -49,4 +48,4 @@ confirmation before overwriting.
 
  -- Alexis Sukrieh <sukria@sukria.net>
 
- -- Sven Joachim <svenjoac@gmx.de>, Wed, 22 Feb 2012 21:01:48 +0100
+ -- Sven Joachim <svenjoac@gmx.de>, Tue, 28 Feb 2012 16:59:32 +0100
