@@ -1,1 +1,3 @@
+# This script serves as a template for backup-manager's cron job and
+# is not meant to be executed directly
 backup-manager: script-not-executable usr/share/backup-manager/backup-manager.cron.tpl
