@@ -24,6 +24,7 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
     libfile-slurp-perl (see #491199).
   * Demote the priority of the repo_user/repo_group debconf templates to
     medium.
+  * Update debian/copyright.
 
   [ Georgios M. Zarkadas ]
   * Add Greek debconf translation.
