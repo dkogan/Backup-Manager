@@ -53,6 +53,7 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
 
   [ Sven Joachim, Georgios M. Zarkadas ]
   * Switch source format to 3.0 (quilt).
+    - Drop debian/README.source.
   * Change debian/rules to use the generic 'dh$@' rule plus overrides.
 
   [ Joe Dalton ]
