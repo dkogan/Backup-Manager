@@ -13,7 +13,7 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
   * Refresh the remaining Debian patches.
   * Fill out the same "Language:" header in debian/po/*.po.
   * Drop findutils dependency, even the version in Etch is new enough.
-  * Upgrade Standards-Version to 3.9.2, no changes needed.
+  * Upgrade Standards-Version to 3.9.3, no changes needed.
   * Update lintian override for Lintian 2.5.
   * Update debian/watch to find the 0.7.10.1 release tarball.
   * Add build-indep and (empty) build-arch targets to debian/rules.
