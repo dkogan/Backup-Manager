@@ -1,4 +1,4 @@
-backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
+backup-manager (0.7.10.1-1) unstable; urgency=low
 
   [ Sven Joachim ]
   * New upstream release (Closes: #655985).
@@ -59,7 +59,7 @@ backup-manager (0.7.10.1-1) UNRELEASED; urgency=low
   [ Joe Dalton ]
   * Add Danish debconf translation (Closes: #659162).
 
- -- Sven Joachim <svenjoac@gmx.de>  Mon, 30 Jan 2012 23:32:30 +0200
+ -- Sven Joachim <svenjoac@gmx.de>  Wed, 07 Mar 2012 19:08:15 +0100
 
 backup-manager (0.7.9-3) unstable; urgency=low
 
