@@ -8,7 +8,7 @@ set -e
 . /usr/share/debconf/confmodule
 
 tplconffile="/usr/share/backup-manager/backup-manager.conf.tpl"
-cronfile_tpl="$tplconffile"
+cronfile_tpl="/usr/share/backup-manager/backup-manager.cron.tpl"
 conffile="/etc/backup-manager.conf"
 cronfile="/etc/cron.daily/backup-manager"
 
