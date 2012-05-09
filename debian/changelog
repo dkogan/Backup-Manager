@@ -1,8 +1,8 @@
-backup-manager (0.7.10.1-2) UNRELEASED; urgency=medium
+backup-manager (0.7.10.1-2) unstable; urgency=medium
 
   * Install the correct cron script (Closes: #672235).
 
- -- Sven Joachim <svenjoac@gmx.de>  Wed, 09 May 2012 16:25:03 +0200
+ -- Sven Joachim <svenjoac@gmx.de>  Wed, 09 May 2012 19:03:46 +0200
 
 backup-manager (0.7.10.1-1) unstable; urgency=low
 
