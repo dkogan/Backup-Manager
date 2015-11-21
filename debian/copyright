@@ -1,7 +1,7 @@
 This is the Debian prepackaged version of the backup-manager package.
 It was put together from sources obtained from
 
-http://www.backup-manager.org/download/
+https://github.com/sukria/Backup-Manager
 
 This package was first created by Alexis Sukrieh <sukria@sukria.net>
 and is currently maintained by Sven Joachim <svenjoac@gmx.de> and

@@ -9,7 +9,7 @@ Uploaders: Georgios M. Zarkadas <gz@member.fsf.org>
 Standards-Version: 3.9.3
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/backup-manager.git
 Vcs-Git: git://anonscm.debian.org/collab-maint/backup-manager.git
-Homepage: http://www.backup-manager.org/
+Homepage: https://github.com/sukria/Backup-Manager
 
 Package: backup-manager
 Architecture: all
