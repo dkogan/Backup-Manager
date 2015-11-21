@@ -13,8 +13,7 @@ How to install backup-manager
 
 You can then edit /etc/backup-manager.conf to fit your needs.
 
-Refere to the user guide for details: 
-http://www.backup-manager.org/documentation/user-guide/
+Refere to the user guide (in the doc/ directory) for details.
 
 For Apple OSX with Fink:
 ------------------------
