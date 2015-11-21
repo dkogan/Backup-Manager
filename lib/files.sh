@@ -164,8 +164,15 @@ function get_lock()
 
         # be sure that the process is running
         if [[ ! -z $pid ]]; then
-            real_pid=$(ps --no-headers --pid $pid |awk '{print $1}')
-            if [[ -z $real_pid ]]; then
+	    unamestr=`uname | xargs | awk '{print tolower($0)}'`
+	    # For OSX & fink :
+	    if [[ "$unamestr" == 'darwin' ]]; then
+		real_pid=$(ps -p $pid |tail -n +2 |awk '{print $1}')
+	    else
+		real_pid=$(ps --no-headers --pid $pid |awk '{print $1}')
+	    fi
+            
+	    if [[ -z $real_pid ]]; then
                 echo_translated "Removing lock for old PID, \$pid is not running."
                 release_lock
                 #unmount_tmp_dir
@@ -373,9 +380,15 @@ function clean_directory()
 function purge_duplicate_archives()
 {
     file_to_create="$1"
-    debug "purge_duplicate_archives ($file_to_create)"
 
-    md5hash=$(get_md5sum $file_to_create)
+    if [[ -z "$2" ]]; then
+        debug "purge_duplicate_archives ($file_to_create)"
+        md5hash=$(get_md5sum $file_to_create)
+    else
+        # if the 2nd argument exists, it is the md5sum
+        md5hash="$2"
+        debug "purge_duplicate_archives ($file_to_create, $md5hash)"
+    fi
 
     # Only purge if BM_ARCHIVE_PURGEDUPS = true
     if [[ -z "$BM_ARCHIVE_PURGEDUPS" ]] ||
@@ -413,10 +426,9 @@ function purge_duplicate_archives()
                 error "Unable to get date from file."
             
             # get the md5 hash of the file we parse, in its .md5 file
-            md5file="$BM_REPOSITORY_ROOT/${BM_ARCHIVE_PREFIX}-${date_of_file}.md5"
-            md5sum_to_check="$(get_md5sum_from_file $file $md5file)"
+            md5sum_to_check="$(get_md5sum_from_file $file $MD5FILE)"
             if [[ -z "$md5sum_to_check" ]]; then
-                warning "Unable to find the md5 hash of file \"\$file\" in file \"\$md5file\"."
+                warning "Unable to find the md5 hash of file \"\$file\" in file \"\$MD5FILE\"."
                 continue
             fi
             

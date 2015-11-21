@@ -225,6 +225,12 @@ export BM_MYSQL_FILETYPE="bzip2"
 # command line.)
 export BM_MYSQL_EXTRA_OPTIONS=""
 
+# Make separate backups of each database?
+export BM_MYSQL_SEPARATELY="true"
+
+# Specify DBs to exclude here (separated by space) 
+export BM_MYSQL_DBEXCLUDE=""
+
 ##############################################################
 # Backup method: PostgreSQL
 #############################################################
@@ -337,6 +343,20 @@ export BM_UPLOAD_HOSTS=""
 # Where to put archives on the remote hosts (global)
 export BM_UPLOAD_DESTINATION=""
 
+# Uncomment the 'export ...' line below to activate the uploaded archives
+# database.
+# Using the database will avoid extraneous uploads to remote hosts in the
+# case of running more than one backup-manager jobs per day (such as when
+# you are using different configuration files for different parts of your
+# filesystem).
+# Note that when you upload to multiple hosts, a single succesfull upload
+# will mark the archive as uploaded. Thus upload errors to specific hosts
+# will have to be resolved manually.
+# You can specify any filename, but it is recommended to keep the database
+# inside the archive repository. The variable's value has been preset to
+# that.
+#export BM_UPLOADED_ARCHIVES=${BM_REPOSITORY_ROOT}/${BM_ARCHIVE_PREFIX}-uploaded.list
+
 ##############################################################
 # The SSH method
 #############################################################
@@ -389,6 +409,11 @@ export BM_UPLOAD_FTP_SECURE="false"
 # This is mandatory for NATed/firewalled environments 
 export BM_UPLOAD_FTP_PASSIVE="true"
 
+# Timeout (in seconds) for FTP transfer
+# This setting only has effect when using FTP transfer with
+# secure mode disabled (BM_UPLOAD_FTP_SECURE to "false")
+export BM_UPLOAD_FTP_TIMEOUT="120"
+
 # Test the FTP connection before starting archives upload.
 # This will enable BM to try sending a 2MB test file before
 # sending any archive
@@ -434,6 +459,11 @@ export BM_UPLOAD_S3_SECRET_KEY=""
 # purge archives on remote hosts before uploading?
 export BM_UPLOAD_S3_PURGE="false"
 
+# You can specify a time to live for archives uploaded to S3
+# This can let you use different ttl's locally and remotely
+# By default, BM_ARCHIVE_TTL will be used.
+export BM_UPLOAD_S3_TTL=""
+
 ##############################################################
 # The RSYNC method
 #############################################################
@@ -453,6 +483,21 @@ export BM_UPLOAD_RSYNC_HOSTS=""
 # Do you want to dereference the files pointed by symlinks?   
 # enter true or false (true can lead to huge archives, be careful).    
 export BM_UPLOAD_RSYNC_DUMPSYMLINKS="false"
+
+# Files/folders to exclude when rsyncing. Warning: rsync will interpret
+# it as a mask, so will exclude any file/folder corresponding to it
+export BM_UPLOAD_RSYNC_BLACKLIST=""
+
+# Extra options to append to rsync
+# (take care to what you do; this will be silently added to the
+# command line.)
+export BM_UPLOAD_RSYNC_EXTRA_OPTIONS=""
+
+# Do you want to limit the maximum available bandwidth rsync
+# can use ?
+# By default, no bandwidth limit is applied.
+# Example: 32M, 1024K, ...
+export BM_UPLOAD_RSYNC_BANDWIDTH_LIMIT=""
 
 ##############################################################
 # Section "BURNING" 

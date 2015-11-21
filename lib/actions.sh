@@ -52,13 +52,12 @@ function make_archives()
     esac
 
     # Now make sure the md5 file is okay.
-    md5file="$BM_REPOSITORY_ROOT/${BM_ARCHIVE_PREFIX}-${TODAY}.md5"
-    if [[ -e $md5file ]] && 
+    if [[ -e $MD5FILE ]] && 
        [[ "$BM_REPOSITORY_SECURE" = "true" ]]; then
-        chown $BM_REPOSITORY_USER:$BM_REPOSITORY_GROUP $md5file ||
-            warning "Unable to change the owner of \"\$md5file\"."
-        chmod $BM_ARCHIVE_CHMOD $md5file ||
-            warning "Unable to change file permissions of \"\$md5file\"."
+        chown $BM_REPOSITORY_USER:$BM_REPOSITORY_GROUP $MD5FILE ||
+            warning "Unable to change the owner of \"\$MD5FILE\"."
+        chmod $BM_ARCHIVE_CHMOD $MD5FILE ||
+            warning "Unable to change file permissions of \"\$MD5FILE\"."
     fi
 done
 }
@@ -109,9 +108,8 @@ function clean_repositories()
     clean_directory $BM_REPOSITORY_ROOT
 }
 
-
 # This will run the pre-command given.
-# If this command prints on STDOUT "false", 
+# If this command exit with non-zero status,
 # backup-manager will stop here.
 function exec_pre_command()
 {
@@ -119,17 +117,13 @@ function exec_pre_command()
 
     if [[ ! -z "$BM_PRE_BACKUP_COMMAND" ]]; then
         info "Running pre-command: \$BM_PRE_BACKUP_COMMAND."
-        RET=`$BM_PRE_BACKUP_COMMAND >/dev/null 2>&1` || RET="false" 
-        case "$RET" in
-            "false")
-                warning "Pre-command failed. Stopping the process."
-                _exit 15 "PRE_COMMAND"
-            ;;
-
-            *)
-                info "Pre-command returned: \"\$RET\" (success)."
-            ;;
-        esac
+        $BM_PRE_BACKUP_COMMAND
+        if [ $? -eq 0 ]; then
+            info "Pre-command succeeded."
+        else
+            warning "Pre-command failed. Stopping the process."
+            _exit 15 "PRE_COMMAND"
+        fi
     fi
 
 }
@@ -140,17 +134,13 @@ function exec_post_command()
 
     if [[ ! -z "$BM_POST_BACKUP_COMMAND" ]]; then
         info "Running post-command: \$BM_POST_BACKUP_COMMAND"
-        RET=`$BM_POST_BACKUP_COMMAND >/dev/null 2>&1` || RET="false"
-        case "$RET" in
-            "false")
-                warning "Post-command failed."
-                _exit 16 "POST_COMMAND"
-            ;;
-
-            *)
-                info "Post-command returned: \"\$RET\" (success)."
-            ;;
-        esac
+        $BM_POST_BACKUP_COMMAND
+        if [ $? -eq 0 ]; then
+            info "Post-command succeeded."
+        else
+            warning "Post-command failed."
+            _exit 15 "POST_COMMAND"
+        fi
     fi
 }
 

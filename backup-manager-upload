@@ -108,6 +108,61 @@ sub get_formated_date($)
 	}
 }
 
+# The idea behind BM_UPLOADED_ARCHIVES is to have a database of what archives
+# have been uploaded so far. This allows multiple execution of upload actions
+# within a day without resending all archives of the day from the beginning.
+
+# Add one file,host pair to $BM_UPLOADED_ARCHIVES database.
+# Called immediately *after* successful uploading of an archive.
+sub appendto_uploaded_archives($$)
+{
+    my $file = shift;
+    my $host = shift;
+    unless ( defined $file and defined $host ) {
+        print_error "required args needed";
+        return FALSE;
+    }
+
+    my $upload_fname = $ENV{BM_UPLOADED_ARCHIVES};
+    unless ( defined $upload_fname ) {
+        # Uncomment next line if you want the mandatory use
+        # of BM_UPLOADED_ARCHIVES (ie always have it around).
+        #print_error "BM_UPLOADED_ARCHIVES is not defined";
+        return FALSE;
+    }
+
+    # if $file already in database, append host to that line;
+    # else append a lines "$file $host" to the end.
+
+    my $io_error = 0;
+    if ( ! system( "grep -q \"^$file \" $upload_fname" ) ) {
+        my $cmd = "sed -i \"s:^$file .*\$:\& $host:\" $upload_fname";
+        $io_error = system("$cmd");
+    }
+    elsif ( open(my $fh, ">>", $upload_fname) ) {
+        print($fh "$file $host\n") or $io_error = 1;
+        close $fh;
+    }
+    else {
+        $io_error = 2;
+    }
+    if ( $io_error ) {
+        print_error "IO error: did not update $upload_fname with '$file $host'";
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+# Get all files of the specified date; filter the list through 
+# BM_UPLOADED_ARCHIVES if it is set in the environment.
+# NOTE:  Doing the filtering here implies that the archive is considered
+# uploaded if a single upload to a host succeeds; that is even when there
+# are failures to other hosts (in case of multiple host uploading).
+# To consider it uploaded when all hosts succeed, the filtering must be
+# transfered to the individual upload subroutines (and check for existence
+# of file,host pair in the database).
+#
 sub get_files_list_from_date($)
 {
 	my $date = shift;
@@ -132,8 +187,21 @@ sub get_files_list_from_date($)
         exit E_INVALID;
     }
 
-	while (<$g_root_dir/*$date*>) {
-        push @{$ra_files}, $_;
+    my $upload_fname = $ENV{BM_UPLOADED_ARCHIVES};
+    if ( defined $upload_fname ) {
+        # filter file list through the BM_UPLOADED_ARCHIVES database
+    	while (<$g_root_dir/*$date*>) {
+            my $file = $_;
+            my $cmd = "grep -q '$file' $upload_fname";
+            if ( system ("$cmd") ) {
+                push @{$ra_files}, $file;
+            }
+        }
+    }
+    else {
+    	while (<$g_root_dir/*$date*>) {
+            push @{$ra_files}, $_;
+        }
 	}
 
 	return $ra_files;
@@ -270,7 +338,12 @@ sub send_file_with_scp($$$$$)
 		print_error ("Unable to upload \"$file\". ".($! || $@ || $ret));
         return 0;
 	}
-	return 1;
+    else {
+        # use same name in both cases (gpg encryption is done on the fly);
+        # continue if writing to uploaded archives file fails.
+        appendto_uploaded_archives($file, $host);
+    }
+    return 1;
 }
 
 # How to upload files with scp.
@@ -491,6 +564,25 @@ sub ftp_connect_to_host ($)
         print_error "Unsupported value for BM_UPLOAD_FTP_PASSIVE : $BM_UPLOAD_FTP_PASSIVE";
         return undef;
     }
+	
+	# get the log level from the configuration for debug mode
+	my $BM_LOGGER_LEVEL = $ENV{"BM_LOGGER_LEVEL"};
+    unless (defined $BM_LOGGER_LEVEL) {
+        $BM_LOGGER_LEVEL = "warning";
+    }
+    if ($BM_LOGGER_LEVEL eq "debug") {
+        $BM_LOGGER_LEVEL="1";
+    }
+    else {
+        $BM_LOGGER_LEVEL="0";
+    }
+
+    # get the timeout from the configuration
+    # default is set to 120.
+    my $BM_UPLOAD_FTP_TIMEOUT = $ENV{"BM_UPLOAD_FTP_TIMEOUT"};
+    unless (defined $BM_UPLOAD_FTP_TIMEOUT) {
+        $BM_UPLOAD_FTP_TIMEOUT = 120;
+    }
 
     # trying to get Net::FTP.
     eval "use Net::FTP";
@@ -501,7 +593,8 @@ sub ftp_connect_to_host ($)
     eval {
         $ftp = new Net::FTP (
                 $host, 
-                Debug => 0,
+                Debug => $BM_LOGGER_LEVEL,
+                Timeout => $BM_UPLOAD_FTP_TIMEOUT,
                 Passive => $BM_UPLOAD_FTP_PASSIVE);
     };
     if ($@) {
@@ -539,8 +632,6 @@ sub ftptls_connect_to_host ($)
 # http://search.cpan.org/~eyck/Net-Lite-FTP-0.45/lib/Net/Lite/FTP.pm
 sub send_files_with_ftp($$$$$)
 {
-	
-	
 	# getting args
 	my ($user, $passwd, $ra_hosts, $repository, $ra_files) = @_;
 	unless (defined $user and 
@@ -567,29 +658,29 @@ sub send_files_with_ftp($$$$$)
     else {
         print_error "Unsupported value for BM_UPLOAD_FTP_SECURE : $BM_UPLOAD_FTP_SECURE";
         return FALSE;
-    }   
-    
-	# loop on each hosts given and connect to them.
-	foreach my $host (@{$ra_hosts}) {
+    }
+
+    # loop on each hosts given and connect to them.
+    foreach my $host (@{$ra_hosts}) {
 
         my $ftp;
         
         # The FTP over TLS transfer mode
         if ($BM_UPLOAD_FTP_SECURE) {
-    		$ftp = ftptls_connect_to_host ($host);
+            $ftp = ftptls_connect_to_host ($host);
             unless (defined $ftp) {
                 print_error "Unable to connect to host: $host";
                 return FALSE;
             }
 
             unless (ftptls_login($ftp, $user, $passwd)) {
-                print_error "unable to login on ${host} in FTP TLS mode.";
+                print_error "Unable to login on ${host} in FTP TLS mode.";
                 return FALSE;
             }
             unless (ftptls_cwd($ftp, $repository)) {
                 print_info "The directory ${repository} does not exist, trying to create it.";
                 unless (ftptls_mkdir($ftp, $repository)) {
-                print_error  "unable to create directory ${repository} in FTP TLS mode: " . $ftp->message;
+                print_error  "Unable to create directory ${repository} in FTP TLS mode: " . $ftp->message;
                 return FALSE;
                 }
             }
@@ -598,20 +689,20 @@ sub send_files_with_ftp($$$$$)
 
         # The unencrypted FTP transfers
         else {
-    		$ftp = ftp_connect_to_host ($host);
+            $ftp = ftp_connect_to_host ($host);
             unless (defined $ftp) {
                 print_error "Unable to connect to host: $host";
                 return FALSE;
             }
 
             unless (ftp_login($ftp, $user, $passwd)) {
-                print_error "unable to login on ${host} in FTP mode.";
+                print_error "Unable to login on ${host} in FTP mode.";
                 return FALSE;
             }
             unless (ftp_cwd($ftp, $repository)) {
                 print_info "The directory ${repository} does not exist, trying to create it.";
                 unless (ftp_mkdir($ftp, $repository)) {
-                print_error  "unable to create directory ${repository} in FTP mode: " . $ftp->message;
+                print_error  "Unable to create directory ${repository} in FTP mode: " . $ftp->message;
                 return FALSE;
                 }
             }
@@ -621,19 +712,25 @@ sub send_files_with_ftp($$$$$)
         # Now that we're connected and logged in, test an upload if needed
         if ($g_ftptest) {
             if ($BM_UPLOAD_FTP_SECURE) {
-                unless (ftptls_upload_test_file($ftp)) {
+                if (!ftptls_upload_test_file($ftp)) {
                     print_error "Unable to transfer test file";
                     return FALSE;
                 }
+                else {
+                    print_info "Test file transferred\n";
+                }
             }
             else {
-                unless (ftp_upload_test_file($ftp)) {
-                print_error "Unable to transfer test file";
-                return FALSE;
+                if (!ftp_upload_test_file($ftp)) {
+                    print_error "Unable to transfer test file";
+                    return FALSE;
+                }
+                else {
+                    print_info "Test file transferred\n";
                 }
             }
         }
-			
+
         # Now that we're connected and logged in, purge the repo if needed
         if ($g_ftpclean) {
             unless (ftp_clean_directory($ftp)) {
@@ -641,31 +738,34 @@ sub send_files_with_ftp($$$$$)
             }
         }
 
-        # Put all the files over the connexion
+        # Put all the files over the connection
         foreach my $file (@{$ra_files}) {
             chomp $file;
+            # continue if writing to uploaded archives file fails.
             if ($BM_UPLOAD_FTP_SECURE) {
-                if (!ftptls_put_file ($ftp, $file)) {
-		    print_error "Unable to transfer $file";
-		    return FALSE;
+                if (ftptls_put_file ($ftp, $file)) {
+                    appendto_uploaded_archives($file, $host);
+                    print_info "File $file transfered\n";
                 }
                 else {
-			print_info "File $file transfered\n";
+                    print_error "Unable to transfer $file";
+                    return FALSE;
                 }
             }
             else {
-                if (!ftp_put_file ($ftp, $file)) {
-		    print_error "Unable to transfer $file: " . $ftp->message;
-		    return FALSE;
+                if (ftp_put_file ($ftp, $file)) {
+                    appendto_uploaded_archives($file, $host);
+                    print_info "File $file transfered\n";
                 }
                 else {
-            print_info "File $file transfered\n";
+                    print_error "Unable to transfer $file: " . $ftp->message;
+                    return FALSE;
                 }
             }
         }
-        print_info "All transfers done, loging out from $host\n";
+        print_info "All transfers done, logging out from $host\n";
         $ftp->quit;
-	}	
+    }
     return TRUE;
 }
 
@@ -735,6 +835,10 @@ sub s3_clean_directory($)
 {
     my ($bucket) = @_;
     my $BM_ARCHIVE_TTL = $ENV{BM_ARCHIVE_TTL};
+    if (defined $ENV{BM_UPLOAD_S3_TTL} and
+        length ($ENV{BM_UPLOAD_S3_TTL})) {
+        $BM_ARCHIVE_TTL = $ENV{BM_UPLOAD_S3_TTL};
+    }
     return 0 unless defined $BM_ARCHIVE_TTL;
     my $date_to_remove = `date +%Y%m%d --date "$BM_ARCHIVE_TTL days ago"`;
     chomp $date_to_remove;
@@ -800,7 +904,7 @@ sub send_files_with_s3($$$$$$)
 		);
 
 		unless (defined $s3) {
-			print_error "unable to connect to $host : $@\n";
+			print_error "Unable to connect to $host : $@\n";
 			return FALSE;
 		}
 
@@ -847,6 +951,8 @@ sub send_files_with_s3($$$$$$)
 				);
 				$uploaded{$filename} = $file_length;
 			}
+            # For the S3 method, we assume success in any case.
+            appendto_uploaded_archives($file, $host);
 		}
 
 		# get a list of files and confirm uploads

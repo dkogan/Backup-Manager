@@ -64,7 +64,7 @@ function bm_upload_ssh()
           -h="$bm_upload_hosts" \
           -u="$BM_UPLOAD_SSH_USER" \
           -d="$BM_UPLOAD_SSH_DESTINATION" \
-          -r="$BM_REPOSITORY_ROOT" today 2>$logfile || 
+          -r="$BM_REPOSITORY_ROOT" ${TODAY} 2>$logfile || 
     error "Error reported by backup-manager-upload for method \"scp\", check \"\$logfile\"."
     rm -f $logfile
 }
@@ -101,7 +101,7 @@ function bm_upload_ssh_gpg()
          -u="$BM_UPLOAD_SSH_USER" \
          -d="$BM_UPLOAD_SSH_DESTINATION" \
          -r="$BM_REPOSITORY_ROOT" \
-         --gpg-recipient="$BM_UPLOAD_SSHGPG_RECIPIENT" today 2>$logfile|| 
+         --gpg-recipient="$BM_UPLOAD_SSHGPG_RECIPIENT" ${TODAY} 2>$logfile|| 
     error "Error reported by backup-manager-upload for method \"ssh-gpg\", check \"\$logfile\"."
     rm -f $logfile
 }
@@ -142,7 +142,7 @@ function bm_upload_ftp()
         -h="$bm_upload_hosts" \
         -u="$BM_UPLOAD_FTP_USER" \
         -d="$BM_UPLOAD_FTP_DESTINATION" \
-        -r="$BM_REPOSITORY_ROOT" today 2>$logfile|| 
+        -r="$BM_REPOSITORY_ROOT" ${TODAY} 2>$logfile|| 
     error "Error reported by backup-manager-upload for method \"ftp\", check \"\$logfile\"."
     rm -f $logfile
 
@@ -172,7 +172,7 @@ function bm_upload_s3()
         -h="$bm_upload_hosts" \
         -u="$BM_UPLOAD_S3_ACCESS_KEY" \
         -b="$BM_UPLOAD_S3_DESTINATION" \
-        -r="$BM_REPOSITORY_ROOT" today 2>$logfile || 
+        -r="$BM_REPOSITORY_ROOT" ${TODAY} 2>$logfile || 
     error "Error reported by backup-manager-upload for method \"s3\", check \"\$logfile\"."
     rm -f $logfile
 }
@@ -192,7 +192,7 @@ function _exec_rsync_command()
            [[ -z "$BM_UPLOAD_SSH_KEY" ]]; then 
             error "Need a key to use rsync (set BM_UPLOAD_SSH_USER, BM_UPLOAD_SSH_KEY)."
         fi
-        ssh_option="ssh -l ${BM_UPLOAD_SSH_USER} -o BatchMode=yes -o ServerAliveInterval=60 -i ${BM_UPLOAD_SSH_KEY}"
+        ssh_option="ssh -l ${BM_UPLOAD_SSH_USER} -p ${BM_UPLOAD_SSH_PORT} -o BatchMode=yes -o ServerAliveInterval=60 -i ${BM_UPLOAD_SSH_KEY}"
         destination_option="${BM_UPLOAD_SSH_USER}@${host}:${destination_option}"
     fi
     
@@ -218,7 +218,7 @@ function bm_upload_rsync_common()
     fi
     if [[ -z "$BM_UPLOAD_RSYNC_DESTINATION" ]]; then
         BM_UPLOAD_RSYNC_DESTINATION="$BM_UPLOAD_DESTINATION"
-    fi        
+    fi
     if [[ -z "$BM_UPLOAD_RSYNC_DESTINATION" ]]; then
         error "No valid destination found, RSYNC upload not possible."
     fi
@@ -228,6 +228,24 @@ function bm_upload_rsync_common()
         if [[ "$BM_UPLOAD_RSYNC_DUMPSYMLINKS" = "true" ]]; then
             rsync_options="-vaL"
         fi
+    fi
+
+    if [[ ! -z $BM_UPLOAD_RSYNC_EXTRA_OPTIONS ]]; then
+        rsync_options="${rsync_options} $BM_UPLOAD_RSYNC_EXTRA_OPTIONS"
+    fi
+
+    # For every exclusion defined in the configuration,
+    # append an --exclude condition to the rsync command
+    if [[ ! -z "$BM_UPLOAD_RSYNC_BLACKLIST" ]]; then
+        for exclude in $BM_UPLOAD_RSYNC_BLACKLIST
+        do
+            rsync_options="${rsync_options} --exclude=${exclude}"
+        done
+    fi
+
+    # Apply a bandwidth limit if required by the user
+    if [[ ! -z "$BM_UPLOAD_RSYNC_BANDWIDTH_LIMIT" ]]; then
+        rsync_options="${rsync_options} --bwlimit=${BM_UPLOAD_RSYNC_BANDWIDTH_LIMIT}"
     fi
 
     for directory in $BM_UPLOAD_RSYNC_DIRECTORIES
