@@ -93,13 +93,14 @@ export BM_ARCHIVE_METHOD="tarball"
 # tar, tar.gz, tar.bz2
 
 # Uncomment the following line if you want to enable encryption
-# export BM_ENCRYPTION_METHOD="gpg"
+# available method: gpg
+export BM_ENCRYPTION_METHOD=""
 
 # The encryption will be made using a GPG ID
 # Examples:
 # export BM_ENCRYPTION_RECIPIENT="0x1EE5DD34"
 # export BM_ENCRYPTION_RECIPIENT="Alexis Sukrieh"
-# export BM_ENCRYPTION_RECIPIENT="sukria@sukria.net"
+export BM_ENCRYPTION_RECIPIENT=""
 
 
 ##############################################################
@@ -142,17 +143,16 @@ export BM_TARBALL_DUMPSYMLINKS="false"
 
 # It's recommanded to use BM_TARBALL_TARGETS[] though.
 # Warning! You *must not* use both variables at the same time.
+# NOTE: The Debian package will only update BM_TARBALL_DIRECTORIES
 
 # Paths without spaces in their name:
-# export BM_TARBALL_DIRECTORIES="/etc /boot"
+export BM_TARBALL_DIRECTORIES="/etc /boot"
 
 # If one or more of the targets contain a space, use the array:
-declare -a BM_TARBALL_TARGETS
-
-BM_TARBALL_TARGETS[0]="/etc" 
-BM_TARBALL_TARGETS[1]="/boot"
-
-export BM_TARBALL_TARGETS
+# declare -a BM_TARBALL_TARGETS
+# BM_TARBALL_TARGETS[0]="/etc"
+# BM_TARBALL_TARGETS[1]="/boot"
+# export BM_TARBALL_TARGETS
 
 # Files to exclude when generating tarballs, you can put absolute 
 # or relative paths, Bash wildcards are possible.
