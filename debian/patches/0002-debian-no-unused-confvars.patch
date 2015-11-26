@@ -1,15 +1,19 @@
-Description: Remove a configuration variable that is not used anywhere
- (as of version 0.7.10.1).
-Author: Sven Joachim <svenjoac@gmx.de>
+From: Sven Joachim <svenjoac@gmx.de>
+Date: Thu, 26 Nov 2015 14:32:16 -0800
 Last-Update: 2011-11-08
+Subject: debian-no-unused-confvars
 
+Remove a configuration variable that is not used anywhere (as of version
+0.7.10.1).
 ---
- backup-manager.conf.tpl |   10 ----------
- 1 file changed, 10 deletions(-)
+ backup-manager.conf.tpl | 5 -----
+ 1 file changed, 5 deletions(-)
 
+diff --git a/backup-manager.conf.tpl b/backup-manager.conf.tpl
+index 9756baa..1487f72 100644
 --- a/backup-manager.conf.tpl
 +++ b/backup-manager.conf.tpl
-@@ -42,11 +42,6 @@
+@@ -42,11 +42,6 @@ export BM_ARCHIVE_CHMOD="660"
  # Number of days we have to keep an archive (Time To Live)
  export BM_ARCHIVE_TTL="5"
  

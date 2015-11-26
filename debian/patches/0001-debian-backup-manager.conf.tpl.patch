@@ -1,16 +1,20 @@
-Description: The configuration file has some changes for the postinst
- phase needs.
- TODO: the Debian package should support BM_TARBALL_TARGETS.
-Author: Alexis Sukrieh <sukria@sukria.net>
+From: Alexis Sukrieh <sukria@sukria.net>
+Date: Thu, 26 Nov 2015 14:32:16 -0800
 Forwarded: not-needed
+Subject: debian-backup-manager.conf.tpl
 
+The configuration file has some changes for the postinst phase needs.
+
+TODO: the Debian package should support BM_TARBALL_TARGETS.
 ---
- backup-manager.conf.tpl |   18 +++++++++---------
+ backup-manager.conf.tpl | 18 +++++++++---------
  1 file changed, 9 insertions(+), 9 deletions(-)
 
+diff --git a/backup-manager.conf.tpl b/backup-manager.conf.tpl
+index b67c1da..9756baa 100644
 --- a/backup-manager.conf.tpl
 +++ b/backup-manager.conf.tpl
-@@ -93,13 +93,14 @@
+@@ -93,13 +93,14 @@ export BM_ARCHIVE_METHOD="tarball"
  # tar, tar.gz, tar.bz2
  
  # Uncomment the following line if you want to enable encryption
@@ -27,7 +31,7 @@ Forwarded: not-needed
  
  
  ##############################################################
-@@ -142,17 +143,16 @@
+@@ -142,17 +143,16 @@ export BM_TARBALL_DUMPSYMLINKS="false"
  
  # It's recommanded to use BM_TARBALL_TARGETS[] though.
  # Warning! You *must not* use both variables at the same time.

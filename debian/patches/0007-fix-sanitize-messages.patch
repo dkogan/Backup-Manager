@@ -1,12 +1,18 @@
-Description: Sanitize logging system's variables first to ensure errors
- and warnings are properly reported / logged.
-Author: Georgios M. Zarkadas <gz@member.fsf.org>
+From: "Georgios M. Zarkadas" <gz@member.fsf.org>
+Date: Thu, 26 Nov 2015 14:32:16 -0800
 Last-Update: 2012-02-14
+Subject: fix-sanitize-messages
 
-Index: backup-manager/lib/sanitize.sh
-===================================================================
---- backup-manager.orig/lib/sanitize.sh
-+++ backup-manager/lib/sanitize.sh
+Sanitize logging system's variables first to ensure errors and warnings are
+properly reported / logged.
+---
+ lib/sanitize.sh | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/lib/sanitize.sh b/lib/sanitize.sh
+index 2e42198..6996086 100644
+--- a/lib/sanitize.sh
++++ b/lib/sanitize.sh
 @@ -120,6 +120,15 @@ function replace_deprecated_booleans()
  
  # First of all replace yes/no booleans with true/false ones.
@@ -23,7 +29,7 @@ Index: backup-manager/lib/sanitize.sh
  confkey_handle_deprecated "BM_ARCHIVES_REPOSITORY" "BM_REPOSITORY_ROOT"
  confkey_require "BM_REPOSITORY_ROOT" "/var/archives" 
  
-@@ -288,12 +297,6 @@ if [[ -z "$BM_ARCHIVE_STRICTPURGE" ]]; t
+@@ -288,12 +297,6 @@ if [[ -z "$BM_ARCHIVE_STRICTPURGE" ]]; then
      confkey_require "BM_ARCHIVE_STRICTPURGE" "true"
  fi
  

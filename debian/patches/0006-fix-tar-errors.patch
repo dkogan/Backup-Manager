@@ -1,16 +1,18 @@
-Description: A bug that treats tar warnings as errors has been fixed.
-Author: Alexey Salmin <alexey.salmin@gmail.com>
+From: Alexey Salmin <alexey.salmin@gmail.com>
+Date: Thu, 26 Nov 2015 14:32:16 -0800
 Bug: http://bugzilla.backup-manager.org/show_bug.cgi?id=219
 Bug-Debian: http://bugs.debian.org/532976
+Subject: fix-tar-errors
 
+A bug that treats tar warnings as errors has been fixed.
 ---
- lib/backup-methods.sh |    7 ++++++-
+ lib/backup-methods.sh | 7 ++++++-
  1 file changed, 6 insertions(+), 1 deletion(-)
 
-Index: backup-manager/lib/backup-methods.sh
-===================================================================
---- backup-manager.orig/lib/backup-methods.sh
-+++ backup-manager/lib/backup-methods.sh
+diff --git a/lib/backup-methods.sh b/lib/backup-methods.sh
+index e2cab4d..a0282a9 100644
+--- a/lib/backup-methods.sh
++++ b/lib/backup-methods.sh
 @@ -636,7 +636,12 @@ function build_clear_archive
  
          # the common commandline

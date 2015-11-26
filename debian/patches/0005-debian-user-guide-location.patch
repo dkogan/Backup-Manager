@@ -1,13 +1,17 @@
-Description: The user guide is installed in /usr/share/backup-manager-doc.
- This is the recommended canonical Debian location.
-Author: Sven Joachim <svenjoac@gmx.de>
+From: Sven Joachim <svenjoac@gmx.de>
+Date: Thu, 26 Nov 2015 14:32:16 -0800
 Bug-Debian: http://bugs.debian.org/433011
 Bug-Debian: http://bugs.debian.org/528161
+Subject: debian-user-guide-location
 
+The user guide is installed in /usr/share/backup-manager-doc. This is the
+recommended canonical Debian location.
 ---
- doc/Makefile |    2 +-
+ doc/Makefile | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/doc/Makefile b/doc/Makefile
+index 207f21b..10aeaff 100644
 --- a/doc/Makefile
 +++ b/doc/Makefile
 @@ -1,7 +1,7 @@

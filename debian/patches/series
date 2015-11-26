@@ -1,7 +1,7 @@
-debian-backup-manager.conf.tpl.diff
-debian-no-unused-confvars.diff
-debian-remove-shebang.diff
-debian-version.diff
-debian-user-guide-location.diff
-fix-tar-errors.diff
-fix-sanitize-messages.diff
+0001-debian-backup-manager.conf.tpl.patch
+0002-debian-no-unused-confvars.patch
+0003-debian-remove-shebang.patch
+0004-debian-version.patch
+0005-debian-user-guide-location.patch
+0006-fix-tar-errors.patch
+0007-fix-sanitize-messages.patch
