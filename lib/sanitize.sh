@@ -1,4 +1,3 @@
-#! /usr/bin/env bash
 # Copyright © 2005-2010 Alexis Sukrieh
 #
 # See the AUTHORS file for details.
