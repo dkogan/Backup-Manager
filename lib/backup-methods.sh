@@ -636,7 +636,12 @@ function build_clear_archive
 
         # the common commandline
         *)
-            BM__CURRENT_COMMAND="generic"
+            # tar, tar.gz, tar.bz2, tar.whatever
+            if [[ "${BM_TARBALL_FILETYPE:0:3}" == "tar" ]] ; then
+                BM__CURRENT_COMMAND="tar"
+            else
+                BM__CURRENT_COMMAND="generic"
+            fi
             debug "$command $file_to_create \"$target\" > $logfile 2>&1"
             tail_logfile "$logfile"
             debug "$command $file_to_create \"$target\""
