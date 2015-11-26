@@ -4,13 +4,4 @@ debian-remove-shebang.diff
 debian-version.diff
 debian-user-guide-location.diff
 fix-tar-errors.diff
-fix-backup-manager-purge-POD.diff
-fix-root-absolute-blacklist-paths.diff
-fix-upload-database.diff
-fix-use-TODAY-to-upload.diff
-fix-make-po-idempotent.diff
-fix-pgsql-pgpass-security.diff
-fix-pgsql-use-local-sockets.diff
-fix-pgsql-test-all-dump-programs.diff
-fix-sql-archives-naming-convention.diff
 fix-sanitize-messages.diff
