@@ -120,6 +120,15 @@ function replace_deprecated_booleans()
 
 # First of all replace yes/no booleans with true/false ones.
 replace_deprecated_booleans
+# Then ensure that logging facility has sane values, so that subsequent
+# errors and warnings in configuration keys indeed get reported.
+confkey_require "BM_LOGGER" "true"
+if [[ "$BM_LOGGER" = "true" ]]; then
+    confkey_require "BM_LOGGER_FACILITY" "user"
+    confkey_require "BM_LOGGER_LEVEL" "warning"
+fi
+# Now we can sanitize rest configuration keys.
+
 confkey_handle_deprecated "BM_ARCHIVES_REPOSITORY" "BM_REPOSITORY_ROOT"
 confkey_require "BM_REPOSITORY_ROOT" "/var/archives" 
 
@@ -286,12 +295,6 @@ fi
 
 if [[ -z "$BM_ARCHIVE_STRICTPURGE" ]]; then
     confkey_require "BM_ARCHIVE_STRICTPURGE" "true"
-fi
-
-confkey_require "BM_LOGGER" "true"
-if [[ "$BM_LOGGER" = "true" ]]; then 
-    confkey_require "BM_LOGGER_FACILITY" "user"
-    confkey_require "BM_LOGGER_LEVEL" "warning"
 fi
 
 if [[ $nb_warnings -gt 0 ]]; then
