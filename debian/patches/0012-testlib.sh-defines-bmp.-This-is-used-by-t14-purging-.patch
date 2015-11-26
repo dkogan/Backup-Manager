@@ -1,0 +1,20 @@
+From: Dima Kogan <dima@secretsauce.net>
+Date: Thu, 26 Nov 2015 13:40:39 -0800
+Subject: testlib.sh defines bmp. This is used by t14-purging-system.sh
+
+---
+ t/testlib.sh | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/t/testlib.sh b/t/testlib.sh
+index faf3638..cb174c9 100644
+--- a/t/testlib.sh
++++ b/t/testlib.sh
+@@ -48,6 +48,7 @@ fi
+ 
+ libdir="../lib"
+ bmu="../backup-manager-upload"
++bmp="../backup-manager-purge"
+ 
+ conffile="confs/base.conf"
+ version="false"

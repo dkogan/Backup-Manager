@@ -1,0 +1,41 @@
+From: Dima Kogan <dima@secretsauce.net>
+Date: Fri, 20 Nov 2015 21:49:23 -0800
+Subject: MD5FILE defined in bm_init_env() to make test suite work
+
+This is required because the test suite runs actions without touching the
+backup-manager script
+---
+ backup-manager | 2 --
+ lib/actions.sh | 6 ++++++
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/backup-manager b/backup-manager
+index 2712606..adbbbd0 100755
+--- a/backup-manager
++++ b/backup-manager
+@@ -205,8 +205,6 @@ source $libdir/sanitize.sh
+ 
+ debug "Initializing environment"
+ bm_init_env
+-# Use a single md5 file to store all archives.
+-export MD5FILE="${BM_REPOSITORY_ROOT}/${BM_ARCHIVE_PREFIX}-hashes.md5"
+ 
+ debug "Checking if logger is available"
+ check_logger
+diff --git a/lib/actions.sh b/lib/actions.sh
+index 8960ae2..e281d32 100644
+--- a/lib/actions.sh
++++ b/lib/actions.sh
+@@ -148,6 +148,12 @@ function bm_init_env ()
+ {
+     debug "bm_init_env()"
+     export TOOMUCH_TIME_AGO=`date +%d --date "$BM_ARCHIVE_TTL days ago"`
++
++    # Use a single md5 file to store all archives. This lives here to make the
++    # test suite work. It runs actions without touching the backup-manager
++    # script
++    export MD5FILE="${BM_REPOSITORY_ROOT}/${BM_ARCHIVE_PREFIX}-hashes.md5"
++
+     if [[ -n "$HOME" ]]; then
+         export BM__GPG_HOMEDIR="--homedir ${HOME}/.gnupg"
+     else

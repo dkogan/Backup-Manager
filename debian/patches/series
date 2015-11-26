@@ -5,3 +5,9 @@
 0005-debian-user-guide-location.patch
 0006-fix-tar-errors.patch
 0007-fix-sanitize-messages.patch
+0008-Documentation-of-the-documentation-cleanup.patch
+0009-Replaced-significant-references-to-the-defunct-backu.patch
+0010-MD5FILE-defined-in-bm_init_env-to-make-test-suite-wo.patch
+0011-Fixed-up-the-dar-tests.patch
+0012-testlib.sh-defines-bmp.-This-is-used-by-t14-purging-.patch
+0013-disabled-test-t20-hooks-bug235.sh.patch

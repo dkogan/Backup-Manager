@@ -1,0 +1,139 @@
+From: Dima Kogan <dima@secretsauce.net>
+Date: Fri, 20 Nov 2015 21:14:38 -0800
+Subject: Replaced significant references to the defunct backup-manager.org
+
+---
+ INSTALL                        | 3 +--
+ doc/common.ent                 | 3 ---
+ doc/user-guide.sgml            | 6 ++----
+ man/backup-manager.8           | 9 ++++-----
+ t/t04-tarball-blacklist.sh     | 2 +-
+ t/t10-tarball-dar-blacklist.sh | 2 +-
+ t/t11-pipe-method.sh           | 2 +-
+ t/t11.2-pipe-encrypted.sh      | 2 +-
+ 8 files changed, 11 insertions(+), 18 deletions(-)
+
+diff --git a/INSTALL b/INSTALL
+index 46c083a..bd3208d 100644
+--- a/INSTALL
++++ b/INSTALL
+@@ -13,8 +13,7 @@ How to install backup-manager
+ 
+ You can then edit /etc/backup-manager.conf to fit your needs.
+ 
+-Refere to the user guide for details: 
+-http://www.backup-manager.org/documentation/user-guide/
++Refere to the user guide (in the doc/ directory) for details.
+ 
+ For Apple OSX with Fink:
+ ------------------------
+diff --git a/doc/common.ent b/doc/common.ent
+index de697f5..c811c51 100644
+--- a/doc/common.ent
++++ b/doc/common.ent
+@@ -18,6 +18,3 @@
+ <!-- Backup Manager related information -->
+ <!ENTITY bmngr "Backup Manager">
+ <!ENTITY bmngr-version "0.7.7">
+-
+-<!-- Email addresses -->
+-<!ENTITY doc-email "<email>backup-manager-devel@backup-manager.org</email>">
+diff --git a/doc/user-guide.sgml b/doc/user-guide.sgml
+index 548bf20..36de1e2 100644
+--- a/doc/user-guide.sgml
++++ b/doc/user-guide.sgml
+@@ -108,10 +108,8 @@ has been reviewed by Sven Joachim.
+ <p>
+ While the author of this document has tried hard to avoid typos and other
+ errors, these do still occur. If you discover an error in this manual or if you
+-want to give any comments, suggestions, or criticisms please send an email to
+-the development list, backup-manager-devel@backup-manager.org, or submit a bug
+-report against the "Documentation" product, in the bug tracking
+-system<footnote>http://bugzilla.backup-manager.org/</footnote>.
++want to give any comments, suggestions, or criticisms please create a new issue
++at https://github.com/sukria/Backup-Manager/issues
+ 
+ <chapt id="configuration">Configuration files
+ 
+diff --git a/man/backup-manager.8 b/man/backup-manager.8
+index a80be58..5d71843 100644
+--- a/man/backup-manager.8
++++ b/man/backup-manager.8
+@@ -26,8 +26,7 @@ An example should have been provided with the program, most of the time it's
+ installed in `/usr/share/backup-manager/backup-manager.conf.tpl'.
+ .P
+ If you want exhaustive details about how to write your own configuration files,
+-please refer to the Backup Manager User Guide:
+-http://www.backup-manager.org/documentation/user-guide/
++please refer to the Backup Manager User Guide.
+ .SH OPTIONS
+ .P
+ .B --version
+@@ -70,12 +69,12 @@ Disable the burning process.
+ Disable the purging process.
+ .SH BUGS
+ If you find a bug or want to submit a wish-list to the development team, feel
+-free to use the official Bug Tracking System: http://bugzilla.backup-manager.org
++free to create a new issue at https://github.com/sukria/Backup-Manager/issues
+ .SH WEBSITE
+ To find latest news and releases, come to the official website:
+-http://www.backup-manager.org
++https://github.com/sukria/Backup-Manager
+ .SH SEE ALSO
+ .BR backup-manager-upload (8),
+ .BR ssh-keygen (1)
+ .SH AUTHOR
+-Alexis Sukrieh <sukria@backup-manager.org>
++Alexis Sukrieh <sukria@gmail.com>
+diff --git a/t/t04-tarball-blacklist.sh b/t/t04-tarball-blacklist.sh
+index 9180666..0f05cf2 100644
+--- a/t/t04-tarball-blacklist.sh
++++ b/t/t04-tarball-blacklist.sh
+@@ -5,7 +5,7 @@ set -e
+ source testlib.sh
+ source confs/base.conf
+ 
+-# taken verbatim from file attached to bug #4
++# taken verbatim from file attached to bug #4 that previously lived at
+ # http://bugzilla.backup-manager.org/cgi-bin/attachment.cgi?id=1&action=view
+ export BM_REPOSITORY_ROOT="$PWD/repository"
+ export BM_ARCHIVE_METHOD="tarball"
+diff --git a/t/t10-tarball-dar-blacklist.sh b/t/t10-tarball-dar-blacklist.sh
+index 0d4cd7a..2e15a1e 100644
+--- a/t/t10-tarball-dar-blacklist.sh
++++ b/t/t10-tarball-dar-blacklist.sh
+@@ -9,7 +9,7 @@ source testlib.sh
+ 
+ source confs/base.conf
+ 
+-# taken verbatim from file attached to bug #4
++# taken verbatim from file attached to bug #4 that previously lived at
+ # http://bugzilla.backup-manager.org/cgi-bin/attachment.cgi?id=1&action=view
+ export BM_REPOSITORY_ROOT="$PWD/repository"
+ export BM_ARCHIVE_METHOD="tarball"
+diff --git a/t/t11-pipe-method.sh b/t/t11-pipe-method.sh
+index 8bf529f..a74ab5d 100644
+--- a/t/t11-pipe-method.sh
++++ b/t/t11-pipe-method.sh
+@@ -8,7 +8,7 @@ source testlib.sh
+ 
+ source confs/base.conf
+ 
+-# taken verbatim from file attached to bug #4
++# taken verbatim from file attached to bug #4 that previously lived at
+ # http://bugzilla.backup-manager.org/cgi-bin/attachment.cgi?id=1&action=view
+ export BM_REPOSITORY_ROOT="$PWD/repository"
+ export BM_ARCHIVE_METHOD="pipe"
+diff --git a/t/t11.2-pipe-encrypted.sh b/t/t11.2-pipe-encrypted.sh
+index bd77c79..b5b8255 100644
+--- a/t/t11.2-pipe-encrypted.sh
++++ b/t/t11.2-pipe-encrypted.sh
+@@ -8,7 +8,7 @@ source testlib.sh
+ 
+ source confs/base.conf
+ 
+-# taken verbatim from file attached to bug #4
++# taken verbatim from file attached to bug #4 that previously lived at
+ # http://bugzilla.backup-manager.org/cgi-bin/attachment.cgi?id=1&action=view
+ export BM_REPOSITORY_ROOT="$PWD/repository"
+ export BM_ARCHIVE_METHOD="pipe"
