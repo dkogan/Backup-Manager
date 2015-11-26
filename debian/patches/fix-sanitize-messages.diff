@@ -3,9 +3,11 @@ Description: Sanitize logging system's variables first to ensure errors
 Author: Georgios M. Zarkadas <gz@member.fsf.org>
 Last-Update: 2012-02-14
 
---- a/lib/sanitize.sh
-+++ b/lib/sanitize.sh
-@@ -120,6 +120,15 @@
+Index: backup-manager/lib/sanitize.sh
+===================================================================
+--- backup-manager.orig/lib/sanitize.sh
++++ backup-manager/lib/sanitize.sh
+@@ -120,6 +120,15 @@ function replace_deprecated_booleans()
  
  # First of all replace yes/no booleans with true/false ones.
  replace_deprecated_booleans
@@ -21,7 +23,7 @@ Last-Update: 2012-02-14
  confkey_handle_deprecated "BM_ARCHIVES_REPOSITORY" "BM_REPOSITORY_ROOT"
  confkey_require "BM_REPOSITORY_ROOT" "/var/archives" 
  
-@@ -277,12 +286,6 @@
+@@ -288,12 +297,6 @@ if [[ -z "$BM_ARCHIVE_STRICTPURGE" ]]; t
      confkey_require "BM_ARCHIVE_STRICTPURGE" "true"
  fi
  

@@ -7,9 +7,11 @@ Bug-Debian: http://bugs.debian.org/532976
  lib/backup-methods.sh |    7 ++++++-
  1 file changed, 6 insertions(+), 1 deletion(-)
 
---- a/lib/backup-methods.sh
-+++ b/lib/backup-methods.sh
-@@ -621,7 +621,12 @@
+Index: backup-manager/lib/backup-methods.sh
+===================================================================
+--- backup-manager.orig/lib/backup-methods.sh
++++ backup-manager/lib/backup-methods.sh
+@@ -636,7 +636,12 @@ function build_clear_archive
  
          # the common commandline
          *)

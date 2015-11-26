@@ -7,14 +7,16 @@ Forwarded: not-needed
  backup-manager |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
---- a/backup-manager
-+++ b/backup-manager
-@@ -27,7 +27,7 @@
+Index: backup-manager/backup-manager
+===================================================================
+--- backup-manager.orig/backup-manager
++++ backup-manager/backup-manager
+@@ -27,7 +27,7 @@ set -e
  
  RELEASE="true"
  REVISION='$Revision$'
 -VERSION="0.7.11"
 +VERSION="0.7.11-debian1"
  
- # All the paths we provide
- libdir="/usr/share/backup-manager"
+ #Set prefix for paths
+ BIN_PREFIX=/usr/bin
