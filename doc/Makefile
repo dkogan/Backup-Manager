@@ -1,7 +1,7 @@
 
 BASE	= user-guide
 SOURCE	= $(BASE).sgml
-DEST    = $(DESTDIR)/usr/share/backup-manager/doc
+DEST    = $(DESTDIR)/usr/share/doc/backup-manager-doc
 
 all: pdf txt html
 install: all
