@@ -1,5 +1,6 @@
 From: Dima Kogan <dima@secretsauce.net>
 Date: Fri, 20 Nov 2015 21:49:23 -0800
+Forwarded: https://github.com/sukria/Backup-Manager/issues/66
 Subject: MD5FILE defined in bm_init_env() to make test suite work
 
 This is required because the test suite runs actions without touching the

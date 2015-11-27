@@ -1,5 +1,6 @@
 From: Dima Kogan <dima@secretsauce.net>
 Date: Thu, 26 Nov 2015 13:12:20 -0800
+Forwarded: https://github.com/sukria/Backup-Manager/issues/66
 Subject: Fixed up the dar tests
 
 - The incremental and non-incremental tests now have a very similar structure to

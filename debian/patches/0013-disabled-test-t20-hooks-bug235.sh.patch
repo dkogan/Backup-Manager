@@ -1,5 +1,6 @@
 From: Dima Kogan <dima@secretsauce.net>
 Date: Thu, 26 Nov 2015 14:15:27 -0800
+Forwarded: https://github.com/sukria/Backup-Manager/issues/66
 Subject: disabled test t20-hooks-bug235.sh
 
 The bts is gone, so I can't tell what bug 235 is. However this test fails, and

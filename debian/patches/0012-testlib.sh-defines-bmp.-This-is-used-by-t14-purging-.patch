@@ -1,5 +1,6 @@
 From: Dima Kogan <dima@secretsauce.net>
 Date: Thu, 26 Nov 2015 13:40:39 -0800
+Forwarded: https://github.com/sukria/Backup-Manager/issues/66
 Subject: testlib.sh defines bmp. This is used by t14-purging-system.sh
 
 ---

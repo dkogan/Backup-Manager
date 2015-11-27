@@ -1,5 +1,6 @@
 From: Dima Kogan <dima@secretsauce.net>
 Date: Fri, 20 Nov 2015 21:05:22 -0800
+Forwarded: https://github.com/sukria/Backup-Manager/issues/65
 Subject: Documentation of the documentation cleanup
 
 - removed user-guide.txt from the repo: this is a generated file that can get
