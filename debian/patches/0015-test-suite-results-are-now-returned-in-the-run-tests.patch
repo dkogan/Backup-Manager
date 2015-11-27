@@ -1,5 +1,6 @@
 From: Dima Kogan <dima@secretsauce.net>
 Date: Thu, 26 Nov 2015 19:55:35 -0800
+Forwarded: https://github.com/sukria/Backup-Manager/issues/66
 Subject: test suite results are now returned in the run-tests.sh exit code
 
 ---
