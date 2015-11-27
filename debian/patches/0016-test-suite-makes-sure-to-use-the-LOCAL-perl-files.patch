@@ -1,0 +1,23 @@
+From: Dima Kogan <dima@secretsauce.net>
+Date: Thu, 26 Nov 2015 20:29:35 -0800
+Subject: test suite makes sure to use the LOCAL perl files
+
+---
+ t/testlib.sh | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/t/testlib.sh b/t/testlib.sh
+index cb174c9..d980c01 100644
+--- a/t/testlib.sh
++++ b/t/testlib.sh
+@@ -47,8 +47,8 @@ else
+ fi
+ 
+ libdir="../lib"
+-bmu="../backup-manager-upload"
+-bmp="../backup-manager-purge"
++bmu="perl -I.. ../backup-manager-upload"
++bmp="perl -I.. ../backup-manager-purge"
+ 
+ conffile="confs/base.conf"
+ version="false"

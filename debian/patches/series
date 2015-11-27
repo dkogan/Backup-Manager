@@ -13,3 +13,4 @@
 0013-disabled-test-t20-hooks-bug235.sh.patch
 0014-test-suite-can-now-be-run-from-any-directory.patch
 0015-test-suite-results-are-now-returned-in-the-run-tests.patch
+0016-test-suite-makes-sure-to-use-the-LOCAL-perl-files.patch
