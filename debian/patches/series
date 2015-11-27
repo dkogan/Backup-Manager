@@ -11,3 +11,4 @@
 0011-Fixed-up-the-dar-tests.patch
 0012-testlib.sh-defines-bmp.-This-is-used-by-t14-purging-.patch
 0013-disabled-test-t20-hooks-bug235.sh.patch
+0014-test-suite-can-now-be-run-from-any-directory.patch

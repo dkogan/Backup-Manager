@@ -1,0 +1,20 @@
+From: Dima Kogan <dima@secretsauce.net>
+Date: Thu, 26 Nov 2015 18:22:45 -0800
+Subject: test suite can now be run from any directory
+
+---
+ t/run-tests.sh | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/t/run-tests.sh b/t/run-tests.sh
+index 2ed6d0d..7c4f152 100755
+--- a/t/run-tests.sh
++++ b/t/run-tests.sh
+@@ -34,6 +34,7 @@ fi
+ total=0
+ nb_failure=0
+ # Now process the tests
++cd `dirname $0`
+ for file in t[0-9][0-9]*.sh
+ do
+         count
