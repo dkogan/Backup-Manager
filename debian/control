@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Build-Depends-Indep: debiandoc-sgml, texlive-fonts-recommended, texlive-latex-base,
                      texlive-latex-recommended, texlive-latex-extra, ghostscript
-Build-Depends: po-debconf, dar, debhelper (>= 7.0.50)
+Build-Depends: po-debconf, dar, debhelper (>=9)
 Maintainer: Debian QA Group <packages@qa.debian.org>
 Standards-Version: 3.9.3
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/backup-manager.git
