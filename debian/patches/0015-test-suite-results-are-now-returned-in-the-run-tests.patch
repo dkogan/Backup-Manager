@@ -1,0 +1,21 @@
+From: Dima Kogan <dima@secretsauce.net>
+Date: Thu, 26 Nov 2015 19:55:35 -0800
+Subject: test suite results are now returned in the run-tests.sh exit code
+
+---
+ t/run-tests.sh | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/t/run-tests.sh b/t/run-tests.sh
+index 7c4f152..4760d3a 100755
+--- a/t/run-tests.sh
++++ b/t/run-tests.sh
+@@ -52,6 +52,7 @@ pct_success=$(($nb_success * 100 / $total))
+ echo "Success score: $pct_success% ($nb_success/$total)"
+ if [[ "$nb_failure" -gt 0 ]]; then
+     echo "Failed tests: $nb_failure"
++    exit 1
+ fi
+ 
+-
++exit 0
