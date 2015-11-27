@@ -8,6 +8,9 @@ DOCTMP = $(CURDIR)/debian/$(DOCPKG)
 %:
 	dh $@
 
+override_dh_auto_test:
+	t/run-tests.sh
+
 override_dh_auto_install:
 	$(MAKE) install PREFIX=/usr DESTDIR=$(TMP) \
 	    PERL5DIR=$(TMP)/usr/share/perl5
