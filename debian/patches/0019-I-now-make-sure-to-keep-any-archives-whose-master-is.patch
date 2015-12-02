@@ -1,0 +1,258 @@
+From: Dima Kogan <dima@secretsauce.net>
+Date: Tue, 1 Dec 2015 22:36:44 -0800
+Forwarded: http://github.com/sukria/Backup-Manager/issues/67
+Subject: I now make sure to keep any archives whose master is not purged
+
+Previously I would make sure to not purge the youngest master; i.e. the youngest
+master would always be retained, regardless of the TTL setting. However this did
+not apply to the incremental pieces. So come backup restore time it would be
+possible to see a master, then a gap of missing files and the latest few
+incremental archives. This patch makes sure to keep all incremental archives for
+which we're not purging the master.
+
+I'm also adding a test to confirm that the issue existed and that it is now
+fixed
+
+This is Debian bug 784446:
+
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=784446
+---
+ backup-manager-purge    | 106 ++++++++++++++++++++++++++++--------------------
+ t/t14-purging-system.sh |  57 +++++++++++++++++++++-----
+ 2 files changed, 110 insertions(+), 53 deletions(-)
+
+diff --git a/backup-manager-purge b/backup-manager-purge
+index 3ebec29..b288800 100755
+--- a/backup-manager-purge
++++ b/backup-manager-purge
+@@ -219,17 +219,6 @@ sub read_archives($$)
+     }
+ }
+ 
+-
+-# Takes an archive and a meta-data hash ref
+-# and return 1 if the archive is outded according to $g_ttl,
+-# 0 else.
+-sub outdate_master_archive($$$$$)
+-{
+-    my ($archive, $rh_meta, $purge_date,
+-        $ra_archives, $ra_outdated) = @_;
+-}
+-
+-
+ # Takes two array refs. Reads from the first one the list of archives 
+ # to process, and push in the second one the outdated archives.
+ sub outdate_archives($$)
+@@ -243,43 +232,74 @@ sub outdate_archives($$)
+     my $purge_date = strftime ('%Y%m%d', 
+                                localtime(time() - $g_ttl * 24 * 3600)); 
+     print_info "Outdating archives made before $purge_date";
+-    
++
++    my %outdated = (); # set of outdated archives. Will be converted to a list
++                       # at the end of this function
+     my %seen = ();
+-    foreach my $archive (sort @{$ra_archives}) {
+-        print_info "Checking archive $archive";
+-        
+-        my $data = $g_rh_archives->{dataByPath}{$archive};
+-        next unless defined $data;
+-        next unless defined $data->{date};
+-        next if $seen{$archive};
+-        $seen{$archive} = 1;
+-       
+-        # if the date of the archive is older than $purge_date, we may have to outdate it
+-        # unless, nothing to do for that archive.
+-        next if ($data->{date} > $purge_date);
+-
+-        # we can outdate a master only if a younger master exists
+-        if ($data->{master}) {
+-            foreach my $master_date (
+-                keys %{$g_rh_archives->{$data->{name}}{pathByDateMasters}}) {
+-                if ($master_date > $data->{date}) {
+-                    push @{$ra_outdated}, $archive;
+-                    last;
++    my $outdate_master_notmaster = sub
++    {
++        my $do_master = shift;
++
++
++      ARCHIVE_LOOP:
++        foreach my $archive (sort @{$ra_archives}) {
++            my $data = $g_rh_archives->{dataByPath}{$archive};
++            next unless defined $data;
++            next unless defined $data->{date};
++
++            # if the date of the archive is older than $purge_date, we may have to outdate it
++            # unless, nothing to do for that archive.
++            next if ($data->{date} > $purge_date);
++
++            # We can outdate a master only if a younger master exists
++            if ($data->{master} && $do_master) {
++                next if $seen{$archive};
++                $seen{$archive} = 1;
++
++                my $pathByDateMasters = $g_rh_archives->{$data->{name}}{pathByDateMasters};
++                foreach my $master_date ( keys %$pathByDateMasters) {
++                    if ($master_date > $data->{date}) {
++                        $outdated{$archive} = 1;
++                        last;
++                    }
+                 }
+             }
+-        }
+ 
+-        # here the archive is deprecated, its date is < to $purge_date
+-        else {
+-            # if BM_ARCHIVE_STRICTPURGE is true, we can only purge 
+-            # an archive prefixed with BM_ARCHIVE_PREFIX
+-            next if (($ENV{BM_ARCHIVE_STRICTPURGE} eq "true") and 
+-                     ($data->{prefix} ne $ENV{BM_ARCHIVE_PREFIX}));
+-            
+-            # now, we're sure we can outdate the archive
+-            push @{$ra_outdated}, $archive;
++            # here the archive is deprecated, its date is < to $purge_date
++            if (!$data->{master} && !$do_master) {
++
++                next if $seen{$archive};
++                $seen{$archive} = 1;
++
++                # An incremental archive should not be deleted if its master is
++                # still around. At this point I looked through all the masters
++                # and I know which ones I'm keeping. Any archive younger then
++                # the oldest master is kept
++                my $pathByDateMasters = $g_rh_archives->{$data->{name}}{pathByDateMasters};
++                foreach my $master_date ( keys %$pathByDateMasters) {
++                    if ($master_date < $data->{date} && !$outdated{$pathByDateMasters->{$master_date}}) {
++                        # I found an older master that I decided to keep. This
++                        # archive should thus be kept as well
++                        next ARCHIVE_LOOP;
++                    }
++                }
++
++                # if BM_ARCHIVE_STRICTPURGE is true, we can only purge 
++                # an archive prefixed with BM_ARCHIVE_PREFIX
++                next if (($ENV{BM_ARCHIVE_STRICTPURGE} eq "true") and 
++                         ($data->{prefix} ne $ENV{BM_ARCHIVE_PREFIX}));
++
++                # now, we're sure we can outdate the archive
++                $outdated{$archive} = 1;
++            }
+         }
+-    }
++    };
++
++
++    $outdate_master_notmaster->(1); # masters first
++    $outdate_master_notmaster->(0); # then the others
++
++    push @{$ra_outdated}, sort keys %outdated;
+ }
+ 
+ ##############################################################
+diff --git a/t/t14-purging-system.sh b/t/t14-purging-system.sh
+index fe0b416..617f8a2 100644
+--- a/t/t14-purging-system.sh
++++ b/t/t14-purging-system.sh
+@@ -33,6 +33,9 @@ date_1_days_ago=$(date +"%Y%m%d" --date "1 days ago")
+ date_2_days_ago=$(date +"%Y%m%d" --date "2 days ago")
+ date_3_days_ago=$(date +"%Y%m%d" --date "3 days ago")
+ date_4_days_ago=$(date +"%Y%m%d" --date "4 days ago")
++date_5_days_ago=$(date +"%Y%m%d" --date "5 days ago")
++date_6_days_ago=$(date +"%Y%m%d" --date "6 days ago")
++date_7_days_ago=$(date +"%Y%m%d" --date "7 days ago")
+ 
+ bm_init_env
+ bm_init_today
+@@ -58,12 +61,17 @@ function create_test_repository()
+     touch $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_today.tar.bz2
+     touch $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_1_days_ago.tar.bz2
+     touch $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_2_days_ago.tar.bz2
++    # outdated, but should be kept because ...
+     touch $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_3_days_ago.tar.bz2
+-    # deprecated but should not be removed, as master.
+-    touch $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_4_days_ago.master.tar.bz2 
+-
+-    # some deprecated master backup isolated, should be removed
+-    touch $BM_REPOSITORY_ROOT/ouranos01-home-sukria.$date_4_days_ago.master.tar.bz2
++    # ... this is an outdated master, but it's the youngest one, so keep it
++    touch $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_4_days_ago.master.tar.bz2
++    # outdated and should be removed because ...
++    touch $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_5_days_ago.tar.bz2 
++    # ... this is a master, but not the youngest one, so should be deleted along
++    # with its incremental archives
++    touch $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_6_days_ago.master.tar.bz2
++    # floating incremental archive. delete it.
++    touch $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_7_days_ago.tar.bz2 
+ 
+     # Some master archive
+     touch $BM_REPOSITORY_ROOT/ouranos-etc.$date_1_days_ago.master.txt
+@@ -103,26 +111,55 @@ if [[ -e $BM_REPOSITORY_ROOT/ouranos-$date_4_days_ago.md5 ]]; then
+     error=1
+ fi
+ 
++if [[ ! -e $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_today.tar.bz2 ]]; then
++    info "$BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_today.tar.bz2 has been removed"
++    error=2
++fi
++if [[ ! -e $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_1_days_ago.tar.bz2 ]]; then
++    info "$BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_1_days_ago.tar.bz2 has been removed"
++    error=3
++fi
++if [[ ! -e $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_2_days_ago.tar.bz2 ]]; then
++    info "$BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_2_days_ago.tar.bz2 has been removed"
++    error=4
++fi
++if [[ ! -e $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_3_days_ago.tar.bz2 ]]; then
++    info "$BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_3_days_ago.tar.bz2 has been removed"
++    error=5
++fi
+ if [[ ! -e $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_4_days_ago.master.tar.bz2 ]]; then
+     info "$BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_4_days_ago.master.tar.bz2 has been removed"
+-    error=2
++    error=6
++fi
++if [[ -e $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_5_days_ago.tar.bz2 ]]; then
++    info "$BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_5_days_ago.tar.bz2 has been kept"
++    error=7
++fi
++if [[ -e $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_6_days_ago.master.tar.bz2 ]]; then
++    info "$BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_6_days_ago.master.tar.bz2 has been kept"
++    error=8
++fi
++if [[ -e $BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_7_days_ago.tar.bz2 ]]; then
++    info "$BM_REPOSITORY_ROOT/ouranos01-usr-local-bin.$date_7_days_ago.tar.bz2 has been kept"
++    error=9
+ fi
+ 
+ if [[ ! -e $BM_REPOSITORY_ROOT/passwd ]]; then
+     info "$BM_REPOSITORY_ROOT/passwd has been removed"
+-    error=3
++    error=10
+ fi
+ if [[ ! -e $BM_REPOSITORY_ROOT/ouranos-01020102-fdisk.incremental-list.txt ]] ||
+    [[ ! -e $BM_REPOSITORY_ROOT/ouranos01020102-fdisk.incremental-list.txt ]]; then
+     info "files with 8 digits in their prefix removed"
+-    error=4
++    error=11
+ fi
+ 
+ # the archive under a depth greater than 0 should not be purged
+ if [[ ! -e "$BM_REPOSITORY_ROOT/subdir1/host-path-to-dir.$date_4_days_ago.txt" ]]; then
+     info "archive $BM_REPOSITORY_ROOT/subdir1/host-path-to-dir.$date_4_days_ago.txt does not exist."
+-    error=5
++    error=12
+ fi    
++
+ rm -rf $BM_REPOSITORY_ROOT
+ 
+ # Test the purging system in recursive mode
+@@ -135,7 +172,7 @@ clean_directory "$BM_REPOSITORY_ROOT"
+ # the archive under a depth greater than 0 should be purged
+ if [[ -e "$BM_REPOSITORY_ROOT/subdir1/host-path-to-dir.$date_4_days_ago.txt" ]]; then
+     info "archive $BM_REPOSITORY_ROOT/subdir1/host-path-to-dir.$date_4_days_ago.txt exists."
+-    error=5
++    error=13
+ fi
+ 
+ # rm -rf $BM_REPOSITORY_ROOT

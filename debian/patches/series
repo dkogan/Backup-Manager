@@ -16,3 +16,4 @@
 0016-test-suite-makes-sure-to-use-the-LOCAL-perl-files.patch
 0017-removed-duplicate-setting-of-_PREFIX-variables.patch
 0018-backup-manager-looks-for-its-binaries-in-usr.patch
+0019-I-now-make-sure-to-keep-any-archives-whose-master-is.patch
