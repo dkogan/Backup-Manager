@@ -4,6 +4,8 @@ backup-manager (0.7.11-1) unstable; urgency=medium
   * New upstream release (Closes: #638919)
   * Updated references to the no-longer-existent upstream website
     (Closes: #711949)
+  * Incremental archives are retained if their master archive is retained
+    (Closes: #784446)
 
  -- Dima Kogan <dima@secretsauce.net>  Thu, 26 Nov 2015 14:58:09 -0800
 
