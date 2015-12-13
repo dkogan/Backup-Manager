@@ -1,0 +1,9 @@
+backup-manager (0.7.11-1) unstable; urgency=medium
+
+  * This upstream release changes where the MD5 checksums are stored. As a
+    result, the first few post-upgrade backup runs will not find the
+    checksums from older backups, and a warning will result. This will
+    self-resolve as the older backups expire.
+
+ -- Dima Kogan <dima@secretsauce.net>  Sun, 13 Dec 2015 14:29:25 -0800
+
